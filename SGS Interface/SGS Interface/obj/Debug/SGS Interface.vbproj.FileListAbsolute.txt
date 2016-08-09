@@ -1,0 +1,16 @@
+C:\Users\raset\Desktop\SGS interface\SGS interface\bin\Debug\SGS interface.exe.config
+C:\Users\raset\Desktop\SGS interface\SGS interface\bin\Debug\SGS interface.exe
+C:\Users\raset\Desktop\SGS interface\SGS interface\bin\Debug\SGS interface.pdb
+C:\Users\raset\Desktop\SGS interface\SGS interface\bin\Debug\SGS interface.xml
+C:\Users\raset\Desktop\SGS interface\SGS interface\obj\Debug\SGS interface.vbprojResolveAssemblyReference.cache
+C:\Users\raset\Desktop\SGS interface\SGS interface\obj\Debug\SGS_interface.Resources.resources
+C:\Users\raset\Desktop\SGS interface\SGS interface\obj\Debug\SGS interface.vbproj.GenerateResource.Cache
+C:\Users\raset\Desktop\SGS interface\SGS interface\obj\Debug\SGS interface.exe
+C:\Users\raset\Desktop\SGS interface\SGS interface\obj\Debug\SGS interface.xml
+C:\Users\raset\Desktop\SGS interface\SGS interface\obj\Debug\SGS interface.pdb
+C:\Users\raset\Desktop\SGS interface\SGS interface\obj\Debug\SGS_interface.Form_Controller.resources
+C:\Users\raset\Desktop\SGS interface\SGS interface\obj\Debug\SGS_interface.Form_SplashScreen.resources
+C:\Users\raset\Desktop\SGS interface\SGS interface\bin\Debug\SGS Library.dll
+C:\Users\raset\Desktop\SGS interface\SGS interface\bin\Debug\SGS Library.pdb
+C:\Users\raset\Desktop\SGS interface\SGS interface\bin\Debug\SGS Library.xml
+C:\Users\raset\Desktop\SGS interface\SGS interface\obj\Debug\SGS_Interface.Form_MessageBox.resources

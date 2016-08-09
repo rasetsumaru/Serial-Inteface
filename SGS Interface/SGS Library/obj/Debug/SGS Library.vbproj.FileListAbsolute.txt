@@ -1,0 +1,10 @@
+C:\Users\raset\Desktop\SGS interface\SGS Library\bin\Debug\SGS Library.dll.config
+C:\Users\raset\Desktop\SGS interface\SGS Library\bin\Debug\SGS Library.dll
+C:\Users\raset\Desktop\SGS interface\SGS Library\bin\Debug\SGS Library.pdb
+C:\Users\raset\Desktop\SGS interface\SGS Library\bin\Debug\SGS Library.xml
+C:\Users\raset\Desktop\SGS interface\SGS Library\obj\Debug\SGS_Library.Resources.resources
+C:\Users\raset\Desktop\SGS interface\SGS Library\obj\Debug\SGS Library.vbproj.GenerateResource.Cache
+C:\Users\raset\Desktop\SGS interface\SGS Library\obj\Debug\SGS Library.dll
+C:\Users\raset\Desktop\SGS interface\SGS Library\obj\Debug\SGS Library.xml
+C:\Users\raset\Desktop\SGS interface\SGS Library\obj\Debug\SGS Library.pdb
+C:\Users\raset\Desktop\SGS interface\SGS Library\obj\Debug\SGS Library.vbprojResolveAssemblyReference.cache
