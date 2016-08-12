@@ -41,21 +41,23 @@ Partial Class Form_Controller
         Me.Label0008 = New System.Windows.Forms.Label()
         Me.Label0007 = New System.Windows.Forms.Label()
         Me.Label0006 = New System.Windows.Forms.Label()
-        Me.Label0011 = New System.Windows.Forms.Label()
-        Me.Label0009 = New System.Windows.Forms.Label()
+        Me.Label0012 = New System.Windows.Forms.Label()
         Me.Label0010 = New System.Windows.Forms.Label()
+        Me.Label0011 = New System.Windows.Forms.Label()
+        Me.Label0013 = New System.Windows.Forms.Label()
+        Me.Label0009 = New System.Windows.Forms.Label()
+        Me.ButtonCreateRecipes = New System.Windows.Forms.Button()
         Me.Panel0000.SuspendLayout()
         Me.SuspendLayout()
         '
         'TextBoxReceiver
         '
         Me.TextBoxReceiver.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.TextBoxReceiver.Location = New System.Drawing.Point(196, 552)
+        Me.TextBoxReceiver.Location = New System.Drawing.Point(13, 552)
         Me.TextBoxReceiver.Name = "TextBoxReceiver"
-        Me.TextBoxReceiver.Size = New System.Drawing.Size(119, 20)
+        Me.TextBoxReceiver.Size = New System.Drawing.Size(302, 20)
         Me.TextBoxReceiver.TabIndex = 8
         Me.TextBoxReceiver.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.TextBoxReceiver.Visible = False
         '
         'Panel0000
         '
@@ -220,9 +222,9 @@ Partial Class Form_Controller
         Me.Label0008.ForeColor = System.Drawing.SystemColors.Control
         Me.Label0008.Location = New System.Drawing.Point(26, 200)
         Me.Label0008.Name = "Label0008"
-        Me.Label0008.Size = New System.Drawing.Size(52, 13)
+        Me.Label0008.Size = New System.Drawing.Size(56, 13)
         Me.Label0008.TabIndex = 49
-        Me.Label0008.Text = "Firmware:"
+        Me.Label0008.Text = "Hardware:"
         '
         'Label0007
         '
@@ -230,9 +232,9 @@ Partial Class Form_Controller
         Me.Label0007.ForeColor = System.Drawing.SystemColors.Control
         Me.Label0007.Location = New System.Drawing.Point(26, 174)
         Me.Label0007.Name = "Label0007"
-        Me.Label0007.Size = New System.Drawing.Size(56, 13)
+        Me.Label0007.Size = New System.Drawing.Size(36, 13)
         Me.Label0007.TabIndex = 45
-        Me.Label0007.Text = "Hardware:"
+        Me.Label0007.Text = "Serial:"
         '
         'Label0006
         '
@@ -244,35 +246,70 @@ Partial Class Form_Controller
         Me.Label0006.TabIndex = 44
         Me.Label0006.Text = "Product:"
         '
-        'Label0011
+        'Label0012
         '
-        Me.Label0011.AutoSize = True
-        Me.Label0011.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label0011.Location = New System.Drawing.Point(91, 200)
-        Me.Label0011.Name = "Label0011"
-        Me.Label0011.Size = New System.Drawing.Size(59, 13)
-        Me.Label0011.TabIndex = 51
-        Me.Label0011.Text = "Desconect"
-        '
-        'Label0009
-        '
-        Me.Label0009.AutoSize = True
-        Me.Label0009.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label0009.Location = New System.Drawing.Point(91, 148)
-        Me.Label0009.Name = "Label0009"
-        Me.Label0009.Size = New System.Drawing.Size(59, 13)
-        Me.Label0009.TabIndex = 52
-        Me.Label0009.Text = "Desconect"
+        Me.Label0012.AutoSize = True
+        Me.Label0012.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label0012.Location = New System.Drawing.Point(91, 200)
+        Me.Label0012.Name = "Label0012"
+        Me.Label0012.Size = New System.Drawing.Size(59, 13)
+        Me.Label0012.TabIndex = 51
+        Me.Label0012.Text = "Desconect"
         '
         'Label0010
         '
         Me.Label0010.AutoSize = True
         Me.Label0010.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label0010.Location = New System.Drawing.Point(91, 174)
+        Me.Label0010.Location = New System.Drawing.Point(91, 148)
         Me.Label0010.Name = "Label0010"
         Me.Label0010.Size = New System.Drawing.Size(59, 13)
-        Me.Label0010.TabIndex = 53
+        Me.Label0010.TabIndex = 52
         Me.Label0010.Text = "Desconect"
+        '
+        'Label0011
+        '
+        Me.Label0011.AutoSize = True
+        Me.Label0011.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label0011.Location = New System.Drawing.Point(91, 174)
+        Me.Label0011.Name = "Label0011"
+        Me.Label0011.Size = New System.Drawing.Size(59, 13)
+        Me.Label0011.TabIndex = 53
+        Me.Label0011.Text = "Desconect"
+        '
+        'Label0013
+        '
+        Me.Label0013.AutoSize = True
+        Me.Label0013.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label0013.Location = New System.Drawing.Point(91, 226)
+        Me.Label0013.Name = "Label0013"
+        Me.Label0013.Size = New System.Drawing.Size(59, 13)
+        Me.Label0013.TabIndex = 55
+        Me.Label0013.Text = "Desconect"
+        '
+        'Label0009
+        '
+        Me.Label0009.AutoSize = True
+        Me.Label0009.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label0009.Location = New System.Drawing.Point(26, 226)
+        Me.Label0009.Name = "Label0009"
+        Me.Label0009.Size = New System.Drawing.Size(52, 13)
+        Me.Label0009.TabIndex = 54
+        Me.Label0009.Text = "Firmware:"
+        '
+        'ButtonCreateRecipes
+        '
+        Me.ButtonCreateRecipes.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonCreateRecipes.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonCreateRecipes.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonCreateRecipes.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonCreateRecipes.ForeColor = System.Drawing.SystemColors.Control
+        Me.ButtonCreateRecipes.Location = New System.Drawing.Point(18, 308)
+        Me.ButtonCreateRecipes.Name = "ButtonCreateRecipes"
+        Me.ButtonCreateRecipes.Size = New System.Drawing.Size(90, 26)
+        Me.ButtonCreateRecipes.TabIndex = 36
+        Me.ButtonCreateRecipes.TabStop = False
+        Me.ButtonCreateRecipes.Text = "Create recipes"
+        Me.ButtonCreateRecipes.UseVisualStyleBackColor = True
         '
         'Form_Controller
         '
@@ -281,9 +318,12 @@ Partial Class Form_Controller
         Me.BackColor = System.Drawing.SystemColors.ControlDarkDark
         Me.ClientSize = New System.Drawing.Size(328, 689)
         Me.ControlBox = False
-        Me.Controls.Add(Me.Label0010)
+        Me.Controls.Add(Me.ButtonCreateRecipes)
+        Me.Controls.Add(Me.Label0013)
         Me.Controls.Add(Me.Label0009)
         Me.Controls.Add(Me.Label0011)
+        Me.Controls.Add(Me.Label0010)
+        Me.Controls.Add(Me.Label0012)
         Me.Controls.Add(Me.Label0005)
         Me.Controls.Add(Me.Label0008)
         Me.Controls.Add(Me.Label0007)
@@ -305,9 +345,9 @@ Partial Class Form_Controller
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "Form_Controller"
-        Me.Opacity = 0.9R
+        Me.Opacity = 0.90000000000000002R
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "SGS Interface"
+        Me.Text = "x"
         Me.Panel0000.ResumeLayout(False)
         Me.Panel0000.PerformLayout()
         Me.ResumeLayout(False)
@@ -316,7 +356,6 @@ Partial Class Form_Controller
     End Sub
     Friend WithEvents TextBoxReceiver As TextBox
     Friend WithEvents Panel0000 As Panel
-    Friend WithEvents Button03 As Button
     Friend WithEvents LabelHour As Label
     Friend WithEvents ButtonClose As Button
     Friend WithEvents Label0001 As Label
@@ -333,7 +372,10 @@ Partial Class Form_Controller
     Friend WithEvents Label0008 As Label
     Friend WithEvents Label0007 As Label
     Friend WithEvents Label0006 As Label
-    Friend WithEvents Label0011 As Label
-    Friend WithEvents Label0009 As Label
+    Friend WithEvents Label0012 As Label
     Friend WithEvents Label0010 As Label
+    Friend WithEvents Label0011 As Label
+    Friend WithEvents Label0013 As System.Windows.Forms.Label
+    Friend WithEvents Label0009 As System.Windows.Forms.Label
+    Friend WithEvents ButtonCreateRecipes As System.Windows.Forms.Button
 End Class

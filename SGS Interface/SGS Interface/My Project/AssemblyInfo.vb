@@ -10,7 +10,7 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("SGS Interface")>
 <Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("Solitec Eletrônica Industrial Ltda.")>
+<Assembly: AssemblyCompany("Solitec Eletrônica Industrial EIRELI")> 
 <Assembly: AssemblyProduct("SGS Interface")>
 <Assembly: AssemblyCopyright("Copyright ©  2016")>
 <Assembly: AssemblyTrademark("")>

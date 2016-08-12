@@ -39,7 +39,6 @@ Partial Class Form_MessageBox
         '
         'Button01
         '
-        Me.Button01.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.Button01.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark
         Me.Button01.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ControlDark
         Me.Button01.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDark
@@ -131,9 +130,9 @@ Partial Class Form_MessageBox
         Me.Label0001.ForeColor = System.Drawing.Color.White
         Me.Label0001.Location = New System.Drawing.Point(14, 48)
         Me.Label0001.Name = "Label0001"
-        Me.Label0001.Size = New System.Drawing.Size(107, 21)
+        Me.Label0001.Size = New System.Drawing.Size(105, 21)
         Me.Label0001.TabIndex = 11
-        Me.Label0001.Text = "Message Box"
+        Me.Label0001.Text = "Message box"
         '
         'Label0000
         '
@@ -142,9 +141,9 @@ Partial Class Form_MessageBox
         Me.Label0000.ForeColor = System.Drawing.Color.White
         Me.Label0000.Location = New System.Drawing.Point(9, 9)
         Me.Label0000.Name = "Label0000"
-        Me.Label0000.Size = New System.Drawing.Size(189, 39)
+        Me.Label0000.Size = New System.Drawing.Size(199, 39)
         Me.Label0000.TabIndex = 10
-        Me.Label0000.Text = "SGS Inteface"
+        Me.Label0000.Text = "SGS Interface"
         '
         'TimerResult
         '

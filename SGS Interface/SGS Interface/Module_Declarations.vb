@@ -42,8 +42,8 @@ Module Module_Declarations
 
 
 
-    'Public FileDirectory As String
-    'Public FileName As String
+    Public FileDirectory As String
+    Public FileName As String
     Public FileSystem As Integer
 
     Public RecipeIndex As Integer

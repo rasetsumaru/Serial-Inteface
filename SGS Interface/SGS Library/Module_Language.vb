@@ -1,5 +1,4 @@
 ﻿
-
 Public Module Module_Language
 
 #Region "Declarations"
@@ -17,10 +16,10 @@ Public Module Module_Language
 
             Select Case Language
 
-                Case Is = "Inglish"
-                    LanguageInglish()
+                Case Is = "English"
+                    LanguageEnglish()
+                Case Is = "PortuguesBr"
 
-                Case Is = "PortuguêsBR"
                     LanguagePTBR()
 
             End Select
@@ -37,17 +36,17 @@ Public Module Module_Language
 
 #Region "Language"
 
-    ' Language Inglish
-    Private Sub LanguageInglish()
+    ' Language English
+    Private Sub LanguageEnglish()
 
         Try
 
             Label0000 = "Close"
-            Label0001 = "Application close."
+            Label0001 = "Application close"
             Label0002 = "Connect"
-            Label0003 = "Connect device."
+            Label0003 = "Connect device"
             Label0004 = "Disconnect"
-            Label0005 = "Disconnect device."
+            Label0005 = "Disconnect device"
             Label0006 = "PCB Interface"
             Label0007 = "USB Usart send"
             Label0008 = "USB Usart receive"
@@ -57,17 +56,29 @@ Public Module Module_Language
             Label0012 = "Yes"
             Label0013 = "Connection Status"
             Label0014 = "Product:"
-            Label0015 = "Hardware:"
-            Label0016 = "Firmware:"
-            Label0017 = "Desconnected"
-            Label0018 = "Connected"
+            Label0015 = "Serial:"
+            Label0016 = "Hardware:"
+            Label0017 = "Firmware:"
+            Label0018 = "Disconnected"
+            Label0019 = "Confirm message box"
+            Label0020 = "Accept suggestion"
+            Label0021 = "Deny suggestion"
+            Label0022 = "Create recipes"
+            Label0023 = "Create new recipe file"
+            Label0024 = "File properties"
+            Label0025 = "SGS 500 recipes|*.sgsr|SGS 500 settings|*.sgss"
+            Label0026 = "Save an SGS-500 file"
+            Label0027 = "Browse"
+            Label0028 = "Confirm"
+            Label0029 = "Cancel"
+            Label0030 = "Directory:"
 
             Message0000 = "USB Usart connected"
             Message0001 = "USB Usart disconnected"
             Message0002 = "Communication failure"
             Message0003 = "Device not found"
             Message0004 = "There is a device connected to the software. Do you want to disconnect it?"
-            Message0005 = "The system configuration file not found. The program will load the default settings ."
+            Message0005 = "The system configuration file not found. The program will load the default settings."
 
         Catch ex As Exception
 
@@ -77,17 +88,17 @@ Public Module Module_Language
 
     End Sub
 
-    ' Language PortuguêsBR
+    ' Language PortuguesBr
     Private Sub LanguagePTBR()
 
         Try
 
             Label0000 = "Fechar"
-            Label0001 = "Fechar aplicativo."
+            Label0001 = "Fechar aplicativo"
             Label0002 = "Conectar"
-            Label0003 = "Conectar dispositivo."
+            Label0003 = "Conectar dispositivo"
             Label0004 = "Desconectar"
-            Label0005 = "Desconectar dispositivo."
+            Label0005 = "Desconectar dispositivo"
             Label0006 = "PCB Interface"
             Label0007 = "USB Usart enviar"
             Label0008 = "USB Usart receber"
@@ -97,10 +108,22 @@ Public Module Module_Language
             Label0012 = "Sim"
             Label0013 = "Status da Conexão"
             Label0014 = "Produto:"
-            Label0015 = "Hardware:"
-            Label0016 = "Firmware:"
-            Label0017 = "Desconectado"
-            Label0018 = "Conectado"
+            Label0015 = "Serial:"
+            Label0016 = "Hardware:"
+            Label0017 = "Firmware:"
+            Label0018 = "Desconectado"
+            Label0019 = "Confimar caixa de mensagem"
+            Label0020 = "Aceitar suggestion"
+            Label0021 = "Negar suggestion"
+            Label0022 = "Criar receitas"
+            Label0023 = "Criar novo arquivo de receita"
+            Label0024 = "Propriedades do arquivo"
+            Label0025 = "SGS 500 receitas|*.sgsr|SGS 500 configurações|*.sgss"
+            Label0026 = "Salvar um arquivo SGS-500"
+            Label0027 = "Procurar"
+            Label0028 = "Confirmar"
+            Label0029 = "Cancelar"
+            Label0030 = "Diretório:"
 
             Message0000 = "USB Usart conectado"
             Message0001 = "USB Usart desconectado"

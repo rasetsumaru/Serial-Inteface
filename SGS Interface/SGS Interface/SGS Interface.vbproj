@@ -93,6 +93,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form_CreateFile.Designer.vb">
+      <DependentUpon>Form_CreateFile.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form_CreateFile.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form_Controller.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +137,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Form_CreateFile.resx">
+      <DependentUpon>Form_CreateFile.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_Controller.resx">
       <DependentUpon>Form_Controller.vb</DependentUpon>
     </EmbeddedResource>
@@ -174,6 +183,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SGS Firmware\SGS Firmware.vbproj">
+      <Project>{375df63a-642a-4921-900a-32d972c9734c}</Project>
+      <Name>SGS Firmware</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -75,23 +75,105 @@ Module Module_Functions
         Try
             Dim nome_arquivo_ini As String = SGS_Library.NomeArquivoINI(DirConfig)
 
-            WritePrivateProfileString("Address", "DirConfig", DirConfig, nome_arquivo_ini)
+            WriteFileChecksum("Parameters", "Parameter0010", FormTop, nome_arquivo_ini)
+            WriteFileChecksum("Parameters", "Parameter0011", FormLeft, nome_arquivo_ini)
 
-            WritePrivateProfileString("Location", "Top", FormTop, nome_arquivo_ini)
-            WritePrivateProfileString("Location", "Left", FormLeft, nome_arquivo_ini)
-
-            WritePrivateProfileString("Threading", "NowInterval", TimerNowInterval, nome_arquivo_ini)
-            WritePrivateProfileString("Threading", "ConnectedInterval", TimerConnectedInterval, nome_arquivo_ini)
-            WritePrivateProfileString("Threading", "DisconnectedInterval", TimerDisconnectedInterval, nome_arquivo_ini)
-            WritePrivateProfileString("Threading", "UsartTxInterval", TimerUsartTxInterval, nome_arquivo_ini)
-            WritePrivateProfileString("Threading", "UsartRxInterval", TimerUsartRxInterval, nome_arquivo_ini)
-
-            DirConfig = LeArquivoINI(nome_arquivo_ini, "Address", "DirConfig", "\System\SGSConfig.ini")
+            WriteFileChecksum("Parameters", "Parameter0020", TimerNowInterval, nome_arquivo_ini)
+            WriteFileChecksum("Parameters", "Parameter0021", TimerConnectedInterval, nome_arquivo_ini)
+            WriteFileChecksum("Parameters", "Parameter0022", TimerDisconnectedInterval, nome_arquivo_ini)
+            WriteFileChecksum("Parameters", "Parameter0023", TimerUsartTxInterval, nome_arquivo_ini)
+            WriteFileChecksum("Parameters", "Parameter0024", TimerUsartRxInterval, nome_arquivo_ini)
 
         Catch ex As Exception
             WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
         End Try
 
+    End Sub
+
+    Public Function ReadFileChecksum(ByVal file_name As String, ByVal section_name As String, ByVal key_name As String, ByVal default_value As String) As String
+
+        Try
+            Dim ValName As String
+            Dim ValChecksum As Integer
+
+            Dim read_data As String = LeArquivoINI(file_name, section_name, key_name, default_value)
+
+            If Strings.Left(read_data, 1) = "@" And Strings.Right(read_data, 1) = "#" Then
+
+                read_data = read_data.Substring(1, read_data.Length - 2)
+
+                ValName = read_data.Substring(0, read_data.IndexOf("%"))
+                ValChecksum = Strings.Right(read_data, 3)
+
+                Dim array() As Byte = System.Text.Encoding.ASCII.GetBytes(ValName)
+
+                Dim checksum As Long
+                Dim datacalculations As Long
+
+                For i As Byte = 0 To ValName.Length - 1
+                    datacalculations = array(i) * (i + 1)
+                    checksum += datacalculations
+                Next
+
+                checksum = checksum Mod 99
+
+                If checksum = Convert.ToInt16(ValChecksum) Then
+
+                    Return ValName
+                    Exit Function
+
+                Else
+
+                    default_value = default_value.Substring(1, default_value.Length - 2)
+                    default_value = default_value.Substring(0, default_value.IndexOf("%"))
+
+                    WriteFileChecksum(section_name, key_name, default_value.Substring(0, default_value.IndexOf(" ")), file_name)
+
+                    Return default_value
+                    Exit Function
+
+                End If
+
+            End If
+
+        Catch ex As Exception
+            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
+        End Try
+
+    End Function
+
+    Public Sub WriteFileChecksum(ByVal section_name As String, ByVal key_name As String, ByVal val_name As String, ByVal file_name As String)
+
+        Try
+
+            For i As Byte = 0 To 69 - val_name.Length - 1
+                val_name += " "
+            Next
+
+            Dim array() As Byte = System.Text.Encoding.ASCII.GetBytes(val_name)
+
+            Dim checksum As Long
+            Dim datacalculations As Long
+            Dim checksumstring As String = ""
+
+            For i As Byte = 0 To val_name.Length - 1
+                datacalculations = array(i) * (i + 1)
+                checksum += datacalculations
+            Next
+
+            checksum = checksum Mod 99
+
+            For i As Byte = 0 To 3 - checksum.ToString.Length - 1
+                checksumstring += "0"
+            Next
+
+            checksumstring += checksum.ToString
+
+            WritePrivateProfileString(section_name, key_name, "@" + val_name + "%" + checksumstring + "#", file_name)
+
+        Catch ex As Exception
+            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
+        End Try
     End Sub
 
 #End Region
@@ -104,22 +186,18 @@ Module Module_Functions
 
             Dim nome_arquivo_ini As String = SGS_Library.NomeArquivoINI(DirConfig)
 
-            DirConfig = LeArquivoINI(nome_arquivo_ini, "Address", "DirConfig", "\System\SGSConfig.ini")
-
-            FormTop = LeArquivoINI(nome_arquivo_ini, "Location", "Top", "100")
-            FormLeft = LeArquivoINI(nome_arquivo_ini, "Location", "Left", "250")
-
-            TimerNowInterval = LeArquivoINI(nome_arquivo_ini, "Threading", "NowInterval", "100")
-            TimerConnectedInterval = LeArquivoINI(nome_arquivo_ini, "Threading", "ConnectedInterval", "1500")
-            TimerDisconnectedInterval = LeArquivoINI(nome_arquivo_ini, "Threading", "DisconnectedInterval", "1500")
-            TimerUsartTxInterval = LeArquivoINI(nome_arquivo_ini, "Threading", "UsartTxInterval", "100")
-            TimerUsartRxInterval = LeArquivoINI(nome_arquivo_ini, "Threading", "UsartRxInterval", "100")
-
-            SGS_Library.Language = LeArquivoINI(nome_arquivo_ini, "Region", "Language", "Inglish")
-
-
-
+            SGS_Library.Language = ReadFileChecksum(nome_arquivo_ini, "Parameters", "Parameter0000", "@English                                                              %058#")
+            SGS_Library.Language = SGS_Library.Language.Substring(0, SGS_Library.Language.IndexOf(" "))
             SGS_Library.ReadLanguageLibrary()
+
+            FormTop = ReadFileChecksum(nome_arquivo_ini, "Parameters", "Parameter0010", "@100                                                                  %058#")
+            FormLeft = ReadFileChecksum(nome_arquivo_ini, "Parameters", "Parameter0011", "@250                                                                  %069#")
+
+            TimerNowInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "Parameter0020", "@100                                                                  %058#")
+            TimerConnectedInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "Parameter0021", "@1500                                                                 %033#")
+            TimerDisconnectedInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "Parameter0022", "@1500                                                                 %033#")
+            TimerUsartTxInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "Parameter0023", "@100                                                                  %058#")
+            TimerUsartRxInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "Parameter0024", "@100                                                                  %058#")
 
             If Not System.IO.File.Exists(nome_arquivo_ini) Then
 
@@ -203,8 +281,8 @@ Module Module_Functions
         Try
             Dim nome_arquivo_ini As String = SGS_Library.NomeArquivoINI(DirConfig)
 
-            WritePrivateProfileString("Location", "Top", _form.Top, nome_arquivo_ini)
-            WritePrivateProfileString("Location", "Left", _form.Left, nome_arquivo_ini)
+            WriteFileChecksum("Parameters", "Parameter0010", _form.Top, nome_arquivo_ini)
+            WriteFileChecksum("Parameters", "Parameter0011", _form.Left, nome_arquivo_ini)
         Catch ex As Exception
             WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
         End Try
@@ -224,6 +302,8 @@ Module Module_Functions
                     With Form_Controller
                         .ButtonClose.Text = SGS_Library.Label0000
                         .ButtonConnect.Text = SGS_Library.Label0002
+                        .ButtonCreateRecipes.Text = SGS_Library.label0022
+
                         .Label0002.Text = SGS_Library.Label0006
                         .Label0003.Text = SGS_Library.Label0007
                         .Label0004.Text = SGS_Library.Label0008
@@ -232,12 +312,15 @@ Module Module_Functions
                         .Label0007.Text = SGS_Library.Label0015
                         .Label0008.Text = SGS_Library.Label0016
                         .Label0009.Text = SGS_Library.Label0017
-                        .Label0010.Text = SGS_Library.Label0017
-                        .Label0011.Text = SGS_Library.Label0017
+                        .Label0010.Text = SGS_Library.Label0018
+                        .Label0011.Text = SGS_Library.Label0018
+                        .Label0012.Text = SGS_Library.Label0018
+                        .Label0013.Text = SGS_Library.Label0018
                         With _ToolTip
                             .IsBalloon = True
                             .SetToolTip(Form_Controller.ButtonClose, SGS_Library.Label0001)
                             .SetToolTip(Form_Controller.ButtonConnect, SGS_Library.Label0003)
+                            .SetToolTip(Form_Controller.ButtonCreateRecipes, SGS_Library.Label0023)
                         End With
                     End With
 
@@ -534,7 +617,7 @@ Module Module_Functions
             End If
 
             With _SerialPort
-                .PortName = "COM4" '_Seriallist.SelectedItem
+                .PortName = _Seriallist.SelectedItem
                 .BaudRate = 115200
                 .DataBits = 8
                 .Parity = Parity.None
@@ -650,7 +733,6 @@ Module Module_Functions
 
                 End If
 
-
             End If
 
         Catch ex As Exception
@@ -662,6 +744,7 @@ Module Module_Functions
     Public Sub SerialDecoder(Decoder As String)
 
         Try
+
             Dim Header As String = Decoder.Substring(0, 2)
             Dim Control As String = Decoder.Substring(2, 3)
             Dim Data As String = Decoder.Substring(5, 64)
@@ -706,9 +789,10 @@ Module Module_Functions
                         End If
 
                         With Form_Controller
-                            .Label0009.Text = SGS_Library.Label0017
-                            .Label0010.Text = SGS_Library.Label0017
-                            .Label0011.Text = SGS_Library.Label0017
+                            .Label0010.Text = SGS_Library.Label0018
+                            .Label0011.Text = SGS_Library.Label0018
+                            .Label0012.Text = SGS_Library.Label0018
+                            .Label0013.Text = SGS_Library.Label0018
                             With .ButtonConnect
                                 .Text = SGS_Library.Label0002
                                 .Enabled = True
@@ -736,9 +820,10 @@ Module Module_Functions
 
                     UsartRx = ""
                     With Form_Controller
-                        .Label0009.Text = "SGS-500"
-                        .Label0010.Text = Data.Substring(1, 6)
-                        .Label0011.Text = Data.Substring(8, 10)
+                        .Label0010.Text = "SGS-" & Data.Substring(Data.IndexOf("P") + 2, 3)
+                        .Label0011.Text = Data.Substring(Data.IndexOf("S") + 2, 4)
+                        .Label0012.Text = Data.Substring(Data.IndexOf("H") + 2, 4)
+                        .Label0013.Text = Data.Substring(Data.IndexOf("F") + 2, 4)
                     End With
                 End If
 
@@ -808,7 +893,6 @@ Module Module_Functions
                 .Button01.Visible = False
                 .Button02.Visible = False
                 .Button03.Visible = False
-                .ButtonSize.Visible = True
             End With
 
             Select Case LoadMessage
@@ -820,6 +904,10 @@ Module Module_Functions
                             .Visible = True
                             .Text = SGS_Library.Label0010
                         End With
+                        With _ToolTip
+                            .IsBalloon = True
+                            .SetToolTip(Form_MessageBox.Button01, SGS_Library.Label0019)
+                        End With
                     End With
 
                 Case Is = 1
@@ -828,6 +916,10 @@ Module Module_Functions
                         With .Button01
                             .Visible = True
                             .Text = SGS_Library.Label0010
+                        End With
+                        With _ToolTip
+                            .IsBalloon = True
+                            .SetToolTip(Form_MessageBox.Button01, SGS_Library.Label0019)
                         End With
                     End With
 
@@ -838,6 +930,10 @@ Module Module_Functions
                             .Visible = True
                             .Text = SGS_Library.Label0010
                         End With
+                        With _ToolTip
+                            .IsBalloon = True
+                            .SetToolTip(Form_MessageBox.Button01, SGS_Library.Label0019)
+                        End With
                     End With
 
                 Case Is = 3
@@ -846,6 +942,10 @@ Module Module_Functions
                         With .Button01
                             .Visible = True
                             .Text = SGS_Library.Label0010
+                        End With
+                        With _ToolTip
+                            .IsBalloon = True
+                            .SetToolTip(Form_MessageBox.Button01, SGS_Library.Label0019)
                         End With
                     End With
 
@@ -859,6 +959,11 @@ Module Module_Functions
                         With .Button02
                             .Visible = True
                             .Text = SGS_Library.Label0012
+                            With _ToolTip
+                                .IsBalloon = True
+                                .SetToolTip(Form_MessageBox.Button01, SGS_Library.Label0021)
+                                .SetToolTip(Form_MessageBox.Button02, SGS_Library.Label0020)
+                            End With
                         End With
                     End With
 
@@ -868,6 +973,10 @@ Module Module_Functions
                         With .Button01
                             .Visible = True
                             .Text = SGS_Library.Label0010
+                        End With
+                        With _ToolTip
+                            .IsBalloon = True
+                            .SetToolTip(Form_MessageBox.Button01, SGS_Library.Label0019)
                         End With
                     End With
 
@@ -931,5 +1040,75 @@ Module Module_Functions
     End Sub
 
 #End Region
+
+
+
+    Public Sub FileProperties()
+
+        Try
+
+            With Form_CreateFile
+                .Activate()
+                .Visible = True
+                .Size = New Size(534, 248)
+                .ButtonSize.Text = "-"
+                .Label0001.Text = SGS_Library.Label0024
+                .Label0002.Text = SGS_Library.Label0017
+                .Label0003.Text = SGS_Library.Label0030
+
+                .ButtonBrowse.Text = SGS_Library.Label0027
+                .ButtonConfirm.Text = SGS_Library.Label0028
+                .ButtonCancel.Text = SGS_Library.Label0029
+
+                .ButtonConfirm.Enabled = False
+
+                .LabelDirectory.Text = ""
+                .ComboBoxFirmware.Items.Clear()
+                .ComboBoxFirmware.Items.AddRange(SGS_Firmware.FirmwareSelect)
+                .ComboBoxFirmware.SelectedIndex = 0
+            End With
+
+
+
+
+        Catch ex As Exception
+            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
+        End Try
+
+    End Sub
+
+    Public Sub SaveFileDirectory()
+
+        Try
+
+            Dim _saveFileDialog As New SaveFileDialog()
+
+            _saveFileDialog.Filter = SGS_Library.Label0025
+            _saveFileDialog.Title = SGS_Library.Label0026
+            _saveFileDialog.FilterIndex = 1
+            _saveFileDialog.ShowDialog()
+
+            If _saveFileDialog.FileName <> "" Then
+
+                FileDirectory = System.IO.Path.GetDirectoryName(_saveFileDialog.FileName)
+                FileName = System.IO.Path.GetFileName(_saveFileDialog.FileName)
+                FileSystem = _saveFileDialog.FilterIndex
+
+                If Strings.Right(FileDirectory, 1) = "\" Then
+                    FileDirectory = FileDirectory.Substring(0, FileDirectory.Length - 1)
+                End If
+
+                With Form_CreateFile
+                    .LabelDirectory.Text = FileDirectory & "\" & FileName
+                    .ButtonConfirm.Enabled = True
+                End With
+            End If
+
+
+        Catch ex As Exception
+            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
+        End Try
+
+    End Sub
 
 End Module
