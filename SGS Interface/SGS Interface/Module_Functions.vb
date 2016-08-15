@@ -70,26 +70,6 @@ Module Module_Functions
 
     End Function
 
-    Public Sub CreatFileConfig()
-
-        Try
-            Dim nome_arquivo_ini As String = SGS_Library.NomeArquivoINI(DirConfig)
-
-            WriteFileChecksum("Parameters", "Parameter0010", FormTop, nome_arquivo_ini)
-            WriteFileChecksum("Parameters", "Parameter0011", FormLeft, nome_arquivo_ini)
-
-            WriteFileChecksum("Parameters", "Parameter0020", TimerNowInterval, nome_arquivo_ini)
-            WriteFileChecksum("Parameters", "Parameter0021", TimerConnectedInterval, nome_arquivo_ini)
-            WriteFileChecksum("Parameters", "Parameter0022", TimerDisconnectedInterval, nome_arquivo_ini)
-            WriteFileChecksum("Parameters", "Parameter0023", TimerUsartTxInterval, nome_arquivo_ini)
-            WriteFileChecksum("Parameters", "Parameter0024", TimerUsartRxInterval, nome_arquivo_ini)
-
-        Catch ex As Exception
-            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
-        End Try
-
-    End Sub
-
     Public Function ReadFileChecksum(ByVal file_name As String, ByVal section_name As String, ByVal key_name As String, ByVal default_value As String) As String
 
         Try
@@ -102,7 +82,7 @@ Module Module_Functions
 
                 read_data = read_data.Substring(1, read_data.Length - 2)
 
-                ValName = read_data.Substring(0, read_data.IndexOf("%"))
+                ValName = key_name & read_data.Substring(0, read_data.IndexOf("%"))
                 ValChecksum = Strings.Right(read_data, 3)
 
                 Dim array() As Byte = System.Text.Encoding.ASCII.GetBytes(ValName)
@@ -119,20 +99,24 @@ Module Module_Functions
 
                 If checksum = Convert.ToInt16(ValChecksum) Then
 
-                    Return ValName
+                    Return Strings.Right(ValName, 64)
                     Exit Function
 
                 Else
 
-                    default_value = default_value.Substring(1, default_value.Length - 2)
-                    default_value = default_value.Substring(0, default_value.IndexOf("%"))
-
-                    WriteFileChecksum(section_name, key_name, default_value.Substring(0, default_value.IndexOf(" ")), file_name)
+                    WriteFileChecksum(section_name, key_name, default_value, file_name)
 
                     Return default_value
                     Exit Function
 
                 End If
+
+            Else
+
+                WriteFileChecksum(section_name, key_name, default_value, file_name)
+
+                Return default_value
+                Exit Function
 
             End If
 
@@ -146,17 +130,19 @@ Module Module_Functions
 
         Try
 
-            For i As Byte = 0 To 69 - val_name.Length - 1
+            For i As Byte = 1 To 64 - val_name.Length
                 val_name += " "
             Next
 
-            Dim array() As Byte = System.Text.Encoding.ASCII.GetBytes(val_name)
+            Dim val_checksum As String = key_name & val_name
+
+            Dim array() As Byte = System.Text.Encoding.ASCII.GetBytes(val_checksum)
 
             Dim checksum As Long
             Dim datacalculations As Long
             Dim checksumstring As String = ""
 
-            For i As Byte = 0 To val_name.Length - 1
+            For i As Byte = 0 To val_checksum.Length - 1
                 datacalculations = array(i) * (i + 1)
                 checksum += datacalculations
             Next
@@ -169,11 +155,12 @@ Module Module_Functions
 
             checksumstring += checksum.ToString
 
-            WritePrivateProfileString(section_name, key_name, "@" + val_name + "%" + checksumstring + "#", file_name)
+            WritePrivateProfileString(section_name, key_name, "@" & val_name & "%" & checksumstring & "#", file_name)
 
         Catch ex As Exception
             WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
         End Try
+
     End Sub
 
 #End Region
@@ -186,25 +173,22 @@ Module Module_Functions
 
             Dim nome_arquivo_ini As String = SGS_Library.NomeArquivoINI(DirConfig)
 
-            SGS_Library.Language = ReadFileChecksum(nome_arquivo_ini, "Parameters", "Parameter0000", "@English                                                              %058#")
+            If Not System.IO.File.Exists(nome_arquivo_ini) Then
+                FormMessageBox(5)
+            End If
+
+            SGS_Library.Language = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP000", "English")
             SGS_Library.Language = SGS_Library.Language.Substring(0, SGS_Library.Language.IndexOf(" "))
             SGS_Library.ReadLanguageLibrary()
 
-            FormTop = ReadFileChecksum(nome_arquivo_ini, "Parameters", "Parameter0010", "@100                                                                  %058#")
-            FormLeft = ReadFileChecksum(nome_arquivo_ini, "Parameters", "Parameter0011", "@250                                                                  %069#")
+            FormTop = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP010", "100")
+            FormLeft = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP011", "250")
 
-            TimerNowInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "Parameter0020", "@100                                                                  %058#")
-            TimerConnectedInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "Parameter0021", "@1500                                                                 %033#")
-            TimerDisconnectedInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "Parameter0022", "@1500                                                                 %033#")
-            TimerUsartTxInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "Parameter0023", "@100                                                                  %058#")
-            TimerUsartRxInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "Parameter0024", "@100                                                                  %058#")
-
-            If Not System.IO.File.Exists(nome_arquivo_ini) Then
-
-                CreatFileConfig()
-                FormMessageBox(5)
-
-            End If
+            TimerNowInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP020", "100")
+            TimerConnectedInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP021", "1500")
+            TimerDisconnectedInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP022", "1500")
+            TimerUsartTxInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP023", "100")
+            TimerUsartRxInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP024", "100")
 
         Catch ex As Exception
             WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH: mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
@@ -281,8 +265,9 @@ Module Module_Functions
         Try
             Dim nome_arquivo_ini As String = SGS_Library.NomeArquivoINI(DirConfig)
 
-            WriteFileChecksum("Parameters", "Parameter0010", _form.Top, nome_arquivo_ini)
-            WriteFileChecksum("Parameters", "Parameter0011", _form.Left, nome_arquivo_ini)
+            WriteFileChecksum("Parameters", "PP010", _form.Top, nome_arquivo_ini)
+            WriteFileChecksum("Parameters", "PP011", _form.Left, nome_arquivo_ini)
+
         Catch ex As Exception
             WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
         End Try
@@ -302,7 +287,7 @@ Module Module_Functions
                     With Form_Controller
                         .ButtonClose.Text = SGS_Library.Label0000
                         .ButtonConnect.Text = SGS_Library.Label0002
-                        .ButtonCreateRecipes.Text = SGS_Library.label0022
+                        .ButtonCreateFile.Text = SGS_Library.Label0022
 
                         .Label0002.Text = SGS_Library.Label0006
                         .Label0003.Text = SGS_Library.Label0007
@@ -320,7 +305,7 @@ Module Module_Functions
                             .IsBalloon = True
                             .SetToolTip(Form_Controller.ButtonClose, SGS_Library.Label0001)
                             .SetToolTip(Form_Controller.ButtonConnect, SGS_Library.Label0003)
-                            .SetToolTip(Form_Controller.ButtonCreateRecipes, SGS_Library.Label0023)
+                            .SetToolTip(Form_Controller.ButtonCreateFile, SGS_Library.Label0023)
                         End With
                     End With
 
@@ -638,7 +623,7 @@ Module Module_Functions
     Public Sub SerialPortConnect(SerialData As String)
 
         Try
-            Form_Controller.PanelTx.BackColor = System.Drawing.Color.DeepSkyBlue
+            Form_Controller.PanelTx.BackColor = System.Drawing.SystemColors.ControlDark
             _SerialPort.Write(SerialData + vbLf)
             _TimerPanelTx.Start()
         Catch ex As Exception
@@ -673,7 +658,7 @@ Module Module_Functions
 
             checksumstring += checksum.ToString
 
-            Form_Controller.PanelTx.BackColor = System.Drawing.Color.DeepSkyBlue
+            Form_Controller.PanelTx.BackColor = System.Drawing.SystemColors.ControlDark
             _SerialPort.Write("@" + SerialData + "%" + checksumstring + "#" + vbLf)
             _TimerPanelTx.Start()
             _TimerUsartRx.Start()
@@ -695,7 +680,7 @@ Module Module_Functions
 
             With Form_Controller
                 .TextBoxReceiver.Text = UsartRx
-                .PanelRx.BackColor = System.Drawing.Color.DeepSkyBlue
+                .PanelRx.BackColor = System.Drawing.SystemColors.ControlDark
             End With
 
             UsartRxTimeout = 0
@@ -1041,50 +1026,14 @@ Module Module_Functions
 
 #End Region
 
-
-
-    Public Sub FileProperties()
-
-        Try
-
-            With Form_CreateFile
-                .Activate()
-                .Visible = True
-                .Size = New Size(534, 248)
-                .ButtonSize.Text = "-"
-                .Label0001.Text = SGS_Library.Label0024
-                .Label0002.Text = SGS_Library.Label0017
-                .Label0003.Text = SGS_Library.Label0030
-
-                .ButtonBrowse.Text = SGS_Library.Label0027
-                .ButtonConfirm.Text = SGS_Library.Label0028
-                .ButtonCancel.Text = SGS_Library.Label0029
-
-                .ButtonConfirm.Enabled = False
-
-                .LabelDirectory.Text = ""
-                .ComboBoxFirmware.Items.Clear()
-                .ComboBoxFirmware.Items.AddRange(SGS_Firmware.FirmwareSelect)
-                .ComboBoxFirmware.SelectedIndex = 0
-            End With
-
-
-
-
-        Catch ex As Exception
-            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
-        End Try
-
-    End Sub
-
     Public Sub SaveFileDirectory()
 
         Try
 
             Dim _saveFileDialog As New SaveFileDialog()
 
-            _saveFileDialog.Filter = SGS_Library.Label0025
-            _saveFileDialog.Title = SGS_Library.Label0026
+            _saveFileDialog.Filter = SGS_Library.Label0024
+            _saveFileDialog.Title = SGS_Library.Label0025
             _saveFileDialog.FilterIndex = 1
             _saveFileDialog.ShowDialog()
 
@@ -1098,12 +1047,77 @@ Module Module_Functions
                     FileDirectory = FileDirectory.Substring(0, FileDirectory.Length - 1)
                 End If
 
-                With Form_CreateFile
-                    .LabelDirectory.Text = FileDirectory & "\" & FileName
-                    .ButtonConfirm.Enabled = True
-                End With
+                Dim nome_arquivo_ini As String = FileDirectory & "\" & FileName
+
+                Select Case FileSystem
+
+                    Case 1
+
+                        SGS_Firmware.Firmware = SGS_Firmware.FirmwareSelect(0)
+                        SGS_Firmware.ReadFirmwareLibrary()
+
+                        WriteFileChecksum("Firmware", "FR000", SGS_Firmware.Firmware, nome_arquivo_ini)
+
+                        Dim RecipeData As String
+
+                        For i As Integer = 1 To 500
+
+                            RecipeData = "RR"
+
+                            For j As Integer = 1 To 3 - i.ToString.Length()
+                                RecipeData += "0"
+                            Next
+
+
+                            RecipeData = RecipeData & i.ToString() & SGS_Firmware.FirmwareString
+
+
+
+                            WriteFileChecksum("Recipes", Strings.Left(RecipeData, 5), Strings.Right(RecipeData, 64), nome_arquivo_ini)
+
+                        Next
+
+                        'Case 2
+                End Select
+
             End If
 
+        Catch ex As Exception
+            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
+        End Try
+
+    End Sub
+
+    Public Sub OpenFileDirectory()
+
+        Try
+
+            Dim myStream As System.IO.Stream = Nothing
+            Dim _openFileDialog As New OpenFileDialog()
+
+            '_openFileDialog.InitialDirectory = "c:\"
+            _openFileDialog.Filter = SGS_Library.Label0024
+            _openFileDialog.Title = SGS_Library.Label0026
+            _openFileDialog.FilterIndex = 1
+            _openFileDialog.RestoreDirectory = True
+
+            If _openFileDialog.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+                Try
+                    myStream = _openFileDialog.OpenFile()
+                    If (myStream IsNot Nothing) Then
+                        ' Insert code to read the stream here.
+
+                        MsgBox("Aberto")
+                    End If
+                Catch Ex As Exception
+                    MessageBox.Show("Cannot read file from disk. Original error: " & Ex.Message)
+                Finally
+                    ' Check this again, since we need to make sure we didn't throw an exception on open.
+                    If (myStream IsNot Nothing) Then
+                        myStream.Close()
+                    End If
+                End Try
+            End If
 
         Catch ex As Exception
             WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))

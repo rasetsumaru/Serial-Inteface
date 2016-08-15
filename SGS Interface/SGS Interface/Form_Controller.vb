@@ -111,20 +111,15 @@ Public Class Form_Controller
 
 
 
-    Private Sub ButtonCreateRecipes_Click(sender As Object, e As EventArgs) Handles ButtonCreateRecipes.Click
+    Private Sub ButtonCreateFile_Click(sender As Object, e As EventArgs) Handles ButtonCreateFile.Click
 
-        Try
-
-            If Form_CreateFile.IsHandleCreated = True Then
-                FileProperties()
-            Else
-                Form_CreateFile.ShowDialog()
-            End If
-
-        Catch ex As Exception
-            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
-        End Try
+        SaveFileDirectory()
 
     End Sub
 
+    Private Sub ButtonOpenFile_Click(sender As Object, e As EventArgs) Handles ButtonOpenFile.Click
+
+        OpenFileDirectory()
+
+    End Sub
 End Class

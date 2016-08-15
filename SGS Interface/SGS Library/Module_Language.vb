@@ -16,12 +16,10 @@ Public Module Module_Language
 
             Select Case Language
 
-                Case Is = "English"
+                Case Is = LanguageSelect(0)
                     LanguageEnglish()
-                Case Is = "PortuguesBr"
-
+                Case Is = LanguageSelect(1)
                     LanguagePTBR()
-
             End Select
 
         Catch ex As Exception
@@ -63,15 +61,11 @@ Public Module Module_Language
             Label0019 = "Confirm message box"
             Label0020 = "Accept suggestion"
             Label0021 = "Deny suggestion"
-            Label0022 = "Create recipes"
-            Label0023 = "Create new recipe file"
-            Label0024 = "File properties"
-            Label0025 = "SGS 500 recipes|*.sgsr|SGS 500 settings|*.sgss"
-            Label0026 = "Save an SGS-500 file"
-            Label0027 = "Browse"
-            Label0028 = "Confirm"
-            Label0029 = "Cancel"
-            Label0030 = "Directory:"
+            Label0022 = "Create file"
+            Label0023 = "Create new file"
+            Label0024 = "SGS recipes|*.sgsr|SGS settings|*.sgss"
+            Label0025 = "Save an SGS file"
+            Label0026 = "Open an SGS file"
 
             Message0000 = "USB Usart connected"
             Message0001 = "USB Usart disconnected"
@@ -115,15 +109,11 @@ Public Module Module_Language
             Label0019 = "Confimar caixa de mensagem"
             Label0020 = "Aceitar suggestion"
             Label0021 = "Negar suggestion"
-            Label0022 = "Criar receitas"
-            Label0023 = "Criar novo arquivo de receita"
-            Label0024 = "Propriedades do arquivo"
-            Label0025 = "SGS 500 receitas|*.sgsr|SGS 500 configurações|*.sgss"
-            Label0026 = "Salvar um arquivo SGS-500"
-            Label0027 = "Procurar"
-            Label0028 = "Confirmar"
-            Label0029 = "Cancelar"
-            Label0030 = "Diretório:"
+            Label0022 = "Criar arquivo"
+            Label0023 = "Criar novo arquivo"
+            Label0024 = "SGS receitas|*.sgsr|SGS configurações|*.sgss"
+            Label0025 = "Salvar um arquivo SGS"
+            Label0026 = "Abrir um arquivo SGS"
 
             Message0000 = "USB Usart conectado"
             Message0001 = "USB Usart desconectado"

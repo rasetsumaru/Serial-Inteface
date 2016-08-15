@@ -1,4 +1,5 @@
-﻿Public Class Form_MessageBox
+﻿
+Public Class Form_MessageBox
 
 #Region "Declarations"
 

@@ -7,3 +7,13 @@ D:\Projetos\Projeto Solitec, Audio Generator for Speakers\Versão 3\H 1.13 F 1.5
 D:\Projetos\Projeto Solitec, Audio Generator for Speakers\Versão 3\H 1.13 F 1.59\Visual Studio 2012\Serial-Inteface\SGS Interface\SGS Firmware\obj\Debug\SGS Firmware.dll
 D:\Projetos\Projeto Solitec, Audio Generator for Speakers\Versão 3\H 1.13 F 1.59\Visual Studio 2012\Serial-Inteface\SGS Interface\SGS Firmware\obj\Debug\SGS Firmware.xml
 D:\Projetos\Projeto Solitec, Audio Generator for Speakers\Versão 3\H 1.13 F 1.59\Visual Studio 2012\Serial-Inteface\SGS Interface\SGS Firmware\obj\Debug\SGS Firmware.pdb
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS Firmware\bin\Debug\SGS Firmware.dll.config
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS Firmware\bin\Debug\SGS Firmware.dll
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS Firmware\bin\Debug\SGS Firmware.pdb
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS Firmware\bin\Debug\SGS Firmware.xml
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS Firmware\obj\Debug\SGS Firmware.vbprojResolveAssemblyReference.cache
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS Firmware\obj\Debug\SGS_Firmware.Resources.resources
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS Firmware\obj\Debug\SGS Firmware.vbproj.GenerateResource.Cache
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS Firmware\obj\Debug\SGS Firmware.dll
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS Firmware\obj\Debug\SGS Firmware.xml
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS Firmware\obj\Debug\SGS Firmware.pdb

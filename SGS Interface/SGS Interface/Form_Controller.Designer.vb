@@ -46,7 +46,8 @@ Partial Class Form_Controller
         Me.Label0011 = New System.Windows.Forms.Label()
         Me.Label0013 = New System.Windows.Forms.Label()
         Me.Label0009 = New System.Windows.Forms.Label()
-        Me.ButtonCreateRecipes = New System.Windows.Forms.Button()
+        Me.ButtonCreateFile = New System.Windows.Forms.Button()
+        Me.ButtonOpenFile = New System.Windows.Forms.Button()
         Me.Panel0000.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -210,7 +211,7 @@ Partial Class Form_Controller
         Me.Label0005.AutoSize = True
         Me.Label0005.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label0005.ForeColor = System.Drawing.Color.White
-        Me.Label0005.Location = New System.Drawing.Point(14, 119)
+        Me.Label0005.Location = New System.Drawing.Point(14, 333)
         Me.Label0005.Name = "Label0005"
         Me.Label0005.Size = New System.Drawing.Size(115, 16)
         Me.Label0005.TabIndex = 50
@@ -220,7 +221,7 @@ Partial Class Form_Controller
         '
         Me.Label0008.AutoSize = True
         Me.Label0008.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label0008.Location = New System.Drawing.Point(26, 200)
+        Me.Label0008.Location = New System.Drawing.Point(26, 414)
         Me.Label0008.Name = "Label0008"
         Me.Label0008.Size = New System.Drawing.Size(56, 13)
         Me.Label0008.TabIndex = 49
@@ -230,7 +231,7 @@ Partial Class Form_Controller
         '
         Me.Label0007.AutoSize = True
         Me.Label0007.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label0007.Location = New System.Drawing.Point(26, 174)
+        Me.Label0007.Location = New System.Drawing.Point(26, 388)
         Me.Label0007.Name = "Label0007"
         Me.Label0007.Size = New System.Drawing.Size(36, 13)
         Me.Label0007.TabIndex = 45
@@ -240,7 +241,7 @@ Partial Class Form_Controller
         '
         Me.Label0006.AutoSize = True
         Me.Label0006.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label0006.Location = New System.Drawing.Point(26, 148)
+        Me.Label0006.Location = New System.Drawing.Point(26, 362)
         Me.Label0006.Name = "Label0006"
         Me.Label0006.Size = New System.Drawing.Size(47, 13)
         Me.Label0006.TabIndex = 44
@@ -250,7 +251,7 @@ Partial Class Form_Controller
         '
         Me.Label0012.AutoSize = True
         Me.Label0012.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label0012.Location = New System.Drawing.Point(91, 200)
+        Me.Label0012.Location = New System.Drawing.Point(91, 414)
         Me.Label0012.Name = "Label0012"
         Me.Label0012.Size = New System.Drawing.Size(59, 13)
         Me.Label0012.TabIndex = 51
@@ -260,7 +261,7 @@ Partial Class Form_Controller
         '
         Me.Label0010.AutoSize = True
         Me.Label0010.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label0010.Location = New System.Drawing.Point(91, 148)
+        Me.Label0010.Location = New System.Drawing.Point(91, 362)
         Me.Label0010.Name = "Label0010"
         Me.Label0010.Size = New System.Drawing.Size(59, 13)
         Me.Label0010.TabIndex = 52
@@ -270,7 +271,7 @@ Partial Class Form_Controller
         '
         Me.Label0011.AutoSize = True
         Me.Label0011.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label0011.Location = New System.Drawing.Point(91, 174)
+        Me.Label0011.Location = New System.Drawing.Point(91, 388)
         Me.Label0011.Name = "Label0011"
         Me.Label0011.Size = New System.Drawing.Size(59, 13)
         Me.Label0011.TabIndex = 53
@@ -280,7 +281,7 @@ Partial Class Form_Controller
         '
         Me.Label0013.AutoSize = True
         Me.Label0013.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label0013.Location = New System.Drawing.Point(91, 226)
+        Me.Label0013.Location = New System.Drawing.Point(91, 440)
         Me.Label0013.Name = "Label0013"
         Me.Label0013.Size = New System.Drawing.Size(59, 13)
         Me.Label0013.TabIndex = 55
@@ -290,26 +291,41 @@ Partial Class Form_Controller
         '
         Me.Label0009.AutoSize = True
         Me.Label0009.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label0009.Location = New System.Drawing.Point(26, 226)
+        Me.Label0009.Location = New System.Drawing.Point(26, 440)
         Me.Label0009.Name = "Label0009"
         Me.Label0009.Size = New System.Drawing.Size(52, 13)
         Me.Label0009.TabIndex = 54
         Me.Label0009.Text = "Firmware:"
         '
-        'ButtonCreateRecipes
+        'ButtonCreateFile
         '
-        Me.ButtonCreateRecipes.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark
-        Me.ButtonCreateRecipes.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDark
-        Me.ButtonCreateRecipes.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
-        Me.ButtonCreateRecipes.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonCreateRecipes.ForeColor = System.Drawing.SystemColors.Control
-        Me.ButtonCreateRecipes.Location = New System.Drawing.Point(18, 308)
-        Me.ButtonCreateRecipes.Name = "ButtonCreateRecipes"
-        Me.ButtonCreateRecipes.Size = New System.Drawing.Size(90, 26)
-        Me.ButtonCreateRecipes.TabIndex = 36
-        Me.ButtonCreateRecipes.TabStop = False
-        Me.ButtonCreateRecipes.Text = "Create recipes"
-        Me.ButtonCreateRecipes.UseVisualStyleBackColor = True
+        Me.ButtonCreateFile.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonCreateFile.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonCreateFile.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonCreateFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonCreateFile.ForeColor = System.Drawing.SystemColors.Control
+        Me.ButtonCreateFile.Location = New System.Drawing.Point(26, 134)
+        Me.ButtonCreateFile.Name = "ButtonCreateFile"
+        Me.ButtonCreateFile.Size = New System.Drawing.Size(90, 26)
+        Me.ButtonCreateFile.TabIndex = 36
+        Me.ButtonCreateFile.TabStop = False
+        Me.ButtonCreateFile.Text = "Create file"
+        Me.ButtonCreateFile.UseVisualStyleBackColor = True
+        '
+        'ButtonOpenFile
+        '
+        Me.ButtonOpenFile.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonOpenFile.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonOpenFile.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonOpenFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonOpenFile.ForeColor = System.Drawing.SystemColors.Control
+        Me.ButtonOpenFile.Location = New System.Drawing.Point(26, 166)
+        Me.ButtonOpenFile.Name = "ButtonOpenFile"
+        Me.ButtonOpenFile.Size = New System.Drawing.Size(90, 26)
+        Me.ButtonOpenFile.TabIndex = 56
+        Me.ButtonOpenFile.TabStop = False
+        Me.ButtonOpenFile.Text = "Open file"
+        Me.ButtonOpenFile.UseVisualStyleBackColor = True
         '
         'Form_Controller
         '
@@ -318,7 +334,8 @@ Partial Class Form_Controller
         Me.BackColor = System.Drawing.SystemColors.ControlDarkDark
         Me.ClientSize = New System.Drawing.Size(328, 689)
         Me.ControlBox = False
-        Me.Controls.Add(Me.ButtonCreateRecipes)
+        Me.Controls.Add(Me.ButtonOpenFile)
+        Me.Controls.Add(Me.ButtonCreateFile)
         Me.Controls.Add(Me.Label0013)
         Me.Controls.Add(Me.Label0009)
         Me.Controls.Add(Me.Label0011)
@@ -345,7 +362,7 @@ Partial Class Form_Controller
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "Form_Controller"
-        Me.Opacity = 0.90000000000000002R
+        Me.Opacity = 0.9R
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "x"
         Me.Panel0000.ResumeLayout(False)
@@ -377,5 +394,6 @@ Partial Class Form_Controller
     Friend WithEvents Label0011 As Label
     Friend WithEvents Label0013 As System.Windows.Forms.Label
     Friend WithEvents Label0009 As System.Windows.Forms.Label
-    Friend WithEvents ButtonCreateRecipes As System.Windows.Forms.Button
+    Friend WithEvents ButtonCreateFile As System.Windows.Forms.Button
+    Friend WithEvents ButtonOpenFile As Button
 End Class

@@ -38,15 +38,11 @@ Public Module Module_Declarations
     Public Label0019 As String = "Confirm message box"
     Public Label0020 As String = "Accept suggestion"
     Public Label0021 As String = "Deny suggestion"
-    Public Label0022 As String = "Create recipes"
-    Public Label0023 As String = "Create new recipe file"
-    Public Label0024 As String = "File properties"
-    Public Label0025 As String = "SGS 500 recipes|*.sgsr|SGS 500 settings|*.sgss"
-    Public Label0026 As String = "Save an SGS-500 file"
-    Public Label0027 As String = "Browse"
-    Public Label0028 As String = "Confirm"
-    Public Label0029 As String = "Cancel"
-    Public Label0030 As String = "Directory:"
+    Public Label0022 As String = "Create file"
+    Public Label0023 As String = "Create new file"
+    Public Label0024 As String = "SGS recipes|*.sgsr|SGS settings|*.sgss"
+    Public Label0025 As String = "Save an SGS file"
+    Public Label0026 As String = "Open an SGS file"
 
 #End Region
 
@@ -61,4 +57,5 @@ Public Module Module_Declarations
 
 #End Region
 
+    'Public Selects As String() = {" Single ", " Double ", "Continue"}
 End Module
