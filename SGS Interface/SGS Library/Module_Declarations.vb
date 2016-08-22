@@ -57,5 +57,10 @@ Public Module Module_Declarations
 
 #End Region
 
-    'Public Selects As String() = {" Single ", " Double ", "Continue"}
+#Region "Lists"
+
+    Public List0000() As String = {"Single", "Double", "Continue"}
+
+#End Region
+
 End Module

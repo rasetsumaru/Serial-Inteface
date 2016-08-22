@@ -8,7 +8,6 @@ C:\Users\raset\Desktop\SGS interface\SGS Library\obj\Debug\SGS Library.dll
 C:\Users\raset\Desktop\SGS interface\SGS Library\obj\Debug\SGS Library.xml
 C:\Users\raset\Desktop\SGS interface\SGS Library\obj\Debug\SGS Library.pdb
 C:\Users\raset\Desktop\SGS interface\SGS Library\obj\Debug\SGS Library.vbprojResolveAssemblyReference.cache
-D:\Projetos\Projeto Solitec, Audio Generator for Speakers\Versão 3\H 1.13 F 1.59\Visual Studio 2012\Serial-Inteface\SGS Interface\SGS Library\bin\Debug\SGS Library.dll.config
 D:\Projetos\Projeto Solitec, Audio Generator for Speakers\Versão 3\H 1.13 F 1.59\Visual Studio 2012\Serial-Inteface\SGS Interface\SGS Library\bin\Debug\SGS Library.dll
 D:\Projetos\Projeto Solitec, Audio Generator for Speakers\Versão 3\H 1.13 F 1.59\Visual Studio 2012\Serial-Inteface\SGS Interface\SGS Library\bin\Debug\SGS Library.pdb
 D:\Projetos\Projeto Solitec, Audio Generator for Speakers\Versão 3\H 1.13 F 1.59\Visual Studio 2012\Serial-Inteface\SGS Interface\SGS Library\bin\Debug\SGS Library.xml

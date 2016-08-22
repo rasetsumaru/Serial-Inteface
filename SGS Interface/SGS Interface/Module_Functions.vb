@@ -1049,14 +1049,14 @@ Module Module_Functions
 
                 Dim nome_arquivo_ini As String = FileDirectory & "\" & FileName
 
+                SGS_Firmware.Firmware = SGS_Firmware.FirmwareSelect(0)
+                SGS_Firmware.ReadFirmwareLibrary()
+
+                WriteFileChecksum("Firmware", "FR000", SGS_Firmware.Firmware, nome_arquivo_ini)
+
                 Select Case FileSystem
 
                     Case 1
-
-                        SGS_Firmware.Firmware = SGS_Firmware.FirmwareSelect(0)
-                        SGS_Firmware.ReadFirmwareLibrary()
-
-                        WriteFileChecksum("Firmware", "FR000", SGS_Firmware.Firmware, nome_arquivo_ini)
 
                         Dim RecipeData As String
 
@@ -1068,16 +1068,23 @@ Module Module_Functions
                                 RecipeData += "0"
                             Next
 
-
                             RecipeData = RecipeData & i.ToString() & SGS_Firmware.FirmwareString
-
-
-
                             WriteFileChecksum("Recipes", Strings.Left(RecipeData, 5), Strings.Right(RecipeData, 64), nome_arquivo_ini)
 
+                            'RecipeList(i) = SGS_Firmware.FirmwareString
+                            RecipeList(i) = RecipeData
                         Next
 
-                        'Case 2
+                        If Form_Recipes.IsHandleCreated = True Then
+                            RecipeLoad()
+                        Else
+                            Form_Recipes.Show()
+                        End If
+
+                    Case 2
+
+                        WriteFileChecksum("Settings", "SR000", SGS_Firmware.SettingsString, nome_arquivo_ini)
+
                 End Select
 
             End If
@@ -1107,7 +1114,18 @@ Module Module_Functions
                     If (myStream IsNot Nothing) Then
                         ' Insert code to read the stream here.
 
-                        MsgBox("Aberto")
+                        FileDirectory = System.IO.Path.GetDirectoryName(_openFileDialog.FileName)
+                        FileName = System.IO.Path.GetFileName(_openFileDialog.FileName)
+                        FileSystem = _openFileDialog.FilterIndex
+
+                        If Strings.Right(FileDirectory, 1) = "\" Then
+                            FileDirectory = FileDirectory.Substring(0, FileDirectory.Length - 1)
+                        End If
+
+                        Dim nome_arquivo_ini As String = FileDirectory & "\" & FileName
+
+                        MsgBox(nome_arquivo_ini)
+
                     End If
                 Catch Ex As Exception
                     MessageBox.Show("Cannot read file from disk. Original error: " & Ex.Message)
@@ -1118,6 +1136,212 @@ Module Module_Functions
                     End If
                 End Try
             End If
+
+        Catch ex As Exception
+            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
+        End Try
+
+    End Sub
+
+    Public Sub RecipeLoad()
+
+        Try
+
+            With Form_Recipes
+                .Activate()
+
+            End With
+
+            Form_Recipes.ComboBoxRecipeIndex.Items.Clear()
+            For i As Integer = 1 To 500
+                Form_Recipes.ComboBoxRecipeIndex.Items.Add(i)
+            Next
+
+            Form_Recipes.ComboBoxRecipeIndex.SelectedIndex = 0
+            RecipeIndex = 1
+            RecipeEdit()
+
+        Catch ex As Exception
+            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
+        End Try
+
+    End Sub
+
+    Public Sub RecipeEdit()
+
+        Try
+
+            Form_Recipes.TextBoxRecipe.Text = RecipeList(RecipeIndex)
+            Form_Recipes.TextBoxRecipe.SelectionStart = 0
+
+            Dim ListTextBoxes() As TextBox = {Form_Recipes.TextBoxParameters0000, Form_Recipes.TextBoxParameters0001, Form_Recipes.TextBoxParameters0002, Form_Recipes.TextBoxParameters0003, Form_Recipes.TextBoxParameters0004, Form_Recipes.TextBoxParameters0005, Form_Recipes.TextBoxParameters0006, Form_Recipes.TextBoxParameters0007, Form_Recipes.TextBoxParameters0008, Form_Recipes.TextBoxParameters0009, Form_Recipes.TextBoxParameters0010}
+
+            Dim ListSubstrings() As Integer = {5, 16, 21, 5, 26, 5, 31, 6, 37, 6, 43, 4, 47, 5, 52, 2, 54, 4, 58, 6, 64, 3}
+
+            Dim ListEdit() As Integer = {0, 6, 9, 7, 1, 2, 3, 4, 5, 8, 10}
+
+            Dim Parameters As String = RecipeList(RecipeIndex)
+
+            For i As Integer = 0 To 10
+                ListCurrentParameters(i) = Parameters.Substring(ListSubstrings(2 * ListEdit(i)), ListSubstrings(2 * ListEdit(i) + 1))
+                ListTextBoxes(i).Text = ListCurrentParameters(i)
+
+                If Not i = 0 Then
+                    If i = 1 Or i = 4 Or i = 5 Then
+                        ListTextBoxes(i).Text = Format(Convert.ToDecimal(ListTextBoxes(i).Text) / 100, SGS_Firmware.ParametersFormat(i))
+                    Else
+                        ListTextBoxes(i).Text = Format(Convert.ToInt16(ListTextBoxes(i).Text), SGS_Firmware.ParametersFormat(i))
+                    End If
+                End If
+            Next
+
+            With Form_Recipes.ComboBoxParameters0000
+                .Items.Clear()
+                .Items.AddRange(SGS_Library.List0000)
+                .SelectedIndex = Form_Recipes.TextBoxParameters0003.Text
+            End With
+
+        Catch ex As Exception
+            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
+        End Try
+
+    End Sub
+
+
+    Public Sub ValidateEdition()
+
+        Try
+
+            Dim ListTextBoxes() As TextBox = {Form_Recipes.TextBoxParameters0000, Form_Recipes.TextBoxParameters0001, Form_Recipes.TextBoxParameters0002, Form_Recipes.TextBoxParameters0003, Form_Recipes.TextBoxParameters0004, Form_Recipes.TextBoxParameters0005, Form_Recipes.TextBoxParameters0006, Form_Recipes.TextBoxParameters0007, Form_Recipes.TextBoxParameters0008, Form_Recipes.TextBoxParameters0009, Form_Recipes.TextBoxParameters0010}
+
+            Dim ValidationName() As String = {"16", "[^0-9a-zA-Z ]+"}
+
+            Dim Parameter As String
+
+            For i As Integer = 0 To 10
+                Parameter = ListTextBoxes(i).Text
+
+                If i = 0 Then
+
+                    If Parameter.Length() > Convert.ToInt16(ValidationName(0)) Or System.Text.RegularExpressions.Regex.IsMatch(Parameter, ValidationName(1)) = True Then
+                        MsgBox("teste")
+                        ListTextBoxes(i).Text = ListCurrentParameters(i)
+                    Else
+                        ListCurrentParameters(i) = ListTextBoxes(i).Text
+
+                    End If
+
+                Else
+
+                    If i = 1 Or i = 4 Or i = 5 Then
+
+
+
+                    Else
+
+                    End If
+
+                End If
+
+            Next
+
+        Catch ex As Exception
+            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
+        End Try
+
+    End Sub
+
+    Public Sub ValidateEdition2(ByVal _TextBox As System.Windows.Forms.TextBox)
+
+        Try
+
+            Dim ValidationName() As String = {"16", "[^0-9a-zA-Z ]+"}
+
+
+            Dim ValidationMinimum() As Integer = {}
+            Dim ValidationMaximum() As Integer = {}
+
+
+
+            Select Case Convert.ToInt16(Strings.Right(_TextBox.Name, 4))
+
+                Case 0
+
+                    If _TextBox.Text.Length() > Convert.ToInt16(ValidationName(0)) Or System.Text.RegularExpressions.Regex.IsMatch(_TextBox.Text, ValidationName(1)) = True Then
+                        MsgBox("teste")
+                    End If
+
+                Case 1
+
+                    If System.Text.RegularExpressions.Regex.IsMatch(_TextBox.Text, "[^0-9]+") Or Convert.ToDecimal(_TextBox.Text) < 200 Or Convert.ToDecimal(_TextBox.Text) > 1800 Then
+                        MsgBox("teste")
+                        _TextBox.Text = Format(Convert.ToInt16(CurrentParameter0001) / 100, SGS_Firmware.ParametersFormat(1))
+                        _TextBox.Focus()
+                    Else
+                        CurrentParameter0001 = _TextBox.Text
+                        MsgBox(CurrentParameter0001)
+                        _TextBox.Text = Format(Convert.ToInt16(CurrentParameter0001) / 100, SGS_Firmware.ParametersFormat(1))
+
+                    End If
+
+                Case 2
+
+                    If Not IsNumeric(_TextBox.Text) Or Convert.ToInt16(_TextBox.Text) < 1 Or Convert.ToInt16(_TextBox.Text) > 50000 Then
+                        MsgBox("teste")
+                    End If
+
+                Case 4
+
+                    If Not IsNumeric(_TextBox.Text) Or Convert.ToInt16(_TextBox.Text) < 1 Or Convert.ToInt16(_TextBox.Text) > 50000 Then
+                        MsgBox("teste")
+                    End If
+
+            End Select
+
+
+        Catch ex As Exception
+            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
+        End Try
+
+    End Sub
+
+    Public Sub ValidateEdition3(ByVal _TextBox As System.Windows.Forms.TextBox)
+
+        Try
+
+            Dim ValidationName() As String = {"16", "[^0-9a-zA-Z ]+"}
+
+            Dim ValidationMinimum() As Integer = {}
+            Dim ValidationMaximum() As Integer = {}
+
+            Select Case Convert.ToInt16(Strings.Right(_TextBox.Name, 4))
+
+                Case 0
+
+                    If _TextBox.Text.Length() > Convert.ToInt16(ValidationName(0)) Or System.Text.RegularExpressions.Regex.IsMatch(_TextBox.Text, ValidationName(1)) = True Then
+                        MsgBox("teste")
+                    End If
+
+                Case 1
+
+                    If Not IsNumeric(_TextBox.Text) Or Convert.ToDecimal(_TextBox.Text) < 2.0 Or Convert.ToDecimal(_TextBox.Text) > 18.0 Then
+                        MsgBox("teste")
+                    End If
+
+                Case 2
+
+                    If Not IsNumeric(_TextBox.Text) Or Convert.ToInt16(_TextBox.Text) < 1 Or Convert.ToInt16(_TextBox.Text) > 50000 Then
+                        MsgBox("teste")
+                    End If
+
+                Case 4
+
+                    If Not IsNumeric(_TextBox.Text) Or Convert.ToInt16(_TextBox.Text) < 1 Or Convert.ToInt16(_TextBox.Text) > 50000 Then
+                        MsgBox("teste")
+                    End If
+
+            End Select
+
 
         Catch ex As Exception
             WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))

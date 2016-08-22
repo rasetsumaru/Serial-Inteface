@@ -74,6 +74,8 @@ Public Module Module_Language
             Message0004 = "There is a device connected to the software. Do you want to disconnect it?"
             Message0005 = "The system configuration file not found. The program will load the default settings."
 
+            List0000 = {"Single", "Double", "Continue"}
+
         Catch ex As Exception
 
             WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
@@ -121,6 +123,8 @@ Public Module Module_Language
             Message0003 = "Dispositivo não encontrado"
             Message0004 = "Existe um dispositivo conectado ao software. Deseja desconectá-lo?"
             Message0005 = "O arquivo de configurações do sistema não encontrado. O programa irá carregar as configurações padrão."
+
+            List0000 = {"Simples", "Duplo", "Continuo"}
 
         Catch ex As Exception
 

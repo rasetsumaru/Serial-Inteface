@@ -10,14 +10,28 @@ Public Module Module_Declarations
 #Region "Firmwares"
 
     Public Firmware As String
+    Public Settings As String
+
     Public FirmwareSelect() As String = {"1.59", "1.60"}
 
 #End Region
 
-#Region "Limits"
-
+#Region "Strings"
 
     Public FirmwareString As String = "                  130  130    20    20   1  200 0   1     1  1  "
+    Public SettingsString As String = " 0    1 0     0     0     1  2 0 0                              "
+
+#End Region
+
+#Region "Lists"
+
+    Public ParametersFormat() As String = {"", "00.00", "00000", "", "00.00", "00.00", "00000", "00000", "000", "000", "00"}
+
+#End Region
+
+
+
+#Region "Limits"
 
     'Public MinimumLimit0000 As Integer
     'Public MinimumLimit0001 As Integer

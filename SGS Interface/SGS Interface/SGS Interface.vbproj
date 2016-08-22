@@ -106,6 +106,12 @@
     <Compile Include="Form_MessageBox.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form_Recipes.Designer.vb">
+      <DependentUpon>Form_Recipes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Recipes.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form_SplashScreen.Designer.vb">
       <DependentUpon>Form_SplashScreen.vb</DependentUpon>
     </Compile>
@@ -136,6 +142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_MessageBox.resx">
       <DependentUpon>Form_MessageBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Recipes.resx">
+      <DependentUpon>Form_Recipes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_SplashScreen.resx">
       <DependentUpon>Form_SplashScreen.vb</DependentUpon>

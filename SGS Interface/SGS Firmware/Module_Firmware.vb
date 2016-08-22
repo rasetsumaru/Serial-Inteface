@@ -42,6 +42,9 @@ Public Module Module_Firmware
         Try
 
             FirmwareString = "                  130  130    20    20   1  200 0   1     1  1  "
+            SettingsString = " 0    1 0     0     0     1  2 0 0                              "
+
+            ParametersFormat = {"", "00.00", "00000", "", "00.00", "00.00", "00000", "00000", "000", "000", "00"}
 
             'Dim resistancelowermim, resistanceuppermax As Integer
 
@@ -50,7 +53,7 @@ Public Module Module_Firmware
             'resistanceuppermax = 1800
             '
             'Else
-            'resistancelowermim = 700
+            'resistancelowermim = 0700
             'resistanceuppermax = 3000
             'End If
             '
@@ -88,6 +91,7 @@ Public Module Module_Firmware
         Try
 
             FirmwareString = "                  130  130    20    20   1  200 0   1     1  1  "
+            SettingsString = " 0    1 0     0     0     1  2 0 0                              "
 
         Catch ex As Exception
 

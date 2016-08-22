@@ -46,10 +46,28 @@ Module Module_Declarations
     Public FileName As String
     Public FileSystem As Integer
 
+    Public RecipeList(500) As String
+
     Public RecipeIndex As Integer
     Public RecipeControl As Boolean
 
     Public LoadMessage As Integer
+
+
+    Public CurrentParameter0000 As String
+    Public CurrentParameter0001 As String
+    Public CurrentParameter0002 As String
+    Public CurrentParameter0003 As String
+    Public CurrentParameter0004 As String
+    Public CurrentParameter0005 As String
+    Public CurrentParameter0006 As String
+    Public CurrentParameter0007 As String
+    Public CurrentParameter0008 As String
+    Public CurrentParameter0009 As String
+    Public CurrentParameter0010 As String
+
+    Public ListCurrentParameters() As String = {CurrentParameter0000, CurrentParameter0001, CurrentParameter0002, CurrentParameter0003, CurrentParameter0004, CurrentParameter0005, CurrentParameter0006, CurrentParameter0007, CurrentParameter0008, CurrentParameter0009, CurrentParameter0010}
+
 
 End Module
 
