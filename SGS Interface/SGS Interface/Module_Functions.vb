@@ -97,7 +97,7 @@ Module Module_Functions
 
                 checksum = checksum Mod 99
 
-                If checksum = Convert.ToInt16(ValChecksum) Then
+                If checksum = Convert.toint32(ValChecksum) Then
 
                     Return Strings.Right(ValName, 64)
                     Exit Function
@@ -704,7 +704,7 @@ Module Module_Functions
 
                 checksum = checksum Mod 99
 
-                If checksum = Convert.ToInt16(SerialChecksum) Then
+                If checksum = Convert.toint32(SerialChecksum) Then
                     UsartRxControl = 0
                     SerialDecoder(SerialData)
                 Else
@@ -1071,7 +1071,6 @@ Module Module_Functions
                             RecipeData = RecipeData & i.ToString() & SGS_Firmware.FirmwareString
                             WriteFileChecksum("Recipes", Strings.Left(RecipeData, 5), Strings.Right(RecipeData, 64), nome_arquivo_ini)
 
-                            'RecipeList(i) = SGS_Firmware.FirmwareString
                             RecipeList(i) = RecipeData
                         Next
 
@@ -1190,7 +1189,7 @@ Module Module_Functions
                     If i = 1 Or i = 4 Or i = 5 Then
                         ListTextBoxes(i).Text = Format(Convert.ToDecimal(ListTextBoxes(i).Text) / 100, SGS_Firmware.ParametersFormat(i))
                     Else
-                        ListTextBoxes(i).Text = Format(Convert.ToInt16(ListTextBoxes(i).Text), SGS_Firmware.ParametersFormat(i))
+                        ListTextBoxes(i).Text = Format(Convert.toint32(ListTextBoxes(i).Text), SGS_Firmware.ParametersFormat(i))
                     End If
                 End If
             Next
@@ -1214,30 +1213,108 @@ Module Module_Functions
 
             Dim ListTextBoxes() As TextBox = {Form_Recipes.TextBoxParameters0000, Form_Recipes.TextBoxParameters0001, Form_Recipes.TextBoxParameters0002, Form_Recipes.TextBoxParameters0003, Form_Recipes.TextBoxParameters0004, Form_Recipes.TextBoxParameters0005, Form_Recipes.TextBoxParameters0006, Form_Recipes.TextBoxParameters0007, Form_Recipes.TextBoxParameters0008, Form_Recipes.TextBoxParameters0009, Form_Recipes.TextBoxParameters0010}
 
-            Dim ValidationName() As String = {"16", "[^0-9a-zA-Z ]+"}
+            Dim ValidationMinimum() As String = {"16", "2", "1", "0", "1,30", "1,30", "20", "20", "1", "1", "1"}
+            Dim ValidationMaximum() As String = {"[^0-9a-zA-Z ]+", "18", "50000", "2", "30", "30", "30000", "30000", "100", "255", "10"}
+
+            ValidationMinimum(7) = ListCurrentParameters(6)
+            ValidationMaximum(6) = ListCurrentParameters(7)
+            ValidationMinimum(5) = Convert.ToDecimal(ListCurrentParameters(4)) / 100
+            ValidationMaximum(4) = Convert.ToDecimal(ListCurrentParameters(5)) / 100
+
+
+            If Convert.ToDecimal(ListCurrentParameters(1)) / 100 < 10 Then
+                ValidationMinimum(4) = "1,30"
+                ValidationMaximum(5) = "18,00"
+            Else
+                ValidationMinimum(4) = "7,00"
+                ValidationMaximum(5) = "30,00"
+            End If
 
             Dim Parameter As String
 
             For i As Integer = 0 To 10
+
                 Parameter = ListTextBoxes(i).Text
 
                 If i = 0 Then
 
-                    If Parameter.Length() > Convert.ToInt16(ValidationName(0)) Or System.Text.RegularExpressions.Regex.IsMatch(Parameter, ValidationName(1)) = True Then
-                        MsgBox("teste")
+                    If Parameter.Length() > Convert.ToInt32(ValidationMinimum(i)) Or System.Text.RegularExpressions.Regex.IsMatch(Parameter, ValidationMaximum(i)) = True Then
+                        MsgBox("teste1")
                         ListTextBoxes(i).Text = ListCurrentParameters(i)
                     Else
-                        ListCurrentParameters(i) = ListTextBoxes(i).Text
-
+                        ListCurrentParameters(i) = Parameter
                     End If
 
                 Else
 
                     If i = 1 Or i = 4 Or i = 5 Then
 
+                        If Not System.Text.RegularExpressions.Regex.IsMatch(Parameter, "[^0-9]+") Then
 
+                            If Convert.ToDecimal(Parameter) / 100 < Convert.ToDecimal(ValidationMinimum(i)) Or Convert.ToDecimal(Parameter) / 100 > Convert.ToDecimal(ValidationMaximum(i)) Then
+                                MsgBox("teste2")
+                                ListTextBoxes(i).Text = Format(ListCurrentParameters(i) / 100, SGS_Firmware.ParametersFormat(i))
+                            Else
+
+                                If i = 1 And Not Parameter = ListCurrentParameters(i) Then
+                                    If Convert.ToDecimal(Parameter) / 100 < 10 Then
+                                        ValidationMinimum(4) = "1,30"
+                                        ValidationMinimum(5) = "1,30"
+                                        ValidationMaximum(4) = "18,00"
+                                        ValidationMaximum(5) = "18,00"
+                                        If Convert.ToDecimal(ListCurrentParameters(5)) / 100 > Convert.ToDecimal("18,00") Then
+                                            ListTextBoxes(4).Text = "130"
+                                            ListTextBoxes(5).Text = "130"
+                                            MsgBox("Limites alterados")
+                                        End If
+                                    Else
+                                        ValidationMinimum(4) = "7,00"
+                                        ValidationMinimum(5) = "7,00"
+                                        ValidationMaximum(4) = "30,00"
+                                        ValidationMaximum(5) = "30,00"
+                                        If Convert.ToDecimal(ListCurrentParameters(4)) / 100 < Convert.ToDecimal("7,00") Then
+                                            ListTextBoxes(4).Text = "700"
+                                            ListTextBoxes(5).Text = "700"
+                                            MsgBox("Limites alterados2")
+                                        End If
+                                    End If
+
+                                End If
+
+                                ListCurrentParameters(i) = Parameter
+                                ListTextBoxes(i).Text = Format(Convert.ToDecimal(Parameter) / 100, SGS_Firmware.ParametersFormat(i))
+
+                                End If
+
+                        Else
+
+                                If Not Format(ListCurrentParameters(i) / 100, SGS_Firmware.ParametersFormat(i)) = Parameter Then
+                                MsgBox("teste3")
+                                    ListTextBoxes(i).Text = Format(ListCurrentParameters(i) / 100, SGS_Firmware.ParametersFormat(i))
+                                End If
+
+                        End If
 
                     Else
+
+                        If Not System.Text.RegularExpressions.Regex.IsMatch(Parameter, "[^0-9]+") Then
+
+                            If Convert.ToInt32(Parameter) < Convert.ToInt32(ValidationMinimum(i)) Or Convert.ToInt32(Parameter) > Convert.ToInt32(ValidationMaximum(i)) Then
+                                MsgBox("teste4")
+                                ListTextBoxes(i).Text = Format(Convert.ToInt32(ListCurrentParameters(i)), SGS_Firmware.ParametersFormat(i))
+                            Else
+                                ListCurrentParameters(i) = Parameter
+                                ListTextBoxes(i).Text = Format(Convert.ToInt32(Parameter), SGS_Firmware.ParametersFormat(i))
+                            End If
+
+                        Else
+
+                            If Not Format(Convert.ToInt32(ListCurrentParameters(i)), SGS_Firmware.ParametersFormat(i)) = Parameter Then
+                                MsgBox("teste5")
+                                ListTextBoxes(i).Text = Format(Convert.ToInt32(ListCurrentParameters(i)), SGS_Firmware.ParametersFormat(i))
+                            End If
+
+                        End If
 
                     End If
 
@@ -1251,97 +1328,57 @@ Module Module_Functions
 
     End Sub
 
-    Public Sub ValidateEdition2(ByVal _TextBox As System.Windows.Forms.TextBox)
+    Public Sub SaveEditRam()
 
-        Try
+        Dim Newrecipe As String = "RR"
 
-            Dim ValidationName() As String = {"16", "[^0-9a-zA-Z ]+"}
+        For i As Integer = 0 To 3 - RecipeIndex.ToString.Length - 1
 
+            Newrecipe += "0"
 
-            Dim ValidationMinimum() As Integer = {}
-            Dim ValidationMaximum() As Integer = {}
+        Next
 
-
-
-            Select Case Convert.ToInt16(Strings.Right(_TextBox.Name, 4))
-
-                Case 0
-
-                    If _TextBox.Text.Length() > Convert.ToInt16(ValidationName(0)) Or System.Text.RegularExpressions.Regex.IsMatch(_TextBox.Text, ValidationName(1)) = True Then
-                        MsgBox("teste")
-                    End If
-
-                Case 1
-
-                    If System.Text.RegularExpressions.Regex.IsMatch(_TextBox.Text, "[^0-9]+") Or Convert.ToDecimal(_TextBox.Text) < 200 Or Convert.ToDecimal(_TextBox.Text) > 1800 Then
-                        MsgBox("teste")
-                        _TextBox.Text = Format(Convert.ToInt16(CurrentParameter0001) / 100, SGS_Firmware.ParametersFormat(1))
-                        _TextBox.Focus()
-                    Else
-                        CurrentParameter0001 = _TextBox.Text
-                        MsgBox(CurrentParameter0001)
-                        _TextBox.Text = Format(Convert.ToInt16(CurrentParameter0001) / 100, SGS_Firmware.ParametersFormat(1))
-
-                    End If
-
-                Case 2
-
-                    If Not IsNumeric(_TextBox.Text) Or Convert.ToInt16(_TextBox.Text) < 1 Or Convert.ToInt16(_TextBox.Text) > 50000 Then
-                        MsgBox("teste")
-                    End If
-
-                Case 4
-
-                    If Not IsNumeric(_TextBox.Text) Or Convert.ToInt16(_TextBox.Text) < 1 Or Convert.ToInt16(_TextBox.Text) > 50000 Then
-                        MsgBox("teste")
-                    End If
-
-            End Select
+        Newrecipe = Newrecipe & RecipeIndex
 
 
-        Catch ex As Exception
-            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
-        End Try
+        Dim RecipeEqualizer() As Integer = {16, 5, 5, 6, 6, 4, 5, 2, 4, 6, 3}
+        Dim ListEdit() As Integer = {0, 4, 5, 6, 7, 8, 1, 3, 9, 2, 10}
+
+        For i As Integer = 0 To 10
+
+            If i = 0 Then
+
+                Newrecipe += ListCurrentParameters(ListEdit(i))
+                For j As Integer = 0 To RecipeEqualizer(i) - ListCurrentParameters(ListEdit(i)).Length - 1
+                    Newrecipe += " "
+                Next
+
+            Else
+                Dim equalizer As String = Convert.ToInt32(ListCurrentParameters(ListEdit(i)))
+                For j As Integer = 0 To RecipeEqualizer(i) - equalizer.Length - 1
+                    Newrecipe += " "
+                Next
+                Newrecipe += equalizer
+
+            End If
+            
+        Next
+
+        RecipeList(RecipeIndex) = Newrecipe
 
     End Sub
 
-    Public Sub ValidateEdition3(ByVal _TextBox As System.Windows.Forms.TextBox)
+    Public Sub SaveAll()
 
         Try
 
-            Dim ValidationName() As String = {"16", "[^0-9a-zA-Z ]+"}
+            Dim nome_arquivo_ini As String = FileDirectory & "\" & FileName
 
-            Dim ValidationMinimum() As Integer = {}
-            Dim ValidationMaximum() As Integer = {}
+            For i As Integer = 1 To 500
 
-            Select Case Convert.ToInt16(Strings.Right(_TextBox.Name, 4))
+                WriteFileChecksum("Recipes", Strings.Left(RecipeList(i), 5), Strings.Mid(RecipeList(i), 6), nome_arquivo_ini)
 
-                Case 0
-
-                    If _TextBox.Text.Length() > Convert.ToInt16(ValidationName(0)) Or System.Text.RegularExpressions.Regex.IsMatch(_TextBox.Text, ValidationName(1)) = True Then
-                        MsgBox("teste")
-                    End If
-
-                Case 1
-
-                    If Not IsNumeric(_TextBox.Text) Or Convert.ToDecimal(_TextBox.Text) < 2.0 Or Convert.ToDecimal(_TextBox.Text) > 18.0 Then
-                        MsgBox("teste")
-                    End If
-
-                Case 2
-
-                    If Not IsNumeric(_TextBox.Text) Or Convert.ToInt16(_TextBox.Text) < 1 Or Convert.ToInt16(_TextBox.Text) > 50000 Then
-                        MsgBox("teste")
-                    End If
-
-                Case 4
-
-                    If Not IsNumeric(_TextBox.Text) Or Convert.ToInt16(_TextBox.Text) < 1 Or Convert.ToInt16(_TextBox.Text) > 50000 Then
-                        MsgBox("teste")
-                    End If
-
-            End Select
-
+            Next
 
         Catch ex As Exception
             WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))

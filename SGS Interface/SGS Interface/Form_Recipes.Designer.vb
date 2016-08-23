@@ -155,10 +155,11 @@ Partial Class Form_Recipes
         '
         'ComboBoxParameters0000
         '
+        Me.ComboBoxParameters0000.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBoxParameters0000.FormattingEnabled = True
         Me.ComboBoxParameters0000.Location = New System.Drawing.Point(108, 223)
         Me.ComboBoxParameters0000.Name = "ComboBoxParameters0000"
-        Me.ComboBoxParameters0000.Size = New System.Drawing.Size(121, 21)
+        Me.ComboBoxParameters0000.Size = New System.Drawing.Size(100, 21)
         Me.ComboBoxParameters0000.TabIndex = 145
         '
         'Lbl5012
@@ -287,10 +288,11 @@ Partial Class Form_Recipes
         '
         'TextBoxParameters0003
         '
-        Me.TextBoxParameters0003.Location = New System.Drawing.Point(235, 223)
+        Me.TextBoxParameters0003.Location = New System.Drawing.Point(214, 223)
         Me.TextBoxParameters0003.Name = "TextBoxParameters0003"
         Me.TextBoxParameters0003.Size = New System.Drawing.Size(15, 20)
         Me.TextBoxParameters0003.TabIndex = 142
+        Me.TextBoxParameters0003.Visible = False
         '
         'TextBoxParameters0004
         '

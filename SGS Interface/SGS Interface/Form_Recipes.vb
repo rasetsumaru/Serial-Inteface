@@ -8,6 +8,8 @@
 
     Private Sub ButtonPrevious_Click(sender As Object, e As EventArgs) Handles ButtonPrevious.Click
 
+        SaveEditRam()
+
         If RecipeIndex > 1 Then
             RecipeIndex -= 1
             Me.ComboBoxRecipeIndex.SelectedIndex -= 1
@@ -18,6 +20,8 @@
     End Sub
 
     Private Sub ButtonNext_Click(sender As Object, e As EventArgs) Handles ButtonNext.Click
+
+        SaveEditRam()
 
         If RecipeIndex < 500 Then
             RecipeIndex += 1
@@ -41,6 +45,7 @@
             ComboBoxRecipeIndex.SelectedIndex = ComboBoxRecipeIndex.FindStringExact(ComboBoxRecipeIndex.Text) + 0
 
             If Not RecipeIndex = Me.ComboBoxRecipeIndex.SelectedItem Then
+                SaveEditRam()
                 RecipeIndex = Me.ComboBoxRecipeIndex.SelectedItem
                 RecipeEdit()
             End If
@@ -135,5 +140,18 @@
     End Sub
 
 #End Region
+
+    Private Sub ComboBoxParameters0000_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxParameters0000.SelectedIndexChanged
+
+        TextBoxParameters0003.Text = ComboBoxParameters0000.SelectedIndex
+        ValidateEdition()
+
+    End Sub
+
+    Private Sub ButtonCreateFile_Click(sender As Object, e As EventArgs) Handles ButtonCreateFile.Click
+
+        SaveAll()
+
+    End Sub
 
 End Class
