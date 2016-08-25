@@ -43,6 +43,26 @@ Public Module Module_Declarations
     Public Label0024 As String = "SGS recipes|*.sgsr|SGS settings|*.sgss"
     Public Label0025 As String = "Save an SGS file"
     Public Label0026 As String = "Open an SGS file"
+    Public Label0027 As String = "Edit recipe"
+    Public Label0028 As String = "Parameters"
+    Public Label0029 As String = "Name:"
+    Public Label0030 As String = "Level:"
+    Public Label0031 As String = "Limits:"
+    Public Label0032 As String = "Select:"
+    Public Label0033 As String = "Lower resistance:"
+    Public Label0034 As String = "Upper resistance:"
+    Public Label0035 As String = "Lower frequency:"
+    Public Label0036 As String = "Upper frequency:"
+    Public Label0037 As String = "Sweep speed:"
+    Public Label0038 As String = "WAV"
+    Public Label0039 As String = "Playback timeout:"
+    Public Label0040 As String = "Memory"
+    Public Label0041 As String = "Previous"
+    Public Label0042 As String = "Next"
+    Public Label0043 As String = "Go to previous recipe"
+    Public Label0044 As String = "Go to next recipe"
+    Public Label0045 As String = "Save changes to the file"
+    Public Label0046 As String = "Close the edition window"
 
 #End Region
 
@@ -54,6 +74,9 @@ Public Module Module_Declarations
     Public Message0003 As String = "Device not found"
     Public Message0004 As String = "There is a device connected to the software. Do you want to disconnect it?"
     Public Message0005 As String = "The system configuration file not found. The program will load the default settings."
+    Public Message0006 As String = "Error: Invalid character or characters limit exceeded"
+    Public Message0007 As String = "Warning: Range of resistance changed"
+    Public Message0008 As String = "Error: Value out of range or invalid character"
 
 #End Region
 

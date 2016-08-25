@@ -309,6 +309,38 @@ Module Module_Functions
                         End With
                     End With
 
+                Case Is = "Form_Recipes"
+
+                    With Form_Recipes
+                        .ButtonClose.Text = SGS_Library.Label0000
+                        .ButtonPrevious.Text = SGS_Library.Label0041
+                        .ButtonNext.Text = SGS_Library.Label0042
+
+                        .Label0001.Text = SGS_Library.Label0027
+                        .Label0002.Text = SGS_Library.Label0028
+                        .Label0003.Text = SGS_Library.Label0029
+                        .Label0004.Text = SGS_Library.Label0030
+                        .Label0005.Text = SGS_Library.Label0031
+                        .Label0006.Text = SGS_Library.Label0032
+                        .Label0007.Text = SGS_Library.Label0033
+                        .Label0008.Text = SGS_Library.Label0034
+                        .Label0009.Text = SGS_Library.Label0035
+                        .Label0010.Text = SGS_Library.Label0036
+                        .Label0011.Text = SGS_Library.Label0037
+                        .Label0012.Text = SGS_Library.Label0038
+                        .Label0013.Text = SGS_Library.Label0039
+                        .Label0014.Text = SGS_Library.Label0040
+
+                        With _ToolTip
+                            .IsBalloon = True
+                            .SetToolTip(Form_Recipes.ButtonPrevious, SGS_Library.Label0043)
+                            .SetToolTip(Form_Recipes.ButtonNext, SGS_Library.Label0044)
+                            .SetToolTip(Form_Recipes.ButtonSaveFile, SGS_Library.Label0045)
+                            .SetToolTip(Form_Recipes.ButtonClose, SGS_Library.Label0046)
+                        End With
+
+                    End With
+
             End Select
 
         Catch ex As Exception
@@ -965,6 +997,45 @@ Module Module_Functions
                         End With
                     End With
 
+                Case Is = 6
+                    With Form_MessageBox
+                        .LabelMessage.Text = SGS_Library.Message0006
+                        With .Button01
+                            .Visible = True
+                            .Text = SGS_Library.Label0010
+                        End With
+                        With _ToolTip
+                            .IsBalloon = True
+                            .SetToolTip(Form_MessageBox.Button01, SGS_Library.Label0019)
+                        End With
+                    End With
+
+                Case Is = 7
+                    With Form_MessageBox
+                        .LabelMessage.Text = SGS_Library.Message0007
+                        With .Button01
+                            .Visible = True
+                            .Text = SGS_Library.Label0010
+                        End With
+                        With _ToolTip
+                            .IsBalloon = True
+                            .SetToolTip(Form_MessageBox.Button01, SGS_Library.Label0019)
+                        End With
+                    End With
+
+                Case Is = 8
+                    With Form_MessageBox
+                        .LabelMessage.Text = SGS_Library.Message0008
+                        With .Button01
+                            .Visible = True
+                            .Text = SGS_Library.Label0010
+                        End With
+                        With _ToolTip
+                            .IsBalloon = True
+                            .SetToolTip(Form_MessageBox.Button01, SGS_Library.Label0019)
+                        End With
+                    End With
+
             End Select
 
         Catch ex As Exception
@@ -1000,6 +1071,15 @@ Module Module_Functions
                         Case Is = 5
                             Form_MessageBox.Dispose()
 
+                        Case Is = 6
+                            Form_MessageBox.Dispose()
+
+                        Case Is = 7
+                            Form_MessageBox.Dispose()
+
+                        Case Is = 8
+                            Form_MessageBox.Dispose()
+
                     End Select
 
                 Case Is = 2
@@ -1025,6 +1105,8 @@ Module Module_Functions
     End Sub
 
 #End Region
+
+
 
     Public Sub SaveFileDirectory()
 
@@ -1101,18 +1183,19 @@ Module Module_Functions
             Dim myStream As System.IO.Stream = Nothing
             Dim _openFileDialog As New OpenFileDialog()
 
-            '_openFileDialog.InitialDirectory = "c:\"
             _openFileDialog.Filter = SGS_Library.Label0024
             _openFileDialog.Title = SGS_Library.Label0026
             _openFileDialog.FilterIndex = 1
             _openFileDialog.RestoreDirectory = True
 
             If _openFileDialog.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-                Try
-                    myStream = _openFileDialog.OpenFile()
-                    If (myStream IsNot Nothing) Then
-                        ' Insert code to read the stream here.
 
+                Try
+
+                    myStream = _openFileDialog.OpenFile()
+
+                    If (myStream IsNot Nothing) Then
+                        
                         FileDirectory = System.IO.Path.GetDirectoryName(_openFileDialog.FileName)
                         FileName = System.IO.Path.GetFileName(_openFileDialog.FileName)
                         FileSystem = _openFileDialog.FilterIndex
@@ -1123,13 +1206,42 @@ Module Module_Functions
 
                         Dim nome_arquivo_ini As String = FileDirectory & "\" & FileName
 
-                        MsgBox(nome_arquivo_ini)
+                        Dim FirmwareData As String = ReadFileChecksum(nome_arquivo_ini, "Firmware", "FR000", SGS_Firmware.Firmware)
+
+                        SGS_Firmware.Firmware = FirmwareData.Substring(0, FirmwareData.IndexOf(" "))
+                        SGS_Firmware.ReadFirmwareLibrary()
+
+                        Select Case FileSystem
+
+                            Case 1
+
+                                Dim RecipeData As String
+
+                                For i As Integer = 1 To 500
+
+                                    RecipeData = "RR"
+
+                                    For j As Integer = 1 To 3 - i.ToString.Length()
+                                        RecipeData += "0"
+                                    Next
+
+                                    RecipeData = RecipeData & i.ToString()
+                                    RecipeList(i) = RecipeData & ReadFileChecksum(nome_arquivo_ini, "Recipes", RecipeData, SGS_Firmware.FirmwareString)
+
+                                Next
+
+                                If Form_Recipes.IsHandleCreated = True Then
+                                    RecipeLoad()
+                                Else
+                                    Form_Recipes.Show()
+                                End If
+
+                        End Select
 
                     End If
                 Catch Ex As Exception
                     MessageBox.Show("Cannot read file from disk. Original error: " & Ex.Message)
                 Finally
-                    ' Check this again, since we need to make sure we didn't throw an exception on open.
                     If (myStream IsNot Nothing) Then
                         myStream.Close()
                     End If
@@ -1148,15 +1260,18 @@ Module Module_Functions
 
             With Form_Recipes
                 .Activate()
+                .ButtonSize.Text = "-"
+                .Size = New Size(328, 689)
 
             End With
 
-            Form_Recipes.ComboBoxRecipeIndex.Items.Clear()
+
+            Form_Recipes.ComboBox0000.Items.Clear()
             For i As Integer = 1 To 500
-                Form_Recipes.ComboBoxRecipeIndex.Items.Add(i)
+                Form_Recipes.ComboBox0000.Items.Add(i)
             Next
 
-            Form_Recipes.ComboBoxRecipeIndex.SelectedIndex = 0
+            Form_Recipes.ComboBox0000.SelectedIndex = 0
             RecipeIndex = 1
             RecipeEdit()
 
@@ -1166,14 +1281,20 @@ Module Module_Functions
 
     End Sub
 
+
+
+
+
+
+
     Public Sub RecipeEdit()
 
         Try
 
-            Form_Recipes.TextBoxRecipe.Text = RecipeList(RecipeIndex)
-            Form_Recipes.TextBoxRecipe.SelectionStart = 0
+            Form_Recipes.TextBox0000.Text = RecipeList(RecipeIndex)
+            Form_Recipes.TextBox0000.SelectionStart = 0
 
-            Dim ListTextBoxes() As TextBox = {Form_Recipes.TextBoxParameters0000, Form_Recipes.TextBoxParameters0001, Form_Recipes.TextBoxParameters0002, Form_Recipes.TextBoxParameters0003, Form_Recipes.TextBoxParameters0004, Form_Recipes.TextBoxParameters0005, Form_Recipes.TextBoxParameters0006, Form_Recipes.TextBoxParameters0007, Form_Recipes.TextBoxParameters0008, Form_Recipes.TextBoxParameters0009, Form_Recipes.TextBoxParameters0010}
+            Dim ListTextBoxes() As TextBox = {Form_Recipes.TextBox0001, Form_Recipes.TextBox0002, Form_Recipes.TextBox0003, Form_Recipes.TextBox0004, Form_Recipes.TextBox0005, Form_Recipes.TextBox0006, Form_Recipes.TextBox0007, Form_Recipes.TextBox0008, Form_Recipes.TextBox0009, Form_Recipes.TextBox0010, Form_Recipes.TextBox0011}
 
             Dim ListSubstrings() As Integer = {5, 16, 21, 5, 26, 5, 31, 6, 37, 6, 43, 4, 47, 5, 52, 2, 54, 4, 58, 6, 64, 3}
 
@@ -1189,15 +1310,15 @@ Module Module_Functions
                     If i = 1 Or i = 4 Or i = 5 Then
                         ListTextBoxes(i).Text = Format(Convert.ToDecimal(ListTextBoxes(i).Text) / 100, SGS_Firmware.ParametersFormat(i))
                     Else
-                        ListTextBoxes(i).Text = Format(Convert.toint32(ListTextBoxes(i).Text), SGS_Firmware.ParametersFormat(i))
+                        ListTextBoxes(i).Text = Format(Convert.ToInt32(ListTextBoxes(i).Text), SGS_Firmware.ParametersFormat(i))
                     End If
                 End If
             Next
 
-            With Form_Recipes.ComboBoxParameters0000
+            With Form_Recipes.ComboBox0001
                 .Items.Clear()
                 .Items.AddRange(SGS_Library.List0000)
-                .SelectedIndex = Form_Recipes.TextBoxParameters0003.Text
+                .SelectedIndex = Form_Recipes.TextBox0004.Text
             End With
 
         Catch ex As Exception
@@ -1211,7 +1332,7 @@ Module Module_Functions
 
         Try
 
-            Dim ListTextBoxes() As TextBox = {Form_Recipes.TextBoxParameters0000, Form_Recipes.TextBoxParameters0001, Form_Recipes.TextBoxParameters0002, Form_Recipes.TextBoxParameters0003, Form_Recipes.TextBoxParameters0004, Form_Recipes.TextBoxParameters0005, Form_Recipes.TextBoxParameters0006, Form_Recipes.TextBoxParameters0007, Form_Recipes.TextBoxParameters0008, Form_Recipes.TextBoxParameters0009, Form_Recipes.TextBoxParameters0010}
+            Dim ListTextBoxes() As TextBox = {Form_Recipes.TextBox0001, Form_Recipes.TextBox0002, Form_Recipes.TextBox0003, Form_Recipes.TextBox0004, Form_Recipes.TextBox0005, Form_Recipes.TextBox0006, Form_Recipes.TextBox0007, Form_Recipes.TextBox0008, Form_Recipes.TextBox0009, Form_Recipes.TextBox0010, Form_Recipes.TextBox0011}
 
             Dim ValidationMinimum() As String = {"16", "2", "1", "0", "1,30", "1,30", "20", "20", "1", "1", "1"}
             Dim ValidationMaximum() As String = {"[^0-9a-zA-Z ]+", "18", "50000", "2", "30", "30", "30000", "30000", "100", "255", "10"}
@@ -1239,7 +1360,7 @@ Module Module_Functions
                 If i = 0 Then
 
                     If Parameter.Length() > Convert.ToInt32(ValidationMinimum(i)) Or System.Text.RegularExpressions.Regex.IsMatch(Parameter, ValidationMaximum(i)) = True Then
-                        MsgBox("teste1")
+                        FormMessageBox(6)
                         ListTextBoxes(i).Text = ListCurrentParameters(i)
                     Else
                         ListCurrentParameters(i) = Parameter
@@ -1252,7 +1373,7 @@ Module Module_Functions
                         If Not System.Text.RegularExpressions.Regex.IsMatch(Parameter, "[^0-9]+") Then
 
                             If Convert.ToDecimal(Parameter) / 100 < Convert.ToDecimal(ValidationMinimum(i)) Or Convert.ToDecimal(Parameter) / 100 > Convert.ToDecimal(ValidationMaximum(i)) Then
-                                MsgBox("teste2")
+                                FormMessageBox(8)
                                 ListTextBoxes(i).Text = Format(ListCurrentParameters(i) / 100, SGS_Firmware.ParametersFormat(i))
                             Else
 
@@ -1263,9 +1384,9 @@ Module Module_Functions
                                         ValidationMaximum(4) = "18,00"
                                         ValidationMaximum(5) = "18,00"
                                         If Convert.ToDecimal(ListCurrentParameters(5)) / 100 > Convert.ToDecimal("18,00") Then
+                                            FormMessageBox(7)
                                             ListTextBoxes(4).Text = "130"
                                             ListTextBoxes(5).Text = "130"
-                                            MsgBox("Limites alterados")
                                         End If
                                     Else
                                         ValidationMinimum(4) = "7,00"
@@ -1273,9 +1394,9 @@ Module Module_Functions
                                         ValidationMaximum(4) = "30,00"
                                         ValidationMaximum(5) = "30,00"
                                         If Convert.ToDecimal(ListCurrentParameters(4)) / 100 < Convert.ToDecimal("7,00") Then
+                                            FormMessageBox(7)
                                             ListTextBoxes(4).Text = "700"
                                             ListTextBoxes(5).Text = "700"
-                                            MsgBox("Limites alterados2")
                                         End If
                                     End If
 
@@ -1284,14 +1405,13 @@ Module Module_Functions
                                 ListCurrentParameters(i) = Parameter
                                 ListTextBoxes(i).Text = Format(Convert.ToDecimal(Parameter) / 100, SGS_Firmware.ParametersFormat(i))
 
-                                End If
+                            End If
 
                         Else
 
-                                If Not Format(ListCurrentParameters(i) / 100, SGS_Firmware.ParametersFormat(i)) = Parameter Then
-                                MsgBox("teste3")
-                                    ListTextBoxes(i).Text = Format(ListCurrentParameters(i) / 100, SGS_Firmware.ParametersFormat(i))
-                                End If
+                            If Not Format(ListCurrentParameters(i) / 100, SGS_Firmware.ParametersFormat(i)) = Parameter 
+                                ListTextBoxes(i).Text = Format(ListCurrentParameters(i) / 100, SGS_Firmware.ParametersFormat(i))
+                            End If
 
                         End If
 
@@ -1300,7 +1420,7 @@ Module Module_Functions
                         If Not System.Text.RegularExpressions.Regex.IsMatch(Parameter, "[^0-9]+") Then
 
                             If Convert.ToInt32(Parameter) < Convert.ToInt32(ValidationMinimum(i)) Or Convert.ToInt32(Parameter) > Convert.ToInt32(ValidationMaximum(i)) Then
-                                MsgBox("teste4")
+                                FormMessageBox(8)
                                 ListTextBoxes(i).Text = Format(Convert.ToInt32(ListCurrentParameters(i)), SGS_Firmware.ParametersFormat(i))
                             Else
                                 ListCurrentParameters(i) = Parameter
@@ -1310,7 +1430,6 @@ Module Module_Functions
                         Else
 
                             If Not Format(Convert.ToInt32(ListCurrentParameters(i)), SGS_Firmware.ParametersFormat(i)) = Parameter Then
-                                MsgBox("teste5")
                                 ListTextBoxes(i).Text = Format(Convert.ToInt32(ListCurrentParameters(i)), SGS_Firmware.ParametersFormat(i))
                             End If
 
@@ -1321,6 +1440,8 @@ Module Module_Functions
                 End If
 
             Next
+
+            SendKeys.Send("{F1}")
 
         Catch ex As Exception
             WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
@@ -1372,14 +1493,17 @@ Module Module_Functions
 
         Try
 
+            SaveEditRam()
+
             Dim nome_arquivo_ini As String = FileDirectory & "\" & FileName
 
+            WriteFileChecksum("Firmware", "FR000", SGS_Firmware.Firmware, nome_arquivo_ini)
+
             For i As Integer = 1 To 500
-
                 WriteFileChecksum("Recipes", Strings.Left(RecipeList(i), 5), Strings.Mid(RecipeList(i), 6), nome_arquivo_ini)
-
             Next
 
+            MsgBox("Arquivo Salvo")
         Catch ex As Exception
             WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
         End Try

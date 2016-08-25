@@ -25,7 +25,7 @@ Public Module Module_Declarations
 
 #Region "Lists"
 
-    Public ParametersFormat() As String = {"", "00.00", "00000", "", "00.00", "00.00", "00000", "00000", "000", "000", "00"}
+    Public ParametersFormat() As String = {"", "00.00 Rms", "00000", "", "00.00 Ohm", "00.00 Ohm", "00000 Hz", "00000 Hz", "000 %", "000 Rec", "00 seg"}
 
 #End Region
 

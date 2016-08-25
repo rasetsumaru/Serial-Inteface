@@ -22,87 +22,60 @@ Partial Class Form_Recipes
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.ButtonPrevious = New System.Windows.Forms.Button()
-        Me.ButtonNext = New System.Windows.Forms.Button()
-        Me.TextBoxRecipe = New System.Windows.Forms.TextBox()
-        Me.ComboBoxRecipeIndex = New System.Windows.Forms.ComboBox()
-        Me.ButtonCreateFile = New System.Windows.Forms.Button()
+        Me.TextBox0000 = New System.Windows.Forms.TextBox()
+        Me.ComboBox0000 = New System.Windows.Forms.ComboBox()
         Me.ButtonSize = New System.Windows.Forms.Button()
         Me.Label0001 = New System.Windows.Forms.Label()
         Me.Label0000 = New System.Windows.Forms.Label()
-        Me.Lbl5004 = New System.Windows.Forms.Label()
-        Me.ComboBoxParameters0000 = New System.Windows.Forms.ComboBox()
-        Me.Lbl5012 = New System.Windows.Forms.Label()
-        Me.Lbl5011 = New System.Windows.Forms.Label()
-        Me.Lbl5008 = New System.Windows.Forms.Label()
-        Me.Lbl5010 = New System.Windows.Forms.Label()
-        Me.Lbl5009 = New System.Windows.Forms.Label()
-        Me.Lbl5007 = New System.Windows.Forms.Label()
-        Me.Lbl5006 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.TextBoxParameters0000 = New System.Windows.Forms.TextBox()
-        Me.TextBoxParameters0002 = New System.Windows.Forms.TextBox()
-        Me.TextBoxParameters0003 = New System.Windows.Forms.TextBox()
-        Me.TextBoxParameters0004 = New System.Windows.Forms.TextBox()
-        Me.TextBoxParameters0005 = New System.Windows.Forms.TextBox()
-        Me.TextBoxParameters0006 = New System.Windows.Forms.TextBox()
-        Me.TextBoxParameters0007 = New System.Windows.Forms.TextBox()
-        Me.TextBoxParameters0008 = New System.Windows.Forms.TextBox()
-        Me.TextBoxParameters0009 = New System.Windows.Forms.TextBox()
-        Me.TextBoxParameters0010 = New System.Windows.Forms.TextBox()
-        Me.TextBoxParameters0001 = New System.Windows.Forms.TextBox()
+        Me.Label0002 = New System.Windows.Forms.Label()
+        Me.ComboBox0001 = New System.Windows.Forms.ComboBox()
+        Me.Label0009 = New System.Windows.Forms.Label()
+        Me.Label0008 = New System.Windows.Forms.Label()
+        Me.Label0005 = New System.Windows.Forms.Label()
+        Me.Label0007 = New System.Windows.Forms.Label()
+        Me.Label0006 = New System.Windows.Forms.Label()
+        Me.Label0004 = New System.Windows.Forms.Label()
+        Me.Label0003 = New System.Windows.Forms.Label()
+        Me.Label0010 = New System.Windows.Forms.Label()
+        Me.Label0011 = New System.Windows.Forms.Label()
+        Me.Label0012 = New System.Windows.Forms.Label()
+        Me.Label0013 = New System.Windows.Forms.Label()
+        Me.TextBox0001 = New System.Windows.Forms.TextBox()
+        Me.TextBox0003 = New System.Windows.Forms.TextBox()
+        Me.TextBox0004 = New System.Windows.Forms.TextBox()
+        Me.TextBox0005 = New System.Windows.Forms.TextBox()
+        Me.TextBox0006 = New System.Windows.Forms.TextBox()
+        Me.TextBox0007 = New System.Windows.Forms.TextBox()
+        Me.TextBox0008 = New System.Windows.Forms.TextBox()
+        Me.TextBox0009 = New System.Windows.Forms.TextBox()
+        Me.TextBox0010 = New System.Windows.Forms.TextBox()
+        Me.TextBox0011 = New System.Windows.Forms.TextBox()
+        Me.TextBox0002 = New System.Windows.Forms.TextBox()
+        Me.ButtonNext = New System.Windows.Forms.Button()
+        Me.ButtonPrevious = New System.Windows.Forms.Button()
+        Me.Label0014 = New System.Windows.Forms.Label()
+        Me.Panel0000 = New System.Windows.Forms.Panel()
+        Me.ButtonSaveFile = New System.Windows.Forms.Button()
+        Me.ButtonClose = New System.Windows.Forms.Button()
+        Me.Panel0000.SuspendLayout()
         Me.SuspendLayout()
         '
-        'ButtonPrevious
+        'TextBox0000
         '
-        Me.ButtonPrevious.Location = New System.Drawing.Point(340, 429)
-        Me.ButtonPrevious.Name = "ButtonPrevious"
-        Me.ButtonPrevious.Size = New System.Drawing.Size(75, 23)
-        Me.ButtonPrevious.TabIndex = 0
-        Me.ButtonPrevious.Text = "Previous"
-        Me.ButtonPrevious.UseVisualStyleBackColor = True
+        Me.TextBox0000.Location = New System.Drawing.Point(12, 431)
+        Me.TextBox0000.Name = "TextBox0000"
+        Me.TextBox0000.Size = New System.Drawing.Size(304, 20)
+        Me.TextBox0000.TabIndex = 2
+        Me.TextBox0000.Visible = False
         '
-        'ButtonNext
+        'ComboBox0000
         '
-        Me.ButtonNext.Location = New System.Drawing.Point(421, 429)
-        Me.ButtonNext.Name = "ButtonNext"
-        Me.ButtonNext.Size = New System.Drawing.Size(75, 23)
-        Me.ButtonNext.TabIndex = 1
-        Me.ButtonNext.Text = "Next"
-        Me.ButtonNext.UseVisualStyleBackColor = True
-        '
-        'TextBoxRecipe
-        '
-        Me.TextBoxRecipe.Location = New System.Drawing.Point(291, 403)
-        Me.TextBoxRecipe.Name = "TextBoxRecipe"
-        Me.TextBoxRecipe.Size = New System.Drawing.Size(205, 20)
-        Me.TextBoxRecipe.TabIndex = 2
-        '
-        'ComboBoxRecipeIndex
-        '
-        Me.ComboBoxRecipeIndex.FormattingEnabled = True
-        Me.ComboBoxRecipeIndex.Location = New System.Drawing.Point(259, 431)
-        Me.ComboBoxRecipeIndex.Name = "ComboBoxRecipeIndex"
-        Me.ComboBoxRecipeIndex.Size = New System.Drawing.Size(75, 21)
-        Me.ComboBoxRecipeIndex.TabIndex = 3
-        '
-        'ButtonCreateFile
-        '
-        Me.ButtonCreateFile.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark
-        Me.ButtonCreateFile.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDark
-        Me.ButtonCreateFile.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
-        Me.ButtonCreateFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonCreateFile.ForeColor = System.Drawing.SystemColors.Control
-        Me.ButtonCreateFile.Location = New System.Drawing.Point(392, 79)
-        Me.ButtonCreateFile.Name = "ButtonCreateFile"
-        Me.ButtonCreateFile.Size = New System.Drawing.Size(90, 26)
-        Me.ButtonCreateFile.TabIndex = 66
-        Me.ButtonCreateFile.TabStop = False
-        Me.ButtonCreateFile.Text = "Create file"
-        Me.ButtonCreateFile.UseVisualStyleBackColor = True
+        Me.ComboBox0000.BackColor = System.Drawing.SystemColors.Window
+        Me.ComboBox0000.FormattingEnabled = True
+        Me.ComboBox0000.Location = New System.Drawing.Point(38, 495)
+        Me.ComboBox0000.Name = "ComboBox0000"
+        Me.ComboBox0000.Size = New System.Drawing.Size(67, 21)
+        Me.ComboBox0000.TabIndex = 3
         '
         'ButtonSize
         '
@@ -127,9 +100,9 @@ Partial Class Form_Recipes
         Me.Label0001.ForeColor = System.Drawing.Color.White
         Me.Label0001.Location = New System.Drawing.Point(14, 48)
         Me.Label0001.Name = "Label0001"
-        Me.Label0001.Size = New System.Drawing.Size(86, 21)
+        Me.Label0001.Size = New System.Drawing.Size(84, 21)
         Me.Label0001.TabIndex = 67
-        Me.Label0001.Text = "USB Usart"
+        Me.Label0001.Text = "Edit recipe"
         '
         'Label0000
         '
@@ -142,290 +115,398 @@ Partial Class Form_Recipes
         Me.Label0000.TabIndex = 65
         Me.Label0000.Text = "SGS Interface"
         '
-        'Lbl5004
+        'Label0002
         '
-        Me.Lbl5004.AutoSize = True
-        Me.Lbl5004.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbl5004.ForeColor = System.Drawing.Color.White
-        Me.Lbl5004.Location = New System.Drawing.Point(14, 119)
-        Me.Lbl5004.Name = "Lbl5004"
-        Me.Lbl5004.Size = New System.Drawing.Size(78, 16)
-        Me.Lbl5004.TabIndex = 132
-        Me.Lbl5004.Text = "Parameters"
+        Me.Label0002.AutoSize = True
+        Me.Label0002.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label0002.ForeColor = System.Drawing.Color.White
+        Me.Label0002.Location = New System.Drawing.Point(14, 119)
+        Me.Label0002.Name = "Label0002"
+        Me.Label0002.Size = New System.Drawing.Size(78, 16)
+        Me.Label0002.TabIndex = 132
+        Me.Label0002.Text = "Parameters"
         '
-        'ComboBoxParameters0000
+        'ComboBox0001
         '
-        Me.ComboBoxParameters0000.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBoxParameters0000.FormattingEnabled = True
-        Me.ComboBoxParameters0000.Location = New System.Drawing.Point(108, 223)
-        Me.ComboBoxParameters0000.Name = "ComboBoxParameters0000"
-        Me.ComboBoxParameters0000.Size = New System.Drawing.Size(100, 21)
-        Me.ComboBoxParameters0000.TabIndex = 145
+        Me.ComboBox0001.BackColor = System.Drawing.SystemColors.Window
+        Me.ComboBox0001.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox0001.FormattingEnabled = True
+        Me.ComboBox0001.Location = New System.Drawing.Point(231, 223)
+        Me.ComboBox0001.Name = "ComboBox0001"
+        Me.ComboBox0001.Size = New System.Drawing.Size(85, 21)
+        Me.ComboBox0001.TabIndex = 145
         '
-        'Lbl5012
+        'Label0009
         '
-        Me.Lbl5012.AutoSize = True
-        Me.Lbl5012.ForeColor = System.Drawing.SystemColors.Control
-        Me.Lbl5012.Location = New System.Drawing.Point(26, 304)
-        Me.Lbl5012.Name = "Lbl5012"
-        Me.Lbl5012.Size = New System.Drawing.Size(41, 13)
-        Me.Lbl5012.TabIndex = 141
-        Me.Lbl5012.Text = "Recipe"
+        Me.Label0009.AutoSize = True
+        Me.Label0009.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label0009.Location = New System.Drawing.Point(26, 304)
+        Me.Label0009.Name = "Label0009"
+        Me.Label0009.Size = New System.Drawing.Size(41, 13)
+        Me.Label0009.TabIndex = 141
+        Me.Label0009.Text = "Recipe"
         '
-        'Lbl5011
+        'Label0008
         '
-        Me.Lbl5011.AutoSize = True
-        Me.Lbl5011.ForeColor = System.Drawing.SystemColors.Control
-        Me.Lbl5011.Location = New System.Drawing.Point(26, 278)
-        Me.Lbl5011.Name = "Lbl5011"
-        Me.Lbl5011.Size = New System.Drawing.Size(41, 13)
-        Me.Lbl5011.TabIndex = 139
-        Me.Lbl5011.Text = "Recipe"
+        Me.Label0008.AutoSize = True
+        Me.Label0008.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label0008.Location = New System.Drawing.Point(26, 278)
+        Me.Label0008.Name = "Label0008"
+        Me.Label0008.Size = New System.Drawing.Size(41, 13)
+        Me.Label0008.TabIndex = 139
+        Me.Label0008.Text = "Recipe"
         '
-        'Lbl5008
+        'Label0005
         '
-        Me.Lbl5008.AutoSize = True
-        Me.Lbl5008.ForeColor = System.Drawing.SystemColors.Control
-        Me.Lbl5008.Location = New System.Drawing.Point(26, 200)
-        Me.Lbl5008.Name = "Lbl5008"
-        Me.Lbl5008.Size = New System.Drawing.Size(41, 13)
-        Me.Lbl5008.TabIndex = 140
-        Me.Lbl5008.Text = "Recipe"
+        Me.Label0005.AutoSize = True
+        Me.Label0005.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label0005.Location = New System.Drawing.Point(26, 200)
+        Me.Label0005.Name = "Label0005"
+        Me.Label0005.Size = New System.Drawing.Size(41, 13)
+        Me.Label0005.TabIndex = 140
+        Me.Label0005.Text = "Recipe"
         '
-        'Lbl5010
+        'Label0007
         '
-        Me.Lbl5010.AutoSize = True
-        Me.Lbl5010.ForeColor = System.Drawing.SystemColors.Control
-        Me.Lbl5010.Location = New System.Drawing.Point(26, 252)
-        Me.Lbl5010.Name = "Lbl5010"
-        Me.Lbl5010.Size = New System.Drawing.Size(41, 13)
-        Me.Lbl5010.TabIndex = 138
-        Me.Lbl5010.Text = "Recipe"
+        Me.Label0007.AutoSize = True
+        Me.Label0007.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label0007.Location = New System.Drawing.Point(26, 252)
+        Me.Label0007.Name = "Label0007"
+        Me.Label0007.Size = New System.Drawing.Size(41, 13)
+        Me.Label0007.TabIndex = 138
+        Me.Label0007.Text = "Recipe"
         '
-        'Lbl5009
+        'Label0006
         '
-        Me.Lbl5009.AutoSize = True
-        Me.Lbl5009.ForeColor = System.Drawing.SystemColors.Control
-        Me.Lbl5009.Location = New System.Drawing.Point(26, 226)
-        Me.Lbl5009.Name = "Lbl5009"
-        Me.Lbl5009.Size = New System.Drawing.Size(41, 13)
-        Me.Lbl5009.TabIndex = 137
-        Me.Lbl5009.Text = "Recipe"
+        Me.Label0006.AutoSize = True
+        Me.Label0006.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label0006.Location = New System.Drawing.Point(26, 226)
+        Me.Label0006.Name = "Label0006"
+        Me.Label0006.Size = New System.Drawing.Size(41, 13)
+        Me.Label0006.TabIndex = 137
+        Me.Label0006.Text = "Recipe"
         '
-        'Lbl5007
+        'Label0004
         '
-        Me.Lbl5007.AutoSize = True
-        Me.Lbl5007.ForeColor = System.Drawing.SystemColors.Control
-        Me.Lbl5007.Location = New System.Drawing.Point(26, 174)
-        Me.Lbl5007.Name = "Lbl5007"
-        Me.Lbl5007.Size = New System.Drawing.Size(41, 13)
-        Me.Lbl5007.TabIndex = 136
-        Me.Lbl5007.Text = "Recipe"
+        Me.Label0004.AutoSize = True
+        Me.Label0004.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label0004.Location = New System.Drawing.Point(26, 174)
+        Me.Label0004.Name = "Label0004"
+        Me.Label0004.Size = New System.Drawing.Size(41, 13)
+        Me.Label0004.TabIndex = 136
+        Me.Label0004.Text = "Recipe"
         '
-        'Lbl5006
+        'Label0003
         '
-        Me.Lbl5006.AutoSize = True
-        Me.Lbl5006.ForeColor = System.Drawing.SystemColors.Control
-        Me.Lbl5006.Location = New System.Drawing.Point(26, 148)
-        Me.Lbl5006.Name = "Lbl5006"
-        Me.Lbl5006.Size = New System.Drawing.Size(41, 13)
-        Me.Lbl5006.TabIndex = 135
-        Me.Lbl5006.Text = "Recipe"
+        Me.Label0003.AutoSize = True
+        Me.Label0003.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label0003.Location = New System.Drawing.Point(26, 148)
+        Me.Label0003.Name = "Label0003"
+        Me.Label0003.Size = New System.Drawing.Size(41, 13)
+        Me.Label0003.TabIndex = 135
+        Me.Label0003.Text = "Recipe"
         '
-        'Label1
+        'Label0010
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label1.Location = New System.Drawing.Point(26, 330)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(41, 13)
-        Me.Label1.TabIndex = 137
-        Me.Label1.Text = "Recipe"
+        Me.Label0010.AutoSize = True
+        Me.Label0010.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label0010.Location = New System.Drawing.Point(26, 330)
+        Me.Label0010.Name = "Label0010"
+        Me.Label0010.Size = New System.Drawing.Size(41, 13)
+        Me.Label0010.TabIndex = 137
+        Me.Label0010.Text = "Recipe"
         '
-        'Label2
+        'Label0011
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label2.Location = New System.Drawing.Point(26, 356)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(41, 13)
-        Me.Label2.TabIndex = 138
-        Me.Label2.Text = "Recipe"
+        Me.Label0011.AutoSize = True
+        Me.Label0011.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label0011.Location = New System.Drawing.Point(26, 356)
+        Me.Label0011.Name = "Label0011"
+        Me.Label0011.Size = New System.Drawing.Size(41, 13)
+        Me.Label0011.TabIndex = 138
+        Me.Label0011.Text = "Recipe"
         '
-        'Label3
+        'Label0012
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label3.Location = New System.Drawing.Point(26, 382)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(41, 13)
-        Me.Label3.TabIndex = 139
-        Me.Label3.Text = "Recipe"
+        Me.Label0012.AutoSize = True
+        Me.Label0012.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label0012.Location = New System.Drawing.Point(26, 382)
+        Me.Label0012.Name = "Label0012"
+        Me.Label0012.Size = New System.Drawing.Size(41, 13)
+        Me.Label0012.TabIndex = 139
+        Me.Label0012.Text = "Recipe"
         '
-        'Label4
+        'Label0013
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label4.Location = New System.Drawing.Point(26, 408)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(41, 13)
-        Me.Label4.TabIndex = 141
-        Me.Label4.Text = "Recipe"
+        Me.Label0013.AutoSize = True
+        Me.Label0013.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label0013.Location = New System.Drawing.Point(26, 408)
+        Me.Label0013.Name = "Label0013"
+        Me.Label0013.Size = New System.Drawing.Size(41, 13)
+        Me.Label0013.TabIndex = 141
+        Me.Label0013.Text = "Recipe"
         '
-        'TextBoxParameters0000
+        'TextBox0001
         '
-        Me.TextBoxParameters0000.Location = New System.Drawing.Point(108, 145)
-        Me.TextBoxParameters0000.Name = "TextBoxParameters0000"
-        Me.TextBoxParameters0000.Size = New System.Drawing.Size(100, 20)
-        Me.TextBoxParameters0000.TabIndex = 142
+        Me.TextBox0001.BackColor = System.Drawing.SystemColors.Window
+        Me.TextBox0001.Location = New System.Drawing.Point(231, 145)
+        Me.TextBox0001.Name = "TextBox0001"
+        Me.TextBox0001.Size = New System.Drawing.Size(85, 20)
+        Me.TextBox0001.TabIndex = 142
         '
-        'TextBoxParameters0002
+        'TextBox0003
         '
-        Me.TextBoxParameters0002.Location = New System.Drawing.Point(108, 197)
-        Me.TextBoxParameters0002.Name = "TextBoxParameters0002"
-        Me.TextBoxParameters0002.Size = New System.Drawing.Size(100, 20)
-        Me.TextBoxParameters0002.TabIndex = 144
+        Me.TextBox0003.BackColor = System.Drawing.SystemColors.Window
+        Me.TextBox0003.Location = New System.Drawing.Point(231, 197)
+        Me.TextBox0003.Name = "TextBox0003"
+        Me.TextBox0003.Size = New System.Drawing.Size(85, 20)
+        Me.TextBox0003.TabIndex = 144
+        Me.TextBox0003.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'TextBoxParameters0003
+        'TextBox0004
         '
-        Me.TextBoxParameters0003.Location = New System.Drawing.Point(214, 223)
-        Me.TextBoxParameters0003.Name = "TextBoxParameters0003"
-        Me.TextBoxParameters0003.Size = New System.Drawing.Size(15, 20)
-        Me.TextBoxParameters0003.TabIndex = 142
-        Me.TextBoxParameters0003.Visible = False
+        Me.TextBox0004.BackColor = System.Drawing.SystemColors.Window
+        Me.TextBox0004.Location = New System.Drawing.Point(210, 223)
+        Me.TextBox0004.Name = "TextBox0004"
+        Me.TextBox0004.Size = New System.Drawing.Size(15, 20)
+        Me.TextBox0004.TabIndex = 142
+        Me.TextBox0004.Visible = False
         '
-        'TextBoxParameters0004
+        'TextBox0005
         '
-        Me.TextBoxParameters0004.Location = New System.Drawing.Point(108, 249)
-        Me.TextBoxParameters0004.Name = "TextBoxParameters0004"
-        Me.TextBoxParameters0004.Size = New System.Drawing.Size(100, 20)
-        Me.TextBoxParameters0004.TabIndex = 146
+        Me.TextBox0005.BackColor = System.Drawing.SystemColors.Window
+        Me.TextBox0005.Location = New System.Drawing.Point(231, 249)
+        Me.TextBox0005.Name = "TextBox0005"
+        Me.TextBox0005.Size = New System.Drawing.Size(85, 20)
+        Me.TextBox0005.TabIndex = 146
+        Me.TextBox0005.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'TextBoxParameters0005
+        'TextBox0006
         '
-        Me.TextBoxParameters0005.Location = New System.Drawing.Point(108, 275)
-        Me.TextBoxParameters0005.Name = "TextBoxParameters0005"
-        Me.TextBoxParameters0005.Size = New System.Drawing.Size(100, 20)
-        Me.TextBoxParameters0005.TabIndex = 147
+        Me.TextBox0006.BackColor = System.Drawing.SystemColors.Window
+        Me.TextBox0006.Location = New System.Drawing.Point(231, 275)
+        Me.TextBox0006.Name = "TextBox0006"
+        Me.TextBox0006.Size = New System.Drawing.Size(85, 20)
+        Me.TextBox0006.TabIndex = 147
+        Me.TextBox0006.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'TextBoxParameters0006
+        'TextBox0007
         '
-        Me.TextBoxParameters0006.Location = New System.Drawing.Point(108, 301)
-        Me.TextBoxParameters0006.Name = "TextBoxParameters0006"
-        Me.TextBoxParameters0006.Size = New System.Drawing.Size(100, 20)
-        Me.TextBoxParameters0006.TabIndex = 148
+        Me.TextBox0007.BackColor = System.Drawing.SystemColors.Window
+        Me.TextBox0007.Location = New System.Drawing.Point(231, 301)
+        Me.TextBox0007.Name = "TextBox0007"
+        Me.TextBox0007.Size = New System.Drawing.Size(85, 20)
+        Me.TextBox0007.TabIndex = 148
+        Me.TextBox0007.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'TextBoxParameters0007
+        'TextBox0008
         '
-        Me.TextBoxParameters0007.Location = New System.Drawing.Point(108, 327)
-        Me.TextBoxParameters0007.Name = "TextBoxParameters0007"
-        Me.TextBoxParameters0007.Size = New System.Drawing.Size(100, 20)
-        Me.TextBoxParameters0007.TabIndex = 149
+        Me.TextBox0008.BackColor = System.Drawing.SystemColors.Window
+        Me.TextBox0008.Location = New System.Drawing.Point(231, 327)
+        Me.TextBox0008.Name = "TextBox0008"
+        Me.TextBox0008.Size = New System.Drawing.Size(85, 20)
+        Me.TextBox0008.TabIndex = 149
+        Me.TextBox0008.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'TextBoxParameters0008
+        'TextBox0009
         '
-        Me.TextBoxParameters0008.Location = New System.Drawing.Point(108, 353)
-        Me.TextBoxParameters0008.Name = "TextBoxParameters0008"
-        Me.TextBoxParameters0008.Size = New System.Drawing.Size(100, 20)
-        Me.TextBoxParameters0008.TabIndex = 150
+        Me.TextBox0009.BackColor = System.Drawing.SystemColors.Window
+        Me.TextBox0009.Location = New System.Drawing.Point(231, 353)
+        Me.TextBox0009.Name = "TextBox0009"
+        Me.TextBox0009.Size = New System.Drawing.Size(85, 20)
+        Me.TextBox0009.TabIndex = 150
+        Me.TextBox0009.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'TextBoxParameters0009
+        'TextBox0010
         '
-        Me.TextBoxParameters0009.Location = New System.Drawing.Point(108, 379)
-        Me.TextBoxParameters0009.Name = "TextBoxParameters0009"
-        Me.TextBoxParameters0009.Size = New System.Drawing.Size(100, 20)
-        Me.TextBoxParameters0009.TabIndex = 151
+        Me.TextBox0010.BackColor = System.Drawing.SystemColors.Window
+        Me.TextBox0010.Location = New System.Drawing.Point(231, 379)
+        Me.TextBox0010.Name = "TextBox0010"
+        Me.TextBox0010.Size = New System.Drawing.Size(85, 20)
+        Me.TextBox0010.TabIndex = 151
+        Me.TextBox0010.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'TextBoxParameters0010
+        'TextBox0011
         '
-        Me.TextBoxParameters0010.Location = New System.Drawing.Point(108, 405)
-        Me.TextBoxParameters0010.Name = "TextBoxParameters0010"
-        Me.TextBoxParameters0010.Size = New System.Drawing.Size(100, 20)
-        Me.TextBoxParameters0010.TabIndex = 152
+        Me.TextBox0011.BackColor = System.Drawing.SystemColors.Window
+        Me.TextBox0011.Location = New System.Drawing.Point(231, 405)
+        Me.TextBox0011.Name = "TextBox0011"
+        Me.TextBox0011.Size = New System.Drawing.Size(85, 20)
+        Me.TextBox0011.TabIndex = 152
+        Me.TextBox0011.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'TextBoxParameters0001
+        'TextBox0002
         '
-        Me.TextBoxParameters0001.Location = New System.Drawing.Point(108, 171)
-        Me.TextBoxParameters0001.Name = "TextBoxParameters0001"
-        Me.TextBoxParameters0001.Size = New System.Drawing.Size(100, 20)
-        Me.TextBoxParameters0001.TabIndex = 143
+        Me.TextBox0002.BackColor = System.Drawing.SystemColors.Window
+        Me.TextBox0002.Location = New System.Drawing.Point(231, 171)
+        Me.TextBox0002.Name = "TextBox0002"
+        Me.TextBox0002.Size = New System.Drawing.Size(85, 20)
+        Me.TextBox0002.TabIndex = 143
+        Me.TextBox0002.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'ButtonNext
+        '
+        Me.ButtonNext.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonNext.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonNext.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonNext.ForeColor = System.Drawing.SystemColors.Control
+        Me.ButtonNext.Location = New System.Drawing.Point(226, 491)
+        Me.ButtonNext.Name = "ButtonNext"
+        Me.ButtonNext.Size = New System.Drawing.Size(90, 26)
+        Me.ButtonNext.TabIndex = 156
+        Me.ButtonNext.TabStop = False
+        Me.ButtonNext.Text = "Next"
+        Me.ButtonNext.UseVisualStyleBackColor = True
+        '
+        'ButtonPrevious
+        '
+        Me.ButtonPrevious.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonPrevious.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonPrevious.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonPrevious.ForeColor = System.Drawing.SystemColors.Control
+        Me.ButtonPrevious.Location = New System.Drawing.Point(130, 491)
+        Me.ButtonPrevious.Name = "ButtonPrevious"
+        Me.ButtonPrevious.Size = New System.Drawing.Size(90, 26)
+        Me.ButtonPrevious.TabIndex = 157
+        Me.ButtonPrevious.TabStop = False
+        Me.ButtonPrevious.Text = "Previous"
+        Me.ButtonPrevious.UseVisualStyleBackColor = True
+        '
+        'Label0014
+        '
+        Me.Label0014.AutoSize = True
+        Me.Label0014.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label0014.ForeColor = System.Drawing.Color.White
+        Me.Label0014.Location = New System.Drawing.Point(14, 469)
+        Me.Label0014.Name = "Label0014"
+        Me.Label0014.Size = New System.Drawing.Size(57, 16)
+        Me.Label0014.TabIndex = 158
+        Me.Label0014.Text = "Memory"
+        '
+        'Panel0000
+        '
+        Me.Panel0000.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Panel0000.Controls.Add(Me.ButtonSaveFile)
+        Me.Panel0000.Controls.Add(Me.ButtonClose)
+        Me.Panel0000.Location = New System.Drawing.Point(-2, 607)
+        Me.Panel0000.Name = "Panel0000"
+        Me.Panel0000.Size = New System.Drawing.Size(337, 83)
+        Me.Panel0000.TabIndex = 159
+        '
+        'ButtonSaveFile
+        '
+        Me.ButtonSaveFile.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonSaveFile.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonSaveFile.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonSaveFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonSaveFile.ForeColor = System.Drawing.SystemColors.Control
+        Me.ButtonSaveFile.Location = New System.Drawing.Point(132, 45)
+        Me.ButtonSaveFile.Name = "ButtonSaveFile"
+        Me.ButtonSaveFile.Size = New System.Drawing.Size(90, 26)
+        Me.ButtonSaveFile.TabIndex = 35
+        Me.ButtonSaveFile.TabStop = False
+        Me.ButtonSaveFile.Text = "Save file"
+        Me.ButtonSaveFile.UseVisualStyleBackColor = True
+        '
+        'ButtonClose
+        '
+        Me.ButtonClose.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonClose.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonClose.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonClose.ForeColor = System.Drawing.SystemColors.Control
+        Me.ButtonClose.Location = New System.Drawing.Point(228, 45)
+        Me.ButtonClose.Name = "ButtonClose"
+        Me.ButtonClose.Size = New System.Drawing.Size(90, 26)
+        Me.ButtonClose.TabIndex = 4
+        Me.ButtonClose.TabStop = False
+        Me.ButtonClose.Text = "Close"
+        Me.ButtonClose.UseVisualStyleBackColor = True
         '
         'Form_Recipes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.ClientSize = New System.Drawing.Size(508, 473)
-        Me.Controls.Add(Me.TextBoxParameters0001)
-        Me.Controls.Add(Me.TextBoxParameters0010)
-        Me.Controls.Add(Me.TextBoxParameters0009)
-        Me.Controls.Add(Me.TextBoxParameters0008)
-        Me.Controls.Add(Me.TextBoxParameters0007)
-        Me.Controls.Add(Me.TextBoxParameters0006)
-        Me.Controls.Add(Me.TextBoxParameters0005)
-        Me.Controls.Add(Me.TextBoxParameters0004)
-        Me.Controls.Add(Me.TextBoxParameters0003)
-        Me.Controls.Add(Me.TextBoxParameters0002)
-        Me.Controls.Add(Me.TextBoxParameters0000)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.Lbl5012)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Lbl5011)
-        Me.Controls.Add(Me.Lbl5008)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Lbl5010)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.Lbl5009)
-        Me.Controls.Add(Me.Lbl5007)
-        Me.Controls.Add(Me.Lbl5006)
-        Me.Controls.Add(Me.ComboBoxParameters0000)
-        Me.Controls.Add(Me.Lbl5004)
-        Me.Controls.Add(Me.ButtonCreateFile)
+        Me.ClientSize = New System.Drawing.Size(328, 689)
+        Me.Controls.Add(Me.Panel0000)
+        Me.Controls.Add(Me.Label0014)
+        Me.Controls.Add(Me.ButtonPrevious)
+        Me.Controls.Add(Me.ButtonNext)
+        Me.Controls.Add(Me.TextBox0002)
+        Me.Controls.Add(Me.TextBox0011)
+        Me.Controls.Add(Me.TextBox0010)
+        Me.Controls.Add(Me.TextBox0009)
+        Me.Controls.Add(Me.TextBox0008)
+        Me.Controls.Add(Me.TextBox0007)
+        Me.Controls.Add(Me.TextBox0006)
+        Me.Controls.Add(Me.TextBox0005)
+        Me.Controls.Add(Me.TextBox0004)
+        Me.Controls.Add(Me.TextBox0003)
+        Me.Controls.Add(Me.TextBox0001)
+        Me.Controls.Add(Me.Label0013)
+        Me.Controls.Add(Me.Label0009)
+        Me.Controls.Add(Me.Label0012)
+        Me.Controls.Add(Me.Label0008)
+        Me.Controls.Add(Me.Label0005)
+        Me.Controls.Add(Me.Label0011)
+        Me.Controls.Add(Me.Label0007)
+        Me.Controls.Add(Me.Label0010)
+        Me.Controls.Add(Me.Label0006)
+        Me.Controls.Add(Me.Label0004)
+        Me.Controls.Add(Me.Label0003)
+        Me.Controls.Add(Me.ComboBox0001)
+        Me.Controls.Add(Me.Label0002)
         Me.Controls.Add(Me.ButtonSize)
         Me.Controls.Add(Me.Label0001)
         Me.Controls.Add(Me.Label0000)
-        Me.Controls.Add(Me.ComboBoxRecipeIndex)
-        Me.Controls.Add(Me.TextBoxRecipe)
-        Me.Controls.Add(Me.ButtonNext)
-        Me.Controls.Add(Me.ButtonPrevious)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.Controls.Add(Me.ComboBox0000)
+        Me.Controls.Add(Me.TextBox0000)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Form_Recipes"
         Me.Opacity = 0.90000000000000002R
         Me.Text = "Form_Recipes"
+        Me.TransparencyKey = System.Drawing.Color.LavenderBlush
+        Me.Panel0000.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents ButtonPrevious As System.Windows.Forms.Button
-    Friend WithEvents ButtonNext As System.Windows.Forms.Button
-    Friend WithEvents TextBoxRecipe As System.Windows.Forms.TextBox
-    Friend WithEvents ComboBoxRecipeIndex As System.Windows.Forms.ComboBox
-    Friend WithEvents ButtonCreateFile As System.Windows.Forms.Button
+    Friend WithEvents TextBox0000 As System.Windows.Forms.TextBox
+    Friend WithEvents ComboBox0000 As System.Windows.Forms.ComboBox
     Friend WithEvents ButtonSize As System.Windows.Forms.Button
     Friend WithEvents Label0001 As System.Windows.Forms.Label
     Friend WithEvents Label0000 As System.Windows.Forms.Label
-    Friend WithEvents Lbl5004 As System.Windows.Forms.Label
-    Friend WithEvents ComboBoxParameters0000 As System.Windows.Forms.ComboBox
-    Friend WithEvents Lbl5012 As System.Windows.Forms.Label
-    Friend WithEvents Lbl5011 As System.Windows.Forms.Label
-    Friend WithEvents Lbl5008 As System.Windows.Forms.Label
-    Friend WithEvents Lbl5010 As System.Windows.Forms.Label
-    Friend WithEvents Lbl5009 As System.Windows.Forms.Label
-    Friend WithEvents Lbl5007 As System.Windows.Forms.Label
-    Friend WithEvents Lbl5006 As System.Windows.Forms.Label
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents TextBoxParameters0000 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBoxParameters0002 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBoxParameters0003 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBoxParameters0004 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBoxParameters0005 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBoxParameters0006 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBoxParameters0007 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBoxParameters0008 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBoxParameters0009 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBoxParameters0010 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBoxParameters0001 As System.Windows.Forms.TextBox
+    Friend WithEvents Label0002 As System.Windows.Forms.Label
+    Friend WithEvents ComboBox0001 As System.Windows.Forms.ComboBox
+    Friend WithEvents Label0009 As System.Windows.Forms.Label
+    Friend WithEvents Label0008 As System.Windows.Forms.Label
+    Friend WithEvents Label0005 As System.Windows.Forms.Label
+    Friend WithEvents Label0007 As System.Windows.Forms.Label
+    Friend WithEvents Label0006 As System.Windows.Forms.Label
+    Friend WithEvents Label0004 As System.Windows.Forms.Label
+    Friend WithEvents Label0003 As System.Windows.Forms.Label
+    Friend WithEvents Label0010 As System.Windows.Forms.Label
+    Friend WithEvents Label0011 As System.Windows.Forms.Label
+    Friend WithEvents Label0012 As System.Windows.Forms.Label
+    Friend WithEvents Label0013 As System.Windows.Forms.Label
+    Friend WithEvents TextBox0001 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox0003 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox0004 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox0005 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox0006 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox0007 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox0008 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox0009 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox0010 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox0011 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox0002 As System.Windows.Forms.TextBox
+    Friend WithEvents ButtonNext As System.Windows.Forms.Button
+    Friend WithEvents ButtonPrevious As System.Windows.Forms.Button
+    Friend WithEvents Label0014 As System.Windows.Forms.Label
+    Friend WithEvents Panel0000 As System.Windows.Forms.Panel
+    Friend WithEvents ButtonSaveFile As System.Windows.Forms.Button
+    Friend WithEvents ButtonClose As System.Windows.Forms.Button
 End Class

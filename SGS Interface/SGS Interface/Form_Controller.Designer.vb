@@ -362,7 +362,7 @@ Partial Class Form_Controller
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "Form_Controller"
-        Me.Opacity = 0.9R
+        Me.Opacity = 0.90000000000000002R
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "x"
         Me.Panel0000.ResumeLayout(False)

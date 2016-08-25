@@ -44,7 +44,7 @@ Public Module Module_Firmware
             FirmwareString = "                  130  130    20    20   1  200 0   1     1  1  "
             SettingsString = " 0    1 0     0     0     1  2 0 0                              "
 
-            ParametersFormat = {"", "00.00", "00000", "", "00.00", "00.00", "00000", "00000", "000", "000", "00"}
+            ParametersFormat = {"", "00.00 Rms", "00000", "", "00.00 Ohm", "00.00 Ohm", "00000 Hz", "00000 Hz", "000 '%", "000 Rec", "00 seg"}
 
             'Dim resistancelowermim, resistanceuppermax As Integer
 
