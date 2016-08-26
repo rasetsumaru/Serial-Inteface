@@ -86,6 +86,19 @@ Public Module Module_Language
             Label0044 = "Go to next recipe"
             Label0045 = "Save changes to the file"
             Label0046 = "Close the edition window"
+            Label0047 = "Lower limit: "
+            Label0048 = "Upper limit: "
+            Label0049 = "Maximum length: "
+            Label0050 = "Acceptable characters: "
+            Label0051 = "Select sweep mode"
+            Label0052 = "Select memory position"
+            Label0053 = "Enable help provider"
+            Label0054 = "Open file"
+            Label0055 = "Open an existing file"
+            Label0056 = "Upload"
+            Label0057 = "Upload data from device"
+            Label0058 = "Download"
+            Label0059 = "Download data to device"
 
             Message0000 = "USB Usart connected"
             Message0001 = "USB Usart disconnected"
@@ -96,6 +109,7 @@ Public Module Module_Language
             Message0006 = "Error: Invalid character or characters limit exceeded"
             Message0007 = "Warning: Range of resistance changed"
             Message0008 = "Error: Value out of range or invalid character"
+            Message0009 = "Firmware mismatch or incompatible file"
 
             List0000 = {"Single", "Double", "Continue"}
 
@@ -159,6 +173,19 @@ Public Module Module_Language
             Label0044 = "Exibe a receita seguinte"
             Label0045 = "Salvar alterações no arquivo"
             Label0046 = "Fecha a janela de edição"
+            Label0047 = "Limite inferior: "
+            Label0048 = "Limite superior: "
+            Label0049 = "Tamanho máximo: "
+            Label0050 = "Caracteres aceitáveis: "
+            Label0051 = "Selecione o modo de sweep"
+            Label0052 = "Selecione a posição da memória"
+            Label0053 = "Habilitar provedor de ajuda"
+            Label0054 = "Abrir arquivo"
+            Label0055 = "Abrir um arquivo existente"
+            Label0056 = "Enviar"
+            Label0057 = "Enviar dados para o dispositivo"
+            Label0058 = "Carregar"
+            Label0059 = "Carregar dados do dispositovo"
 
             Message0000 = "USB Usart conectado"
             Message0001 = "USB Usart desconectado"
@@ -169,6 +196,7 @@ Public Module Module_Language
             Message0006 = "Erro: Caractere inválido ou limite de caracteres excedido"
             Message0007 = "Atenção: Limites de resistência alterados"
             Message0008 = "Erro: Valor fora dos limites ou caractere inválido"
+            Message0009 = "Firmware divergente ou arquivo incompatível"
 
             List0000 = {"Simples", "Duplo", "Continuo"}
 

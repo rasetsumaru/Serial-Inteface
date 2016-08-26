@@ -12,7 +12,6 @@ Module Module_Functions
 
     Public WithEvents _SerialPort As New System.IO.Ports.SerialPort
     Public WithEvents _Seriallist As New System.Windows.Forms.ListBox
-    Public WithEvents _ToolTip As New System.Windows.Forms.ToolTip
 
     Public WithEvents _TimerNow As New System.Windows.Forms.Timer
     Public WithEvents _TimerConnected As New System.Windows.Forms.Timer
@@ -209,6 +208,9 @@ Module Module_Functions
                 .Location = New Point(FormLeft, FormTop)
                 .ButtonSize.Text = "-"
                 .Size = New Size(328, 689)
+
+                .ButtonDownload.Enabled = False
+                .ButtonUpload.Enabled = False
             End With
 
             With _TimerNow
@@ -252,7 +254,7 @@ Module Module_Functions
                 .Stop()
             End With
 
-            RecipeControl = False
+            RecipeControl = 0
 
         Catch ex As Exception
             WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
@@ -280,6 +282,9 @@ Module Module_Functions
     Public Sub LanguageForm(_form As System.Windows.Forms.Form)
 
         Try
+
+            Dim _ToolTip As New System.Windows.Forms.ToolTip
+
             Select Case _form.Name
 
                 Case Is = "Form_Controller"
@@ -288,6 +293,9 @@ Module Module_Functions
                         .ButtonClose.Text = SGS_Library.Label0000
                         .ButtonConnect.Text = SGS_Library.Label0002
                         .ButtonCreateFile.Text = SGS_Library.Label0022
+                        .ButtonOpenFile.Text = SGS_Library.label0054
+                        .ButtonUpload.Text = SGS_Library.Label0056
+                        .ButtonDownload.Text = SGS_Library.Label0058
 
                         .Label0002.Text = SGS_Library.Label0006
                         .Label0003.Text = SGS_Library.Label0007
@@ -301,12 +309,17 @@ Module Module_Functions
                         .Label0011.Text = SGS_Library.Label0018
                         .Label0012.Text = SGS_Library.Label0018
                         .Label0013.Text = SGS_Library.Label0018
+
                         With _ToolTip
                             .IsBalloon = True
                             .SetToolTip(Form_Controller.ButtonClose, SGS_Library.Label0001)
                             .SetToolTip(Form_Controller.ButtonConnect, SGS_Library.Label0003)
                             .SetToolTip(Form_Controller.ButtonCreateFile, SGS_Library.Label0023)
+                            .SetToolTip(Form_Controller.ButtonOpenFile, SGS_Library.Label0055)
+                            .SetToolTip(Form_Controller.ButtonUpload, SGS_Library.Label0057)
+                            .SetToolTip(Form_Controller.ButtonDownload, SGS_Library.Label0059)
                         End With
+
                     End With
 
                 Case Is = "Form_Recipes"
@@ -330,6 +343,8 @@ Module Module_Functions
                         .Label0012.Text = SGS_Library.Label0038
                         .Label0013.Text = SGS_Library.Label0039
                         .Label0014.Text = SGS_Library.Label0040
+
+                        .CheckBoxEnableTips.Text = SGS_Library.Label0053
 
                         With _ToolTip
                             .IsBalloon = True
@@ -378,6 +393,69 @@ Module Module_Functions
 
         Try
             drag = False
+        Catch ex As Exception
+            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
+        End Try
+
+    End Sub
+
+#End Region
+
+#Region "Form Recipe tooltip"
+
+    Public Sub ComboBoxRecipeToolTip(_ComboBox As System.Windows.Forms.ComboBox)
+
+        Try
+
+            Dim i As Integer = Int(Strings.Right(_ComboBox.Name, 4))
+            Dim _ToolTip As New System.Windows.Forms.ToolTip
+
+            _ToolTip.IsBalloon = True
+
+            If Form_Recipes.CheckBoxEnableTips.Checked = True Then
+
+                If i = 0 Then
+
+                    _ToolTip.Show(SGS_Library.Label0052, _ComboBox, 40, -32, 2000)
+
+                Else
+
+                    _ToolTip.Show(SGS_Library.Label0051, _ComboBox, 65, -32, 2000)
+
+                End If
+            End If
+
+        Catch ex As Exception
+            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
+        End Try
+
+    End Sub
+
+    Public Sub TextBoxRecipeToolTip(_TextBox As System.Windows.Forms.TextBox)
+
+        Try
+
+            Dim i As Integer = Int(Strings.Right(_TextBox.Name, 4)) - 1
+            Dim _ToolTip As New System.Windows.Forms.ToolTip
+
+            _ToolTip.IsBalloon = True
+
+            If Form_Recipes.CheckBoxEnableTips.Checked = True Then
+
+                If i = 1 Or i = 4 Or i = 5 Then
+
+                    _ToolTip.Show(SGS_Library.Label0047 & Format(Convert.ToDecimal(SGS_Firmware.ValidationMinimum(i)), SGS_Firmware.ParametersFormat(i)) & vbCrLf & SGS_Library.Label0048 & Format(Convert.ToDecimal(SGS_Firmware.ValidationMaximum(i)), SGS_Firmware.ParametersFormat(i)), _TextBox, 65, -55, 2000)
+
+                ElseIf i = 0 Then
+
+                    _ToolTip.Show(SGS_Library.Label0049 & SGS_Firmware.ValidationMinimum(i) & vbCrLf & SGS_Library.Label0050 & Strings.Mid(SGS_Firmware.ValidationMaximum(i), 3, SGS_Firmware.ValidationMaximum(i).Length - 4), _TextBox, 65, -55, 2000)
+
+                Else
+                    _ToolTip.Show(SGS_Library.Label0047 & Format(Convert.ToInt32(SGS_Firmware.ValidationMinimum(i)), SGS_Firmware.ParametersFormat(i)) & vbCrLf & SGS_Library.Label0048 & Format(Convert.ToInt32(SGS_Firmware.ValidationMaximum(i)), SGS_Firmware.ParametersFormat(i)), _TextBox, 65, -55, 2000)
+
+                End If
+            End If
+
         Catch ex As Exception
             WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
         End Try
@@ -566,18 +644,29 @@ Module Module_Functions
     Public Sub SerialPortForceDisconnected()
 
         Try
+
+            Dim _ToolTip As New System.Windows.Forms.ToolTip
+
             _TimerConnected.Stop()
             _TimerUsartTx.Stop()
             _TimerUsartRx.Stop()
 
             UsartConnected = False
-            RecipeControl = False
+            RecipeControl = 0
 
             UsartRx = ""
 
-            With Form_Controller.ButtonConnect
-                .Text = "Connect"
-                .Enabled = True
+            With Form_Controller
+
+                With .ButtonConnect
+                    .Text = "Connect"
+                    .Enabled = True
+                End With
+
+                .ButtonOpenFile.Enabled = True
+                .ButtonCreateFile.Enabled = True
+                .ButtonUpload.Enabled = False
+                .ButtonDownload.Enabled = False
             End With
 
             RemoveHandler _SerialPort.DataReceived, AddressOf Form_Controller.DataReceivedHandler
@@ -592,6 +681,7 @@ Module Module_Functions
                 End With
             End If
 
+            _ToolTip.IsBalloon = True
             _ToolTip.SetToolTip(Form_Controller.ButtonConnect, SGS_Library.Label0003)
             Form_Controller.ButtonClose.Enabled = True
 
@@ -667,9 +757,11 @@ Module Module_Functions
     Public Sub SerialPortDataSend(SerialData As String)
 
         Try
-            For i As Byte = 0 To 69 - SerialData.Length - 1
-                SerialData += " "
-            Next
+            If SerialData.Length < 69 Then
+                For i As Byte = 0 To 69 - SerialData.Length - 1
+                    SerialData += " "
+                Next
+            End If
 
             Dim array() As Byte = System.Text.Encoding.ASCII.GetBytes(SerialData)
 
@@ -766,6 +858,10 @@ Module Module_Functions
             Dim Control As String = Decoder.Substring(2, 3)
             Dim Data As String = Decoder.Substring(5, 64)
 
+            Dim _ToolTip As New System.Windows.Forms.ToolTip
+
+            _ToolTip.IsBalloon = True
+
             If Header.Equals("RC") Then
 
                 If Control.Equals("000") Then
@@ -784,12 +880,20 @@ Module Module_Functions
                         FormMessageBox(0)
 
                         DeviceVersion()
+
+                        With Form_Controller
+                            .ButtonOpenFile.Enabled = False
+                            .ButtonCreateFile.Enabled = False
+                            .ButtonUpload.Enabled = True
+                            .ButtonDownload.Enabled = True
+                        End With
+
                         Exit Sub
                     End If
 
                     If Data.Substring(0, 2) = "00" Then
                         UsartConnected = False
-                        RecipeControl = False
+                        RecipeControl = 0
 
                         UsartRx = ""
 
@@ -810,10 +914,16 @@ Module Module_Functions
                             .Label0011.Text = SGS_Library.Label0018
                             .Label0012.Text = SGS_Library.Label0018
                             .Label0013.Text = SGS_Library.Label0018
+
                             With .ButtonConnect
                                 .Text = SGS_Library.Label0002
                                 .Enabled = True
                             End With
+
+                            .ButtonOpenFile.Enabled = True
+                            .ButtonCreateFile.Enabled = True
+                            .ButtonUpload.Enabled = False
+                            .ButtonDownload.Enabled = False
                         End With
 
                         _ToolTip.SetToolTip(Form_Controller.ButtonConnect, SGS_Library.Label0003)
@@ -849,14 +959,27 @@ Module Module_Functions
 
             If Header.Equals("RR") Then
 
-                'RecordRecipe() 'Arrumar
+                Select Case RecipeControl
 
-                If RecipeControl = True And RecipeIndex < 500 Then
-                    RecipeIndex = RecipeIndex + 1
-                    'ReadAllRecipes() 'Arrumar
-                Else
-                    RecipeControl = False
-                End If
+                    Case Is = 1
+
+                        If RecipeIndex < 500 Then
+                            RecipeIndex = RecipeIndex + 1
+                            DownloadFileControl()
+                        Else
+                            RecipeControl = 0
+                        End If
+
+                    Case Is = 2
+
+                        If RecipeIndex < 500 Then
+                            RecipeIndex = RecipeIndex + 1
+                            UploadFileControl()
+                        Else
+                            RecipeControl = 0
+                        End If
+
+                End Select
 
             End If
 
@@ -875,9 +998,51 @@ Module Module_Functions
             SerialPortDataSend(UsartTx)
 
         Catch ex As Exception
-
             WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
+        End Try
 
+    End Sub
+
+    Public Sub DownloadFileControl()
+
+        Try
+
+            Dim pointer As String
+
+            pointer = RecipeIndex.ToString
+
+            For i As Integer = 0 To 2 - pointer.Length
+                pointer = "0" + pointer
+            Next
+
+            UsartTx = "WR" & pointer & RecipeList(RecipeIndex)
+            Console.WriteLine(UsartTx)
+            SerialPortDataSend(UsartTx)
+
+        Catch ex As Exception
+            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
+        End Try
+
+    End Sub
+
+    Public Sub UploadFileControl()
+
+        Try
+
+            Dim pointer As String
+
+            pointer = RecipeIndex.ToString
+
+            For i As Integer = 0 To 2 - pointer.Length
+                pointer = "0" + pointer
+            Next
+
+            UsartTx = "WR" & pointer & RecipeList(RecipeIndex)
+
+            SerialPortDataSend(UsartTx)
+
+        Catch ex As Exception
+            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
         End Try
 
     End Sub
@@ -900,6 +1065,8 @@ Module Module_Functions
     Public Sub MessageLoad()
 
         Try
+
+            Dim _ToolTip As New System.Windows.Forms.ToolTip
 
             With Form_MessageBox
                 .Activate()
@@ -1036,6 +1203,18 @@ Module Module_Functions
                         End With
                     End With
 
+                Case Is = 9
+                    With Form_MessageBox
+                        .LabelMessage.Text = SGS_Library.Message0009
+                        With .Button01
+                            .Visible = True
+                            .Text = SGS_Library.Label0010
+                        End With
+                        With _ToolTip
+                            .IsBalloon = True
+                            .SetToolTip(Form_MessageBox.Button01, SGS_Library.Label0019)
+                        End With
+                    End With
             End Select
 
         Catch ex As Exception
@@ -1080,6 +1259,9 @@ Module Module_Functions
                         Case Is = 8
                             Form_MessageBox.Dispose()
 
+                        Case Is = 9
+                            Form_MessageBox.Dispose()
+
                     End Select
 
                 Case Is = 2
@@ -1106,7 +1288,7 @@ Module Module_Functions
 
 #End Region
 
-
+#Region "Files SGS"
 
     Public Sub SaveFileDirectory()
 
@@ -1159,7 +1341,7 @@ Module Module_Functions
                         If Form_Recipes.IsHandleCreated = True Then
                             RecipeLoad()
                         Else
-                            Form_Recipes.Show()
+                            Form_Recipes.ShowDialog()
                         End If
 
                     Case 2
@@ -1195,7 +1377,7 @@ Module Module_Functions
                     myStream = _openFileDialog.OpenFile()
 
                     If (myStream IsNot Nothing) Then
-                        
+
                         FileDirectory = System.IO.Path.GetDirectoryName(_openFileDialog.FileName)
                         FileName = System.IO.Path.GetFileName(_openFileDialog.FileName)
                         FileSystem = _openFileDialog.FilterIndex
@@ -1233,7 +1415,7 @@ Module Module_Functions
                                 If Form_Recipes.IsHandleCreated = True Then
                                     RecipeLoad()
                                 Else
-                                    Form_Recipes.Show()
+                                    Form_Recipes.ShowDialog()
                                 End If
 
                         End Select
@@ -1253,6 +1435,96 @@ Module Module_Functions
         End Try
 
     End Sub
+
+    Public Sub DownloadFileDirectory()
+
+        Try
+
+            Dim myStream As System.IO.Stream = Nothing
+            Dim _openFileDialog As New OpenFileDialog()
+
+            _openFileDialog.Filter = SGS_Library.Label0024
+            _openFileDialog.Title = SGS_Library.Label0026
+            _openFileDialog.FilterIndex = 1
+            _openFileDialog.RestoreDirectory = True
+
+            If _openFileDialog.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+
+                Try
+
+                    myStream = _openFileDialog.OpenFile()
+
+                    If (myStream IsNot Nothing) Then
+
+                        FileDirectory = System.IO.Path.GetDirectoryName(_openFileDialog.FileName)
+                        FileName = System.IO.Path.GetFileName(_openFileDialog.FileName)
+                        FileSystem = _openFileDialog.FilterIndex
+
+                        If Strings.Right(FileDirectory, 1) = "\" Then
+                            FileDirectory = FileDirectory.Substring(0, FileDirectory.Length - 1)
+                        End If
+
+                        Dim nome_arquivo_ini As String = FileDirectory & "\" & FileName
+
+                        Dim FirmwareData As String = ReadFileChecksum(nome_arquivo_ini, "Firmware", "FR000", SGS_Firmware.Firmware)
+
+                        If Form_Controller.Label0013.Text = FirmwareData.Substring(0, FirmwareData.IndexOf(" ")) = True Then
+
+                            Select Case FileSystem
+
+                                Case 1
+
+                                    Dim RecipeData As String
+
+                                    For i As Integer = 1 To 500
+
+                                        RecipeData = "RR"
+
+                                        For j As Integer = 1 To 3 - i.ToString.Length()
+                                            RecipeData += "0"
+                                        Next
+
+                                        RecipeData = RecipeData & i.ToString()
+                                        RecipeList(i) = ReadFileChecksum(nome_arquivo_ini, "Recipes", RecipeData, SGS_Firmware.FirmwareString)
+
+                                    Next
+
+                                    RecipeControl = 1
+                                    RecipeIndex = 1
+                                    DownloadFileControl()
+
+                            End Select
+
+                        Else
+
+                            FormMessageBox(9)
+                            'MsgBox("firmware errado")
+                            'mensagem de firware diferente
+
+                        End If
+
+                    End If
+                Catch Ex As Exception
+                    MessageBox.Show("Cannot read file from disk. Original error: " & Ex.Message)
+                Finally
+                    If (myStream IsNot Nothing) Then
+                        myStream.Close()
+                    End If
+                End Try
+            End If
+
+        Catch ex As Exception
+            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
+        End Try
+
+    End Sub
+
+    Public Sub UploadFileDirectory()
+
+    End Sub
+
+#End Region
+
 
     Public Sub RecipeLoad()
 
@@ -1334,21 +1606,18 @@ Module Module_Functions
 
             Dim ListTextBoxes() As TextBox = {Form_Recipes.TextBox0001, Form_Recipes.TextBox0002, Form_Recipes.TextBox0003, Form_Recipes.TextBox0004, Form_Recipes.TextBox0005, Form_Recipes.TextBox0006, Form_Recipes.TextBox0007, Form_Recipes.TextBox0008, Form_Recipes.TextBox0009, Form_Recipes.TextBox0010, Form_Recipes.TextBox0011}
 
-            Dim ValidationMinimum() As String = {"16", "2", "1", "0", "1,30", "1,30", "20", "20", "1", "1", "1"}
-            Dim ValidationMaximum() As String = {"[^0-9a-zA-Z ]+", "18", "50000", "2", "30", "30", "30000", "30000", "100", "255", "10"}
-
-            ValidationMinimum(7) = ListCurrentParameters(6)
-            ValidationMaximum(6) = ListCurrentParameters(7)
-            ValidationMinimum(5) = Convert.ToDecimal(ListCurrentParameters(4)) / 100
-            ValidationMaximum(4) = Convert.ToDecimal(ListCurrentParameters(5)) / 100
+            SGS_Firmware.ValidationMinimum(7) = ListCurrentParameters(6)
+            SGS_Firmware.ValidationMaximum(6) = ListCurrentParameters(7)
+            SGS_Firmware.ValidationMinimum(5) = Convert.ToDecimal(ListCurrentParameters(4)) / 100
+            SGS_Firmware.ValidationMaximum(4) = Convert.ToDecimal(ListCurrentParameters(5)) / 100
 
 
             If Convert.ToDecimal(ListCurrentParameters(1)) / 100 < 10 Then
-                ValidationMinimum(4) = "1,30"
-                ValidationMaximum(5) = "18,00"
+                SGS_Firmware.ValidationMinimum(4) = "1,30"
+                SGS_Firmware.ValidationMaximum(5) = "18,00"
             Else
-                ValidationMinimum(4) = "7,00"
-                ValidationMaximum(5) = "30,00"
+                SGS_Firmware.ValidationMinimum(4) = "7,00"
+                SGS_Firmware.ValidationMaximum(5) = "30,00"
             End If
 
             Dim Parameter As String
@@ -1359,7 +1628,7 @@ Module Module_Functions
 
                 If i = 0 Then
 
-                    If Parameter.Length() > Convert.ToInt32(ValidationMinimum(i)) Or System.Text.RegularExpressions.Regex.IsMatch(Parameter, ValidationMaximum(i)) = True Then
+                    If Parameter.Length() > Convert.ToInt32(SGS_Firmware.ValidationMinimum(i)) Or System.Text.RegularExpressions.Regex.IsMatch(Parameter, SGS_Firmware.ValidationMaximum(i)) = True Then
                         FormMessageBox(6)
                         ListTextBoxes(i).Text = ListCurrentParameters(i)
                     Else
@@ -1372,27 +1641,27 @@ Module Module_Functions
 
                         If Not System.Text.RegularExpressions.Regex.IsMatch(Parameter, "[^0-9]+") Then
 
-                            If Convert.ToDecimal(Parameter) / 100 < Convert.ToDecimal(ValidationMinimum(i)) Or Convert.ToDecimal(Parameter) / 100 > Convert.ToDecimal(ValidationMaximum(i)) Then
+                            If Convert.ToDecimal(Parameter) / 100 < Convert.ToDecimal(SGS_Firmware.ValidationMinimum(i)) Or Convert.ToDecimal(Parameter) / 100 > Convert.ToDecimal(SGS_Firmware.ValidationMaximum(i)) Then
                                 FormMessageBox(8)
                                 ListTextBoxes(i).Text = Format(ListCurrentParameters(i) / 100, SGS_Firmware.ParametersFormat(i))
                             Else
 
                                 If i = 1 And Not Parameter = ListCurrentParameters(i) Then
                                     If Convert.ToDecimal(Parameter) / 100 < 10 Then
-                                        ValidationMinimum(4) = "1,30"
-                                        ValidationMinimum(5) = "1,30"
-                                        ValidationMaximum(4) = "18,00"
-                                        ValidationMaximum(5) = "18,00"
+                                        SGS_Firmware.ValidationMinimum(4) = "1,30"
+                                        SGS_Firmware.ValidationMinimum(5) = "1,30"
+                                        SGS_Firmware.ValidationMaximum(4) = "18,00"
+                                        SGS_Firmware.ValidationMaximum(5) = "18,00"
                                         If Convert.ToDecimal(ListCurrentParameters(5)) / 100 > Convert.ToDecimal("18,00") Then
                                             FormMessageBox(7)
                                             ListTextBoxes(4).Text = "130"
                                             ListTextBoxes(5).Text = "130"
                                         End If
                                     Else
-                                        ValidationMinimum(4) = "7,00"
-                                        ValidationMinimum(5) = "7,00"
-                                        ValidationMaximum(4) = "30,00"
-                                        ValidationMaximum(5) = "30,00"
+                                        SGS_Firmware.ValidationMinimum(4) = "7,00"
+                                        SGS_Firmware.ValidationMinimum(5) = "7,00"
+                                        SGS_Firmware.ValidationMaximum(4) = "30,00"
+                                        SGS_Firmware.ValidationMaximum(5) = "30,00"
                                         If Convert.ToDecimal(ListCurrentParameters(4)) / 100 < Convert.ToDecimal("7,00") Then
                                             FormMessageBox(7)
                                             ListTextBoxes(4).Text = "700"
@@ -1409,7 +1678,7 @@ Module Module_Functions
 
                         Else
 
-                            If Not Format(ListCurrentParameters(i) / 100, SGS_Firmware.ParametersFormat(i)) = Parameter 
+                            If Not Format(ListCurrentParameters(i) / 100, SGS_Firmware.ParametersFormat(i)) = Parameter Then
                                 ListTextBoxes(i).Text = Format(ListCurrentParameters(i) / 100, SGS_Firmware.ParametersFormat(i))
                             End If
 
@@ -1419,7 +1688,7 @@ Module Module_Functions
 
                         If Not System.Text.RegularExpressions.Regex.IsMatch(Parameter, "[^0-9]+") Then
 
-                            If Convert.ToInt32(Parameter) < Convert.ToInt32(ValidationMinimum(i)) Or Convert.ToInt32(Parameter) > Convert.ToInt32(ValidationMaximum(i)) Then
+                            If Convert.ToInt32(Parameter) < Convert.ToInt32(SGS_Firmware.ValidationMinimum(i)) Or Convert.ToInt32(Parameter) > Convert.ToInt32(SGS_Firmware.ValidationMaximum(i)) Then
                                 FormMessageBox(8)
                                 ListTextBoxes(i).Text = Format(Convert.ToInt32(ListCurrentParameters(i)), SGS_Firmware.ParametersFormat(i))
                             Else
@@ -1440,8 +1709,6 @@ Module Module_Functions
                 End If
 
             Next
-
-            SendKeys.Send("{F1}")
 
         Catch ex As Exception
             WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
@@ -1482,7 +1749,7 @@ Module Module_Functions
                 Newrecipe += equalizer
 
             End If
-            
+
         Next
 
         RecipeList(RecipeIndex) = Newrecipe

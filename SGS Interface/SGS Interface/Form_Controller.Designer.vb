@@ -48,6 +48,8 @@ Partial Class Form_Controller
         Me.Label0009 = New System.Windows.Forms.Label()
         Me.ButtonCreateFile = New System.Windows.Forms.Button()
         Me.ButtonOpenFile = New System.Windows.Forms.Button()
+        Me.ButtonDownload = New System.Windows.Forms.Button()
+        Me.ButtonUpload = New System.Windows.Forms.Button()
         Me.Panel0000.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -304,7 +306,7 @@ Partial Class Form_Controller
         Me.ButtonCreateFile.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
         Me.ButtonCreateFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonCreateFile.ForeColor = System.Drawing.SystemColors.Control
-        Me.ButtonCreateFile.Location = New System.Drawing.Point(26, 134)
+        Me.ButtonCreateFile.Location = New System.Drawing.Point(225, 140)
         Me.ButtonCreateFile.Name = "ButtonCreateFile"
         Me.ButtonCreateFile.Size = New System.Drawing.Size(90, 26)
         Me.ButtonCreateFile.TabIndex = 36
@@ -319,13 +321,43 @@ Partial Class Form_Controller
         Me.ButtonOpenFile.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
         Me.ButtonOpenFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonOpenFile.ForeColor = System.Drawing.SystemColors.Control
-        Me.ButtonOpenFile.Location = New System.Drawing.Point(26, 166)
+        Me.ButtonOpenFile.Location = New System.Drawing.Point(225, 172)
         Me.ButtonOpenFile.Name = "ButtonOpenFile"
         Me.ButtonOpenFile.Size = New System.Drawing.Size(90, 26)
         Me.ButtonOpenFile.TabIndex = 56
         Me.ButtonOpenFile.TabStop = False
         Me.ButtonOpenFile.Text = "Open file"
         Me.ButtonOpenFile.UseVisualStyleBackColor = True
+        '
+        'ButtonDownload
+        '
+        Me.ButtonDownload.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonDownload.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonDownload.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonDownload.ForeColor = System.Drawing.SystemColors.Control
+        Me.ButtonDownload.Location = New System.Drawing.Point(225, 236)
+        Me.ButtonDownload.Name = "ButtonDownload"
+        Me.ButtonDownload.Size = New System.Drawing.Size(90, 26)
+        Me.ButtonDownload.TabIndex = 58
+        Me.ButtonDownload.TabStop = False
+        Me.ButtonDownload.Text = "Download"
+        Me.ButtonDownload.UseVisualStyleBackColor = True
+        '
+        'ButtonUpload
+        '
+        Me.ButtonUpload.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonUpload.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonUpload.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonUpload.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonUpload.ForeColor = System.Drawing.SystemColors.Control
+        Me.ButtonUpload.Location = New System.Drawing.Point(225, 204)
+        Me.ButtonUpload.Name = "ButtonUpload"
+        Me.ButtonUpload.Size = New System.Drawing.Size(90, 26)
+        Me.ButtonUpload.TabIndex = 57
+        Me.ButtonUpload.TabStop = False
+        Me.ButtonUpload.Text = "Upload"
+        Me.ButtonUpload.UseVisualStyleBackColor = True
         '
         'Form_Controller
         '
@@ -334,6 +366,8 @@ Partial Class Form_Controller
         Me.BackColor = System.Drawing.SystemColors.ControlDarkDark
         Me.ClientSize = New System.Drawing.Size(328, 689)
         Me.ControlBox = False
+        Me.Controls.Add(Me.ButtonDownload)
+        Me.Controls.Add(Me.ButtonUpload)
         Me.Controls.Add(Me.ButtonOpenFile)
         Me.Controls.Add(Me.ButtonCreateFile)
         Me.Controls.Add(Me.Label0013)
@@ -364,7 +398,7 @@ Partial Class Form_Controller
         Me.Name = "Form_Controller"
         Me.Opacity = 0.90000000000000002R
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "x"
+        Me.Text = "SGS Interface"
         Me.Panel0000.ResumeLayout(False)
         Me.Panel0000.PerformLayout()
         Me.ResumeLayout(False)
@@ -396,4 +430,6 @@ Partial Class Form_Controller
     Friend WithEvents Label0009 As System.Windows.Forms.Label
     Friend WithEvents ButtonCreateFile As System.Windows.Forms.Button
     Friend WithEvents ButtonOpenFile As Button
+    Friend WithEvents ButtonDownload As System.Windows.Forms.Button
+    Friend WithEvents ButtonUpload As System.Windows.Forms.Button
 End Class

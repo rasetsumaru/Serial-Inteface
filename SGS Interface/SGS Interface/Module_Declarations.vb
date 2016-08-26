@@ -49,7 +49,7 @@ Module Module_Declarations
     Public RecipeList(500) As String
 
     Public RecipeIndex As Integer
-    Public RecipeControl As Boolean
+    Public RecipeControl As Integer
 
     Public LoadMessage As Integer
 

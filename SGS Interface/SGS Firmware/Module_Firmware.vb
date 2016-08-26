@@ -45,7 +45,8 @@ Public Module Module_Firmware
             SettingsString = " 0    1 0     0     0     1  2 0 0                              "
 
             ParametersFormat = {"", "00.00 Rms", "00000", "", "00.00 Ohm", "00.00 Ohm", "00000 Hz", "00000 Hz", "000 '%", "000 Rec", "00 seg"}
-
+            ValidationMinimum = {"16", "2", "1", "0", "1,30", "1,30", "20", "20", "1", "1", "1"}
+            ValidationMaximum = {"[^0-9a-zA-Z ]+", "18", "50000", "2", "30", "30", "30000", "30000", "100", "255", "10"}
             'Dim resistancelowermim, resistanceuppermax As Integer
 
             'If variables[0][5] < 1000 Then

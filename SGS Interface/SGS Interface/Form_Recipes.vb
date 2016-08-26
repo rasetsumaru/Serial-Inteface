@@ -228,20 +228,89 @@ Public Class Form_Recipes
     End Sub
 
 
+#Region "TextBoxToolTip"
 
     Private Sub TextBox0001_Enter(sender As Object, e As EventArgs) Handles TextBox0001.Enter
 
-        TextBoxToolTip(sender)
+        TextBoxRecipeToolTip(sender)
 
     End Sub
 
-    Private Sub TextBoxToolTip(_TextBox As System.Windows.Forms.TextBox)
+    Private Sub TextBox0002_Enter(sender As Object, e As EventArgs) Handles TextBox0002.Enter
 
-        Dim _ToolTip As New System.Windows.Forms.ToolTip
-
-        _ToolTip.IsBalloon = True
-        _ToolTip.Show("Teste", _TextBox, 70, -40, 2000)
+        TextBoxRecipeToolTip(sender)
 
     End Sub
+
+    Private Sub TextBox0003_Enter(sender As Object, e As EventArgs) Handles TextBox0003.Enter
+
+        TextBoxRecipeToolTip(sender)
+
+    End Sub
+
+    Private Sub TextBox0004_Enter(sender As Object, e As EventArgs) Handles TextBox0004.Enter
+
+        TextBoxRecipeToolTip(sender)
+
+    End Sub
+
+    Private Sub TextBox0005_Enter(sender As Object, e As EventArgs) Handles TextBox0005.Enter
+
+        TextBoxRecipeToolTip(sender)
+
+    End Sub
+
+    Private Sub TextBox0006_Enter(sender As Object, e As EventArgs) Handles TextBox0006.Enter
+
+        TextBoxRecipeToolTip(sender)
+
+    End Sub
+
+    Private Sub TextBox0007_Enter(sender As Object, e As EventArgs) Handles TextBox0007.Enter
+
+        TextBoxRecipeToolTip(sender)
+
+    End Sub
+
+    Private Sub TextBox0008_Enter(sender As Object, e As EventArgs) Handles TextBox0008.Enter
+
+        TextBoxRecipeToolTip(sender)
+
+    End Sub
+
+    Private Sub TextBox0009_Enter(sender As Object, e As EventArgs) Handles TextBox0009.Enter
+
+        TextBoxRecipeToolTip(sender)
+
+    End Sub
+
+    Private Sub TextBox0010_Enter(sender As Object, e As EventArgs) Handles TextBox0010.Enter
+
+        TextBoxRecipeToolTip(sender)
+
+    End Sub
+
+    Private Sub TextBox0011_Enter(sender As Object, e As EventArgs) Handles TextBox0011.Enter
+
+        TextBoxRecipeToolTip(sender)
+
+    End Sub
+
+#End Region
+
+#Region "ComboBoxToolTip"
+
+    Private Sub ComboBox0000_Enter(sender As Object, e As EventArgs) Handles ComboBox0000.Enter
+
+        ComboBoxRecipeToolTip(sender)
+    End Sub
+
+    Private Sub ComboBox0001_Enter(sender As Object, e As EventArgs) Handles ComboBox0001.Enter
+
+        ComboBoxRecipeToolTip(sender)
+
+    End Sub
+
+#End Region
 
 End Class

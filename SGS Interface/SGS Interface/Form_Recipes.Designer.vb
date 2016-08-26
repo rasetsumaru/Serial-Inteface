@@ -57,6 +57,7 @@ Partial Class Form_Recipes
         Me.Panel0000 = New System.Windows.Forms.Panel()
         Me.ButtonSaveFile = New System.Windows.Forms.Button()
         Me.ButtonClose = New System.Windows.Forms.Button()
+        Me.CheckBoxEnableTips = New System.Windows.Forms.CheckBox()
         Me.Panel0000.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -250,6 +251,7 @@ Partial Class Form_Recipes
         '
         Me.TextBox0001.BackColor = System.Drawing.SystemColors.Window
         Me.TextBox0001.Location = New System.Drawing.Point(231, 145)
+        Me.TextBox0001.MaxLength = 50
         Me.TextBox0001.Name = "TextBox0001"
         Me.TextBox0001.Size = New System.Drawing.Size(85, 20)
         Me.TextBox0001.TabIndex = 142
@@ -258,6 +260,7 @@ Partial Class Form_Recipes
         '
         Me.TextBox0003.BackColor = System.Drawing.SystemColors.Window
         Me.TextBox0003.Location = New System.Drawing.Point(231, 197)
+        Me.TextBox0003.MaxLength = 8
         Me.TextBox0003.Name = "TextBox0003"
         Me.TextBox0003.Size = New System.Drawing.Size(85, 20)
         Me.TextBox0003.TabIndex = 144
@@ -267,6 +270,7 @@ Partial Class Form_Recipes
         '
         Me.TextBox0004.BackColor = System.Drawing.SystemColors.Window
         Me.TextBox0004.Location = New System.Drawing.Point(210, 223)
+        Me.TextBox0004.MaxLength = 8
         Me.TextBox0004.Name = "TextBox0004"
         Me.TextBox0004.Size = New System.Drawing.Size(15, 20)
         Me.TextBox0004.TabIndex = 142
@@ -276,6 +280,7 @@ Partial Class Form_Recipes
         '
         Me.TextBox0005.BackColor = System.Drawing.SystemColors.Window
         Me.TextBox0005.Location = New System.Drawing.Point(231, 249)
+        Me.TextBox0005.MaxLength = 8
         Me.TextBox0005.Name = "TextBox0005"
         Me.TextBox0005.Size = New System.Drawing.Size(85, 20)
         Me.TextBox0005.TabIndex = 146
@@ -285,6 +290,7 @@ Partial Class Form_Recipes
         '
         Me.TextBox0006.BackColor = System.Drawing.SystemColors.Window
         Me.TextBox0006.Location = New System.Drawing.Point(231, 275)
+        Me.TextBox0006.MaxLength = 8
         Me.TextBox0006.Name = "TextBox0006"
         Me.TextBox0006.Size = New System.Drawing.Size(85, 20)
         Me.TextBox0006.TabIndex = 147
@@ -294,6 +300,7 @@ Partial Class Form_Recipes
         '
         Me.TextBox0007.BackColor = System.Drawing.SystemColors.Window
         Me.TextBox0007.Location = New System.Drawing.Point(231, 301)
+        Me.TextBox0007.MaxLength = 8
         Me.TextBox0007.Name = "TextBox0007"
         Me.TextBox0007.Size = New System.Drawing.Size(85, 20)
         Me.TextBox0007.TabIndex = 148
@@ -303,6 +310,7 @@ Partial Class Form_Recipes
         '
         Me.TextBox0008.BackColor = System.Drawing.SystemColors.Window
         Me.TextBox0008.Location = New System.Drawing.Point(231, 327)
+        Me.TextBox0008.MaxLength = 8
         Me.TextBox0008.Name = "TextBox0008"
         Me.TextBox0008.Size = New System.Drawing.Size(85, 20)
         Me.TextBox0008.TabIndex = 149
@@ -312,6 +320,7 @@ Partial Class Form_Recipes
         '
         Me.TextBox0009.BackColor = System.Drawing.SystemColors.Window
         Me.TextBox0009.Location = New System.Drawing.Point(231, 353)
+        Me.TextBox0009.MaxLength = 8
         Me.TextBox0009.Name = "TextBox0009"
         Me.TextBox0009.Size = New System.Drawing.Size(85, 20)
         Me.TextBox0009.TabIndex = 150
@@ -321,6 +330,7 @@ Partial Class Form_Recipes
         '
         Me.TextBox0010.BackColor = System.Drawing.SystemColors.Window
         Me.TextBox0010.Location = New System.Drawing.Point(231, 379)
+        Me.TextBox0010.MaxLength = 8
         Me.TextBox0010.Name = "TextBox0010"
         Me.TextBox0010.Size = New System.Drawing.Size(85, 20)
         Me.TextBox0010.TabIndex = 151
@@ -330,6 +340,7 @@ Partial Class Form_Recipes
         '
         Me.TextBox0011.BackColor = System.Drawing.SystemColors.Window
         Me.TextBox0011.Location = New System.Drawing.Point(231, 405)
+        Me.TextBox0011.MaxLength = 8
         Me.TextBox0011.Name = "TextBox0011"
         Me.TextBox0011.Size = New System.Drawing.Size(85, 20)
         Me.TextBox0011.TabIndex = 152
@@ -339,6 +350,7 @@ Partial Class Form_Recipes
         '
         Me.TextBox0002.BackColor = System.Drawing.SystemColors.Window
         Me.TextBox0002.Location = New System.Drawing.Point(231, 171)
+        Me.TextBox0002.MaxLength = 8
         Me.TextBox0002.Name = "TextBox0002"
         Me.TextBox0002.Size = New System.Drawing.Size(85, 20)
         Me.TextBox0002.TabIndex = 143
@@ -388,6 +400,7 @@ Partial Class Form_Recipes
         'Panel0000
         '
         Me.Panel0000.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Panel0000.Controls.Add(Me.CheckBoxEnableTips)
         Me.Panel0000.Controls.Add(Me.ButtonSaveFile)
         Me.Panel0000.Controls.Add(Me.ButtonClose)
         Me.Panel0000.Location = New System.Drawing.Point(-2, 607)
@@ -424,6 +437,19 @@ Partial Class Form_Recipes
         Me.ButtonClose.TabStop = False
         Me.ButtonClose.Text = "Close"
         Me.ButtonClose.UseVisualStyleBackColor = True
+        '
+        'CheckBoxEnableTips
+        '
+        Me.CheckBoxEnableTips.AutoSize = True
+        Me.CheckBoxEnableTips.Checked = True
+        Me.CheckBoxEnableTips.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBoxEnableTips.ForeColor = System.Drawing.Color.White
+        Me.CheckBoxEnableTips.Location = New System.Drawing.Point(14, 13)
+        Me.CheckBoxEnableTips.Name = "CheckBoxEnableTips"
+        Me.CheckBoxEnableTips.Size = New System.Drawing.Size(78, 17)
+        Me.CheckBoxEnableTips.TabIndex = 58
+        Me.CheckBoxEnableTips.Text = "Enable tips"
+        Me.CheckBoxEnableTips.UseVisualStyleBackColor = True
         '
         'Form_Recipes
         '
@@ -470,6 +496,7 @@ Partial Class Form_Recipes
         Me.Text = "Form_Recipes"
         Me.TransparencyKey = System.Drawing.Color.LavenderBlush
         Me.Panel0000.ResumeLayout(False)
+        Me.Panel0000.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -509,4 +536,5 @@ Partial Class Form_Recipes
     Friend WithEvents Panel0000 As System.Windows.Forms.Panel
     Friend WithEvents ButtonSaveFile As System.Windows.Forms.Button
     Friend WithEvents ButtonClose As System.Windows.Forms.Button
+    Friend WithEvents CheckBoxEnableTips As System.Windows.Forms.CheckBox
 End Class

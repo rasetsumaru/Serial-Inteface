@@ -63,6 +63,20 @@ Public Module Module_Declarations
     Public Label0044 As String = "Go to next recipe"
     Public Label0045 As String = "Save changes to the file"
     Public Label0046 As String = "Close the edition window"
+    Public Label0047 As String = "Lower limit: "
+    Public Label0048 As String = "Upper limit: "
+    Public Label0049 As String = "Maximum length: "
+    Public Label0050 As String = "Acceptable characters: "
+    Public Label0051 As String = "Select sweep mode"
+    Public Label0052 As String = "Select memory position"
+    Public Label0053 As String = "Enable help provider"
+
+    Public Label0054 As String = "Open file"
+    Public Label0055 As String = "Open an existing file"
+    Public Label0056 As String = "Upload"
+    Public Label0057 As String = "Upload data from device"
+    Public Label0058 As String = "Download"
+    Public Label0059 As String = "Download data to device"
 
 #End Region
 
@@ -77,6 +91,7 @@ Public Module Module_Declarations
     Public Message0006 As String = "Error: Invalid character or characters limit exceeded"
     Public Message0007 As String = "Warning: Range of resistance changed"
     Public Message0008 As String = "Error: Value out of range or invalid character"
+    Public Message0009 As String = "Firmware mismatch or incompatible file"
 
 #End Region
 

@@ -107,12 +107,6 @@ Public Class Form_Controller
 
     End Sub
 
-#End Region
-
-
-
-
-
     Private Sub ButtonCreateFile_Click(sender As Object, e As EventArgs) Handles ButtonCreateFile.Click
 
         SaveFileDirectory()
@@ -124,4 +118,20 @@ Public Class Form_Controller
         OpenFileDirectory()
 
     End Sub
+
+    Private Sub ButtonUpload_Click(sender As Object, e As EventArgs) Handles ButtonUpload.Click
+
+        UploadFileDirectory()
+
+    End Sub
+
+
+    Private Sub ButtonDownload_Click(sender As Object, e As EventArgs) Handles ButtonDownload.Click
+
+        DownloadFileDirectory()
+
+    End Sub
+
+#End Region
+
 End Class
