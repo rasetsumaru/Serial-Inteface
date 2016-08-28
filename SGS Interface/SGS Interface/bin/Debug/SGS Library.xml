@@ -2,22 +2,24 @@
 <doc>
 <assembly>
 <name>
-SGSLibrary
+SGS Library
 </name>
 </assembly>
 <members>
+<member name="T:SGS_Library.My.Resources.Resources">
+<summary>
+  Uma classe de recurso de tipo de alta segurança, para pesquisar cadeias de caracteres localizadas etc.
+</summary>
+</member>
 <member name="P:SGS_Library.My.Resources.Resources.ResourceManager">
-	<summary>
+<summary>
   Retorna a instância de ResourceManager armazenada em cache usada por essa classe.
 </summary>
-</member><member name="P:SGS_Library.My.Resources.Resources.Culture">
-	<summary>
+</member>
+<member name="P:SGS_Library.My.Resources.Resources.Culture">
+<summary>
   Substitui a propriedade CurrentUICulture do thread atual para todas as
   pesquisas de recursos que usam essa classe de recurso de tipo de alta segurança.
-</summary>
-</member><member name="T:SGS_Library.My.Resources.Resources">
-	<summary>
-  Uma classe de recurso de tipo de alta segurança, para pesquisar cadeias de caracteres localizadas etc.
 </summary>
 </member>
 </members>

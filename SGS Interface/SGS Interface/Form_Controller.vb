@@ -100,6 +100,12 @@ Public Class Form_Controller
 
     End Sub
 
+    Private Sub ButtonDisconnect_Click(sender As Object, e As EventArgs) Handles ButtonDisconnect.Click
+
+        ConnectDevice()
+
+    End Sub
+
     Private Sub ButtonClose_Click(sender As Object, e As EventArgs) Handles ButtonClose.Click
 
         WriteLocation(Me)

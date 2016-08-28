@@ -53,3 +53,4 @@ C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS interface\obj\
 C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS interface\obj\Debug\SGS_Interface.Resources.resources
 C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS interface\obj\Debug\SGS Interface.vbproj.GenerateResource.Cache
 D:\Projetos\Projeto Solitec, Audio Generator for Speakers\Versão 3\H 1.13 F 1.59\Visual Studio 2012\Serial-Inteface\SGS Interface\SGS interface\obj\Debug\SGS_Interface.Form_Recipes.resources
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS interface\obj\Debug\SGS_Interface.Form_Recipes.resources

@@ -50,6 +50,7 @@ Partial Class Form_Controller
         Me.ButtonOpenFile = New System.Windows.Forms.Button()
         Me.ButtonDownload = New System.Windows.Forms.Button()
         Me.ButtonUpload = New System.Windows.Forms.Button()
+        Me.ButtonDisconnect = New System.Windows.Forms.Button()
         Me.Panel0000.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -65,6 +66,7 @@ Partial Class Form_Controller
         'Panel0000
         '
         Me.Panel0000.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Panel0000.Controls.Add(Me.ButtonDisconnect)
         Me.Panel0000.Controls.Add(Me.ButtonConnect)
         Me.Panel0000.Controls.Add(Me.LabelHour)
         Me.Panel0000.Controls.Add(Me.ButtonClose)
@@ -359,6 +361,21 @@ Partial Class Form_Controller
         Me.ButtonUpload.Text = "Upload"
         Me.ButtonUpload.UseVisualStyleBackColor = True
         '
+        'ButtonDisconnect
+        '
+        Me.ButtonDisconnect.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonDisconnect.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonDisconnect.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonDisconnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonDisconnect.ForeColor = System.Drawing.SystemColors.Control
+        Me.ButtonDisconnect.Location = New System.Drawing.Point(132, 45)
+        Me.ButtonDisconnect.Name = "ButtonDisconnect"
+        Me.ButtonDisconnect.Size = New System.Drawing.Size(90, 26)
+        Me.ButtonDisconnect.TabIndex = 36
+        Me.ButtonDisconnect.TabStop = False
+        Me.ButtonDisconnect.Text = "Disconnect"
+        Me.ButtonDisconnect.UseVisualStyleBackColor = True
+        '
         'Form_Controller
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -396,7 +413,7 @@ Partial Class Form_Controller
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "Form_Controller"
-        Me.Opacity = 0.90000000000000002R
+        Me.Opacity = 0.9R
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "SGS Interface"
         Me.Panel0000.ResumeLayout(False)
@@ -432,4 +449,5 @@ Partial Class Form_Controller
     Friend WithEvents ButtonOpenFile As Button
     Friend WithEvents ButtonDownload As System.Windows.Forms.Button
     Friend WithEvents ButtonUpload As System.Windows.Forms.Button
+    Friend WithEvents ButtonDisconnect As Button
 End Class

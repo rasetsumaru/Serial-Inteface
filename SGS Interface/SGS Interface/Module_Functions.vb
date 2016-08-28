@@ -209,6 +209,7 @@ Module Module_Functions
                 .ButtonSize.Text = "-"
                 .Size = New Size(328, 689)
 
+                .ButtonDisconnect.Visible = False
                 .ButtonDownload.Enabled = False
                 .ButtonUpload.Enabled = False
             End With
@@ -292,6 +293,7 @@ Module Module_Functions
                     With Form_Controller
                         .ButtonClose.Text = SGS_Library.Label0000
                         .ButtonConnect.Text = SGS_Library.Label0002
+                        .ButtonDisconnect.Text = SGS_Library.Label0004
                         .ButtonCreateFile.Text = SGS_Library.Label0022
                         .ButtonOpenFile.Text = SGS_Library.label0054
                         .ButtonUpload.Text = SGS_Library.Label0056
@@ -314,6 +316,7 @@ Module Module_Functions
                             .IsBalloon = True
                             .SetToolTip(Form_Controller.ButtonClose, SGS_Library.Label0001)
                             .SetToolTip(Form_Controller.ButtonConnect, SGS_Library.Label0003)
+                            .SetToolTip(Form_Controller.ButtonDisconnect, SGS_Library.Label0005)
                             .SetToolTip(Form_Controller.ButtonCreateFile, SGS_Library.Label0023)
                             .SetToolTip(Form_Controller.ButtonOpenFile, SGS_Library.Label0055)
                             .SetToolTip(Form_Controller.ButtonUpload, SGS_Library.Label0057)
@@ -645,8 +648,6 @@ Module Module_Functions
 
         Try
 
-            Dim _ToolTip As New System.Windows.Forms.ToolTip
-
             _TimerConnected.Stop()
             _TimerUsartTx.Stop()
             _TimerUsartRx.Stop()
@@ -658,15 +659,16 @@ Module Module_Functions
 
             With Form_Controller
 
-                With .ButtonConnect
-                    .Text = "Connect"
-                    .Enabled = True
-                End With
+                .ButtonConnect.Visible = True
+                .ButtonConnect.Enabled = True
+                .ButtonDisconnect.Visible = False
 
                 .ButtonOpenFile.Enabled = True
                 .ButtonCreateFile.Enabled = True
                 .ButtonUpload.Enabled = False
                 .ButtonDownload.Enabled = False
+                .ButtonClose.Enabled = True
+
             End With
 
             RemoveHandler _SerialPort.DataReceived, AddressOf Form_Controller.DataReceivedHandler
@@ -680,10 +682,6 @@ Module Module_Functions
                     .Dispose()
                 End With
             End If
-
-            _ToolTip.IsBalloon = True
-            _ToolTip.SetToolTip(Form_Controller.ButtonConnect, SGS_Library.Label0003)
-            Form_Controller.ButtonClose.Enabled = True
 
             _Seriallist.Items.Clear()
 
@@ -858,24 +856,18 @@ Module Module_Functions
             Dim Control As String = Decoder.Substring(2, 3)
             Dim Data As String = Decoder.Substring(5, 64)
 
-            Dim _ToolTip As New System.Windows.Forms.ToolTip
-
-            _ToolTip.IsBalloon = True
-
             If Header.Equals("RC") Then
 
                 If Control.Equals("000") Then
                     If Data.Substring(0, 2) = "01" Then
                         UsartConnected = True
                         UsartRx = ""
-                        With Form_Controller.ButtonConnect
-                            .Text = SGS_Library.Label0004
-                            .Enabled = True
+                        With Form_Controller
+                            .ButtonConnect.Visible = False
+                            .ButtonDisconnect.Visible = True
                         End With
 
                         _TimerConnected.Stop()
-
-                        _ToolTip.SetToolTip(Form_Controller.ButtonConnect, SGS_Library.Label0005)
 
                         FormMessageBox(0)
 
@@ -915,19 +907,16 @@ Module Module_Functions
                             .Label0012.Text = SGS_Library.Label0018
                             .Label0013.Text = SGS_Library.Label0018
 
-                            With .ButtonConnect
-                                .Text = SGS_Library.Label0002
-                                .Enabled = True
-                            End With
+                            .ButtonConnect.Visible = True
+                            .ButtonConnect.Enabled = True
+                            .ButtonDisconnect.Visible = False
 
                             .ButtonOpenFile.Enabled = True
                             .ButtonCreateFile.Enabled = True
                             .ButtonUpload.Enabled = False
                             .ButtonDownload.Enabled = False
+                            .ButtonClose.Enabled = True
                         End With
-
-                        _ToolTip.SetToolTip(Form_Controller.ButtonConnect, SGS_Library.Label0003)
-                        Form_Controller.ButtonClose.Enabled = True
 
                         _TimerDisconnected.Stop()
                         _TimerConnected.Stop()

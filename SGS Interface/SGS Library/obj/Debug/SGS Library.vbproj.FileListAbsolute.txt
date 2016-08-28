@@ -21,7 +21,6 @@ C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS Library\obj\De
 C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS Library\obj\Debug\SGS Library.dll
 C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS Library\obj\Debug\SGS Library.xml
 C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS Library\obj\Debug\SGS Library.pdb
-C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS Library\bin\Debug\SGS Library.dll.config
 C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS Library\bin\Debug\SGS Library.dll
 C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS Library\bin\Debug\SGS Library.pdb
 C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS Library\bin\Debug\SGS Library.xml
