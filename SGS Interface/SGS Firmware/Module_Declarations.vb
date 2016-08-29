@@ -26,41 +26,12 @@ Public Module Module_Declarations
 #Region "Lists"
 
     Public ParametersFormat() As String = {"", "00.00 Rms", "00000", "", "00.00 Ohm", "00.00 Ohm", "00000 Hz", "00000 Hz", "000 %", "000 Rec", "00 seg"}
-    Public ValidationMinimum() As String = {"16", "2", "1", "0", "1,30", "1,30", "20", "20", "1", "1", "1"}
-    Public ValidationMaximum() As String = {"[^0-9a-zA-Z ]+", "18", "50000", "2", "30", "30", "30000", "30000", "100", "255", "10"}
+    Public ValidationRecipeMinimum() As String = {"16", "2", "1", "0", "1,30", "1,30", "20", "20", "1", "1", "1"}
+    Public ValidationRecipeMaximum() As String = {"[^0-9a-zA-Z ]+", "18", "50000", "2", "30", "30", "30000", "30000", "100", "255", "10"}
 
-#End Region
-
-
-
-#Region "Limits"
-
-    'Public MinimumLimit0000 As Integer
-    'Public MinimumLimit0001 As Integer
-    'Public MinimumLimit0002 As Integer
-    'Public MinimumLimit0003 As Integer
-    'Public MinimumLimit0004 As Integer
-    'Public MinimumLimit0005 As Integer
-    'Public MinimumLimit0006 As Integer
-    'Public MinimumLimit0007 As Integer
-    'Public MinimumLimit0008 As Integer
-    'Public MinimumLimit0009 As Integer
-    'Public MinimumLimit0010 As Integer
-    '
-    'Public MaximumLimit0000 As Integer
-    'Public MaximumLimit0001 As Integer
-    'Public MaximumLimit0002 As Integer
-    'Public MaximumLimit0003 As Integer
-    'Public MaximumLimit0004 As Integer
-    'Public MaximumLimit0005 As Integer
-    'Public MaximumLimit0006 As Integer
-    'Public MaximumLimit0007 As Integer
-    'Public MaximumLimit0008 As Integer
-    'Public MaximumLimit0009 As Integer
-    'Public MaximumLimit0010 As Integer
-    '
-    'Public MinimumLimitList As Integer()
-    'Public MaximumLimitList As Integer()
+    Public SettingsFormat() As String = {"", "", "0000", "00 seg", ""}
+    Public ValidationSettingMinimum() As String = {"0", "0", "1", "2", "0"}
+    Public ValidationSettingMaximum() As String = {"1", "1", "50000", "10", "2"}
 
 #End Region
 

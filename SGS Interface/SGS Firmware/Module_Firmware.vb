@@ -45,38 +45,12 @@ Public Module Module_Firmware
             SettingsString = " 0    1 0     0     0     1  2 0 0                              "
 
             ParametersFormat = {"", "00.00 Rms", "00000", "", "00.00 Ohm", "00.00 Ohm", "00000 Hz", "00000 Hz", "000 '%", "000 Rec", "00 seg"}
-            ValidationMinimum = {"16", "2", "1", "0", "1,30", "1,30", "20", "20", "1", "1", "1"}
-            ValidationMaximum = {"[^0-9a-zA-Z ]+", "18", "50000", "2", "30", "30", "30000", "30000", "100", "255", "10"}
-            'Dim resistancelowermim, resistanceuppermax As Integer
+            ValidationRecipeMinimum = {"16", "2", "1", "0", "1,30", "1,30", "20", "20", "1", "1", "1"}
+            ValidationRecipeMaximum = {"[^0-9a-zA-Z ]+", "18", "50000", "2", "30", "30", "30000", "30000", "100", "255", "10"}
 
-            'If variables[0][5] < 1000 Then
-            'resistancelowermim = 0130
-            'resistanceuppermax = 1800
-            '
-            'Else
-            'resistancelowermim = 0700
-            'resistanceuppermax = 3000
-            'End If
-            '
-            'MinimumLimitList(00) = 200
-            'MinimumLimitList(01) = 1
-            'MinimumLimitList(02) = resistancelowermim
-            'MinimumLimitList(03) = 0 'currentrecipe[5]
-            'MinimumLimitList(04) = 20
-            'MinimumLimitList(05) = 0 'currentrecipe[7]
-            'MinimumLimitList(06) = 1
-            'MinimumLimitList(07) = 1
-            'MinimumLimitList(08) = 1
-            '
-            'MaximumLimitList(00) = 1800
-            'MaximumLimitList(01) = 50000
-            'MaximumLimitList(02) = 0 'currentrecipe[6]
-            'MaximumLimitList(03) = resistanceuppermax
-            'MaximumLimitList(04) = 0 'currentrecipe[8]
-            'MaximumLimitList(05) = 30000
-            'MaximumLimitList(06) = 100
-            'MaximumLimitList(07) = 255
-            'MaximumLimitList(08) = 10
+            SettingsFormat = {"", "", "0000", "00 seg", ""}
+            ValidationSettingMinimum = {"0", "0", "1", "2", "0"}
+            ValidationSettingMaximum = {"1", "1", "50000", "10", "2"}
 
         Catch ex As Exception
 

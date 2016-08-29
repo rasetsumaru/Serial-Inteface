@@ -16,21 +16,6 @@ Public Class Form_Recipes
 
     End Sub
 
-    Private Sub Form_Recipes_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-
-        Try
-
-            If UsartConnected = True Then
-                e.Cancel = True
-                FormMessageBox(4)
-            End If
-
-        Catch ex As Exception
-            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
-        End Try
-
-    End Sub
-
     Private Sub Form_Recipes_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
 
         FormMouseDown(Me)
@@ -72,9 +57,6 @@ Public Class Form_Recipes
 
     End Sub
 
-#End Region
-
-
     Private Sub ButtonPrevious_Click(sender As Object, e As EventArgs) Handles ButtonPrevious.Click
 
         SaveEditRam()
@@ -101,11 +83,26 @@ Public Class Form_Recipes
 
     End Sub
 
+    Private Sub ButtonSaveFile_Click(sender As Object, e As EventArgs) Handles ButtonSaveFile.Click
+
+        SaveAll()
+
+    End Sub
+
+    Private Sub ButtonClose_Click(sender As Object, e As EventArgs) Handles ButtonClose.Click
+
+        Close()
+
+    End Sub
+
+#End Region
+
     Private Sub ComboBox0000_LostFocus(sender As Object, e As EventArgs) Handles ComboBox0000.LostFocus
 
         If ComboBox0000.FindStringExact(ComboBox0000.Text) < 0 Then
 
-            MsgBox("Item não encontrado")
+            FormMessageBox(11)
+
             Me.ComboBox0000.SelectedIndex = RecipeIndex - 1
 
         Else
@@ -147,86 +144,73 @@ Public Class Form_Recipes
 
 #Region "Validating Parameters"
 
-    Private Sub TextBoxParameters0000_Validating(sender As Object, e As EventArgs) Handles TextBox0001.Validating
+    Private Sub TextBox0001_Validating(sender As Object, e As EventArgs) Handles TextBox0001.Validating
 
         ValidateEdition()
 
     End Sub
 
-    Private Sub TextBoxParameters0001_Validating(sender As Object, e As EventArgs) Handles TextBox0002.Validating
+    Private Sub TextBox0002_Validating(sender As Object, e As EventArgs) Handles TextBox0002.Validating
 
         ValidateEdition()
 
     End Sub
 
-    Private Sub TextBoxParameters0002_Validating(sender As Object, e As EventArgs) Handles TextBox0003.Validating
+    Private Sub TextBox0003_Validating(sender As Object, e As EventArgs) Handles TextBox0003.Validating
 
         ValidateEdition()
 
     End Sub
 
-    Private Sub TextBoxParameters0003_Validating(sender As Object, e As EventArgs) Handles TextBox0004.Validating
+    Private Sub TextBox0004_Validating(sender As Object, e As EventArgs) Handles TextBox0004.Validating
 
         ValidateEdition()
 
     End Sub
 
-    Private Sub TextBoxParameters0004_Validating(sender As Object, e As EventArgs) Handles TextBox0005.Validating
+    Private Sub TextBox0005_Validating(sender As Object, e As EventArgs) Handles TextBox0005.Validating
 
         ValidateEdition()
 
     End Sub
 
-    Private Sub TextBoxParameters0005_Validating(sender As Object, e As EventArgs) Handles TextBox0006.Validating
+    Private Sub TextBox0006_Validating(sender As Object, e As EventArgs) Handles TextBox0006.Validating
 
         ValidateEdition()
 
     End Sub
 
-    Private Sub TextBoxParameters0006_Validating(sender As Object, e As EventArgs) Handles TextBox0007.Validating
+    Private Sub TextBox0007_Validating(sender As Object, e As EventArgs) Handles TextBox0007.Validating
 
         ValidateEdition()
 
     End Sub
 
-    Private Sub TextBoxParameters0007_Validating(sender As Object, e As EventArgs) Handles TextBox0008.Validating
+    Private Sub TextBox0008_Validating(sender As Object, e As EventArgs) Handles TextBox0008.Validating
 
         ValidateEdition()
 
     End Sub
 
-    Private Sub TextBoxParameters0008_Validating(sender As Object, e As EventArgs) Handles TextBox0009.Validating
+    Private Sub TextBox0009_Validating(sender As Object, e As EventArgs) Handles TextBox0009.Validating
 
         ValidateEdition()
 
     End Sub
 
-    Private Sub TextBoxParameters0009_Validating(sender As Object, e As EventArgs) Handles TextBox0010.Validating
+    Private Sub TextBox0010_Validating(sender As Object, e As EventArgs) Handles TextBox0010.Validating
 
         ValidateEdition()
 
     End Sub
 
-    Private Sub TextBoxParameters0010_Validating(sender As Object, e As EventArgs) Handles TextBox0011.Validating
+    Private Sub TextBox0011_Validating(sender As Object, e As EventArgs) Handles TextBox0011.Validating
 
         ValidateEdition()
 
     End Sub
 
 #End Region
-
-    Private Sub ButtonSaveFile_Click(sender As Object, e As EventArgs) Handles ButtonSaveFile.Click
-
-        SaveAll()
-
-    End Sub
-
-    Private Sub ButtonClose_Click(sender As Object, e As EventArgs) Handles ButtonClose.Click
-
-        Close()
-
-    End Sub
-
 
 #Region "TextBoxToolTip"
 

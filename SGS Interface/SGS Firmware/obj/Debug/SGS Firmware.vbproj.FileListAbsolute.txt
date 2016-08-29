@@ -17,3 +17,4 @@ C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS Firmware\obj\D
 C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS Firmware\obj\Debug\SGS Firmware.dll
 C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS Firmware\obj\Debug\SGS Firmware.xml
 C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS Firmware\obj\Debug\SGS Firmware.pdb
+D:\Projetos\Projeto Solitec, Audio Generator for Speakers\Versão 3\H 1.13 F 1.59\Visual Studio 2012\Serial-Inteface\SGS Interface\SGS Firmware\obj\Debug\SGS Firmware.vbprojResolveAssemblyReference.cache

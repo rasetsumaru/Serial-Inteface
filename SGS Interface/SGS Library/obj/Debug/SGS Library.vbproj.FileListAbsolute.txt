@@ -25,3 +25,4 @@ C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS Library\bin\De
 C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS Library\bin\Debug\SGS Library.pdb
 C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS Library\bin\Debug\SGS Library.xml
 C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS Library\obj\Debug\SGS Library.vbprojResolveAssemblyReference.cache
+D:\Projetos\Projeto Solitec, Audio Generator for Speakers\Versão 3\H 1.13 F 1.59\Visual Studio 2012\Serial-Inteface\SGS Interface\SGS Library\obj\Debug\SGS Library.vbprojResolveAssemblyReference.cache

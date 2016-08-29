@@ -70,13 +70,22 @@ Public Module Module_Declarations
     Public Label0051 As String = "Select sweep mode"
     Public Label0052 As String = "Select memory position"
     Public Label0053 As String = "Enable help provider"
-
     Public Label0054 As String = "Open file"
     Public Label0055 As String = "Open an existing file"
     Public Label0056 As String = "Upload"
     Public Label0057 As String = "Upload data from device"
     Public Label0058 As String = "Download"
     Public Label0059 As String = "Download data to device"
+    Public Label0060 As String = "Edit settings"
+    Public Label0061 As String = "Enable automatic reset:"
+    Public Label0062 As String = "Enable inspection:"
+    Public Label0063 As String = "Lot size:"
+    Public Label0064 As String = "Operation timeout:"
+    Public Label0065 As String = "Printer:"
+    Public Label0066 As String = "Save file"
+    Public Label0067 As String = "Enables automatic reset of counters"
+    Public Label0068 As String = "Enables the failure inspection tool"
+    Public Label0069 As String = "Enables and select the printer protocol"
 
 #End Region
 
@@ -92,12 +101,16 @@ Public Module Module_Declarations
     Public Message0007 As String = "Warning: Range of resistance changed"
     Public Message0008 As String = "Error: Value out of range or invalid character"
     Public Message0009 As String = "Firmware mismatch or incompatible file"
+    Public Message0010 As String = "File saved successfully"
+    Public Message0011 As String = "Memory index doesn't exist"
 
 #End Region
 
 #Region "Lists"
 
     Public List0000() As String = {"Single", "Double", "Continue"}
+    Public List0001() As String = {"Switch off", "Switch on"}
+    Public List0002() As String = {"Switch off", "EPL mode", "ZPL mode"}
 
 #End Region
 

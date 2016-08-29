@@ -99,6 +99,16 @@ Public Module Module_Language
             Label0057 = "Upload data from device"
             Label0058 = "Download"
             Label0059 = "Download data to device"
+            Label0060 = "Edit settings"
+            Label0061 = "Enable automatic reset:"
+            Label0062 = "Enable inspection:"
+            Label0063 = "Lot size:"
+            Label0064 = "Operation timeout:"
+            Label0065 = "Printer:"
+            Label0066 = "Save file"
+            Label0067 = "Enables automatic reset of counters"
+            Label0068 = "Enables the failure inspection tool"
+            Label0069 = "Enables and select the printer protocol"
 
             Message0000 = "USB Usart connected"
             Message0001 = "USB Usart disconnected"
@@ -110,8 +120,12 @@ Public Module Module_Language
             Message0007 = "Warning: Range of resistance changed"
             Message0008 = "Error: Value out of range or invalid character"
             Message0009 = "Firmware mismatch or incompatible file"
+            Message0010 = "File saved successfully"
+            Message0011 = "Memory index doesn't exist"
 
             List0000 = {"Single", "Double", "Continue"}
+            List0001 = {"Switch off", "Switch on"}
+            List0002 = {"Switch off", "EPL mode", "ZPL mode"}
 
         Catch ex As Exception
 
@@ -186,6 +200,16 @@ Public Module Module_Language
             Label0057 = "Enviar dados para o dispositivo"
             Label0058 = "Carregar"
             Label0059 = "Carregar dados do dispositovo"
+            Label0060 = "Editar configurações"
+            Label0061 = "Habilitar reset automático:"
+            Label0062 = "Habilitar inspeção:"
+            Label0063 = "Tamanho do lote:"
+            Label0064 = "Intervalo de operação:"
+            Label0065 = "Impressora:"
+            Label0066 = "Salvar arquivo"
+            Label0067 = "Habilita o reset automático dos contadores"
+            Label0068 = "Habilita a ferramenta de inspeção de falhas"
+            Label0069 = "Habilita e seleciona o protocolo de impressão"
 
             Message0000 = "USB Usart conectado"
             Message0001 = "USB Usart desconectado"
@@ -197,8 +221,12 @@ Public Module Module_Language
             Message0007 = "Atenção: Limites de resistência alterados"
             Message0008 = "Erro: Valor fora dos limites ou caractere inválido"
             Message0009 = "Firmware divergente ou arquivo incompatível"
+            Message0010 = "Arquivo salvo com sucesso"
+            Message0011 = "Índice de memória não existe"
 
             List0000 = {"Simples", "Duplo", "Continuo"}
+            List0001 = {"Desligado", "Ligado"}
+            List0002 = {"Desligado", "Modo EPL", "Modo ZPL"}
 
         Catch ex As Exception
 
