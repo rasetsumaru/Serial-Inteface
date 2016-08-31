@@ -48,9 +48,9 @@ Public Module Module_Firmware
             ValidationRecipeMinimum = {"16", "2", "1", "0", "1,30", "1,30", "20", "20", "1", "1", "1"}
             ValidationRecipeMaximum = {"[^0-9a-zA-Z ]+", "18", "50000", "2", "30", "30", "30000", "30000", "100", "255", "10"}
 
-            SettingsFormat = {"", "", "0000", "00 seg", ""}
-            ValidationSettingMinimum = {"0", "0", "1", "2", "0"}
-            ValidationSettingMaximum = {"1", "1", "50000", "10", "2"}
+            SettingsFormat = {"", "", "", "00000", "00 seg", ""}
+            ValidationSettingMinimum = {"0", "0", "0", "1", "2", "0"}
+            ValidationSettingMaximum = {"2", "1", "1", "50000", "10", "2"}
 
         Catch ex As Exception
 

@@ -100,15 +100,17 @@ Public Module Module_Language
             Label0058 = "Download"
             Label0059 = "Download data to device"
             Label0060 = "Edit settings"
-            Label0061 = "Enable automatic reset:"
-            Label0062 = "Enable inspection:"
-            Label0063 = "Lot size:"
-            Label0064 = "Operation timeout:"
-            Label0065 = "Printer:"
-            Label0066 = "Save file"
-            Label0067 = "Enables automatic reset of counters"
-            Label0068 = "Enables the failure inspection tool"
-            Label0069 = "Enables and select the printer protocol"
+            Label0061 = "Operating mode:"
+            Label0062 = "Enable automatic reset:"
+            Label0063 = "Enable inspection:"
+            Label0064 = "Lot size:"
+            Label0065 = "Operation timeout:"
+            Label0066 = "Printer:"
+            Label0067 = "Save file"
+            Label0068 = "Select operating mode"
+            Label0069 = "Enables automatic reset of counters"
+            Label0070 = "Enables the failure inspection tool"
+            Label0071 = "Enables and select the printer protocol"
 
             Message0000 = "USB Usart connected"
             Message0001 = "USB Usart disconnected"
@@ -124,8 +126,9 @@ Public Module Module_Language
             Message0011 = "Memory index doesn't exist"
 
             List0000 = {"Single", "Double", "Continue"}
-            List0001 = {"Switch off", "Switch on"}
-            List0002 = {"Switch off", "EPL mode", "ZPL mode"}
+            List0001 = {"Sine", "Sine/WAV", "WAV"}
+            List0002 = {"Switch off", "Switch on"}
+            List0003 = {"Switch off", "EPL mode", "ZPL mode"}
 
         Catch ex As Exception
 
@@ -201,15 +204,17 @@ Public Module Module_Language
             Label0058 = "Carregar"
             Label0059 = "Carregar dados do dispositovo"
             Label0060 = "Editar configurações"
-            Label0061 = "Habilitar reset automático:"
-            Label0062 = "Habilitar inspeção:"
-            Label0063 = "Tamanho do lote:"
-            Label0064 = "Intervalo de operação:"
-            Label0065 = "Impressora:"
-            Label0066 = "Salvar arquivo"
-            Label0067 = "Habilita o reset automático dos contadores"
-            Label0068 = "Habilita a ferramenta de inspeção de falhas"
-            Label0069 = "Habilita e seleciona o protocolo de impressão"
+            Label0061 = "Modo de operação:"
+            Label0062 = "Habilitar reset automático:"
+            Label0063 = "Habilitar inspeção:"
+            Label0064 = "Tamanho do lote:"
+            Label0065 = "Intervalo de operação:"
+            Label0066 = "Impressora:"
+            Label0067 = "Salvar arquivo"
+            Label0068 = "Selecione o modo de operação"
+            Label0069 = "Habilita o reset automático dos contadores"
+            Label0070 = "Habilita a ferramenta de inspeção de falhas"
+            Label0071 = "Habilita e seleciona o protocolo de impressão"
 
             Message0000 = "USB Usart conectado"
             Message0001 = "USB Usart desconectado"
@@ -225,8 +230,9 @@ Public Module Module_Language
             Message0011 = "Índice de memória não existe"
 
             List0000 = {"Simples", "Duplo", "Continuo"}
-            List0001 = {"Desligado", "Ligado"}
-            List0002 = {"Desligado", "Modo EPL", "Modo ZPL"}
+            List0001 = {"Sine", "Sine/WAV", "WAV"}
+            List0002 = {"Desligado", "Ligado"}
+            List0003 = {"Desligado", "Modo EPL", "Modo ZPL"}
 
         Catch ex As Exception
 

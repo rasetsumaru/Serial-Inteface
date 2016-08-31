@@ -29,9 +29,9 @@ Public Module Module_Declarations
     Public ValidationRecipeMinimum() As String = {"16", "2", "1", "0", "1,30", "1,30", "20", "20", "1", "1", "1"}
     Public ValidationRecipeMaximum() As String = {"[^0-9a-zA-Z ]+", "18", "50000", "2", "30", "30", "30000", "30000", "100", "255", "10"}
 
-    Public SettingsFormat() As String = {"", "", "0000", "00 seg", ""}
-    Public ValidationSettingMinimum() As String = {"0", "0", "1", "2", "0"}
-    Public ValidationSettingMaximum() As String = {"1", "1", "50000", "10", "2"}
+    Public SettingsFormat() As String = {"", "", "", "00000", "00 seg", ""}
+    Public ValidationSettingMinimum() As String = {"0", "0", "0", "1", "2", "0"}
+    Public ValidationSettingMaximum() As String = {"2", "1", "1", "50000", "10", "2"}
 
 #End Region
 

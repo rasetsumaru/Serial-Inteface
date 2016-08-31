@@ -77,15 +77,17 @@ Public Module Module_Declarations
     Public Label0058 As String = "Download"
     Public Label0059 As String = "Download data to device"
     Public Label0060 As String = "Edit settings"
-    Public Label0061 As String = "Enable automatic reset:"
-    Public Label0062 As String = "Enable inspection:"
-    Public Label0063 As String = "Lot size:"
-    Public Label0064 As String = "Operation timeout:"
-    Public Label0065 As String = "Printer:"
-    Public Label0066 As String = "Save file"
-    Public Label0067 As String = "Enables automatic reset of counters"
-    Public Label0068 As String = "Enables the failure inspection tool"
-    Public Label0069 As String = "Enables and select the printer protocol"
+    Public Label0061 As String = "Operating mode:"
+    Public Label0062 As String = "Enable automatic reset:"
+    Public Label0063 As String = "Enable inspection:"
+    Public Label0064 As String = "Lot size:"
+    Public Label0065 As String = "Operation timeout:"
+    Public Label0066 As String = "Printer:"
+    Public Label0067 As String = "Save file"
+    Public Label0068 As String = "Select operating mode"
+    Public Label0069 As String = "Enables automatic reset of counters"
+    Public Label0070 As String = "Enables the failure inspection tool"
+    Public Label0071 As String = "Enables and select the printer protocol"
 
 #End Region
 
@@ -109,8 +111,9 @@ Public Module Module_Declarations
 #Region "Lists"
 
     Public List0000() As String = {"Single", "Double", "Continue"}
-    Public List0001() As String = {"Switch off", "Switch on"}
-    Public List0002() As String = {"Switch off", "EPL mode", "ZPL mode"}
+    Public List0001() As String = {"Sine", "Sine/WAV", "WAV"}
+    Public List0002() As String = {"Switch off", "Switch on"}
+    Public List0003() As String = {"Switch off", "EPL mode", "ZPL mode"}
 
 #End Region
 

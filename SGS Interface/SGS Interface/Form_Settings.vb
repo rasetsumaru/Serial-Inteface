@@ -38,6 +38,25 @@ Public Class Form_Settings
 
 #Region "Buttons"
 
+    Private Sub ButtonSize_Click(sender As Object, e As EventArgs) Handles ButtonSize.Click
+
+        Try
+
+            Select Case ButtonSize.Text
+                Case Is = "-"
+                    ButtonSize.Text = "+"
+                    Size = New Size(328, 607)
+                Case Is = "+"
+                    ButtonSize.Text = "-"
+                    Size = New Size(328, 689)
+            End Select
+
+        Catch ex As Exception
+            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
+        End Try
+
+    End Sub
+
     Private Sub ButtonClose_Click(sender As Object, e As EventArgs) Handles ButtonClose.Click
 
         Close()
@@ -78,7 +97,11 @@ Public Class Form_Settings
 
     End Sub
 
+    Private Sub TextBox0006_Validating(sender As Object, e As EventArgs) Handles TextBox0006.Validating
 
+        ValidateEditionSettings()
+
+    End Sub
 
 #End Region
 
@@ -114,6 +137,12 @@ Public Class Form_Settings
 
     End Sub
 
+    Private Sub TextBox0006_Enter(sender As Object, e As EventArgs) Handles TextBox0006.Enter
+
+        TextBoxSettingToolTip(sender)
+
+    End Sub
+
 #End Region
 
 #Region "ComboBoxToolTip"
@@ -136,6 +165,12 @@ Public Class Form_Settings
 
     End Sub
 
+    Private Sub ComboBox0003_Enter(sender As Object, e As EventArgs) Handles ComboBox0003.Enter
+
+        ComboBoxSettingToolTip(sender)
+
+
+    End Sub
 #End Region
 
     Private Sub ComboBox0000_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox0000.SelectedIndexChanged
@@ -145,16 +180,16 @@ Public Class Form_Settings
 
     End Sub
 
-    Private Sub ComboBox0001_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox0001.SelectedIndexChanged
+    Private Sub ComboBox0001_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox0002.SelectedIndexChanged
 
-        Me.TextBox0002.Text = ComboBox0001.SelectedIndex
+        Me.TextBox0003.Text = ComboBox0002.SelectedIndex
         ValidateEditionSettings()
 
     End Sub
 
-    Private Sub ComboBox0002_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox0002.SelectedIndexChanged
+    Private Sub ComboBox0002_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox0003.SelectedIndexChanged
 
-        Me.TextBox0005.Text = ComboBox0002.SelectedIndex
+        Me.TextBox0006.Text = ComboBox0003.SelectedIndex
         ValidateEditionSettings()
 
     End Sub
@@ -164,4 +199,9 @@ Public Class Form_Settings
         SaveSettings()
 
     End Sub
+
+    Private Sub TextBox0001_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TextBox0001.Validating
+
+    End Sub
+
 End Class

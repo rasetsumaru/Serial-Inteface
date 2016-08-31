@@ -55,7 +55,7 @@ Module Module_Declarations
     Public LoadMessage As Integer
 
     Public ListCurrentParameters() As String = {"", "", "", "", "", "", "", "", "", "", ""}
-    Public ListCurrentSettings() As String = {"", "", "", "", ""}
+    Public ListCurrentSettings() As String = {"", "", "", "", "", ""}
 
 
 End Module

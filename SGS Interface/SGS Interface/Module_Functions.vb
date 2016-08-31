@@ -329,7 +329,7 @@ Module Module_Functions
 
                     With Form_Recipes
                         .ButtonClose.Text = SGS_Library.Label0000
-                        .ButtonSaveFile.Text = SGS_Library.Label0066
+                        .ButtonSaveFile.Text = SGS_Library.Label0067
                         .ButtonPrevious.Text = SGS_Library.Label0041
                         .ButtonNext.Text = SGS_Library.Label0042
 
@@ -364,7 +364,7 @@ Module Module_Functions
 
                     With Form_Settings
                         .ButtonClose.Text = SGS_Library.Label0000
-                        .ButtonSaveFile.Text = SGS_Library.Label0066
+                        .ButtonSaveFile.Text = SGS_Library.Label0067
 
                         .Label0001.Text = SGS_Library.Label0060
                         .Label0002.Text = SGS_Library.Label0028
@@ -373,6 +373,7 @@ Module Module_Functions
                         .Label0005.Text = SGS_Library.Label0063
                         .Label0006.Text = SGS_Library.Label0064
                         .Label0007.Text = SGS_Library.Label0065
+                        .Label0008.Text = SGS_Library.Label0066
 
                         .CheckBoxEnableTips.Text = SGS_Library.Label0053
 
@@ -510,15 +511,19 @@ Module Module_Functions
 
                     Case Is = 0
 
-                        _ToolTip.Show(SGS_Library.Label0067, _ComboBox, 65, -32, 2000)
+                        _ToolTip.Show(SGS_Library.Label0068, _ComboBox, 65, -32, 2000)
 
                     Case Is = 1
 
-                        _ToolTip.Show(SGS_Library.Label0068, _ComboBox, 65, -32, 2000)
+                        _ToolTip.Show(SGS_Library.Label0069, _ComboBox, 65, -32, 2000)
 
                     Case Is = 2
 
-                        _ToolTip.Show(SGS_Library.Label0069, _ComboBox, 65, -32, 2000)
+                        _ToolTip.Show(SGS_Library.Label0070, _ComboBox, 65, -32, 2000)
+
+                    Case Is = 3
+
+                        _ToolTip.Show(SGS_Library.Label0071, _ComboBox, 65, -32, 2000)
 
                 End Select
 
@@ -1488,7 +1493,6 @@ Module Module_Functions
 
         Try
 
-            Dim myStream As System.IO.Stream = Nothing
             Dim _openFileDialog As New OpenFileDialog()
 
             _openFileDialog.Filter = SGS_Library.Label0024
@@ -1500,44 +1504,35 @@ Module Module_Functions
 
                 Try
 
-                    myStream = _openFileDialog.OpenFile()
+                    FileDirectory = System.IO.Path.GetDirectoryName(_openFileDialog.FileName)
+                    FileName = System.IO.Path.GetFileName(_openFileDialog.FileName)
+                    FileSystem = _openFileDialog.FilterIndex
 
-                    If (myStream IsNot Nothing) Then
-
-                        FileDirectory = System.IO.Path.GetDirectoryName(_openFileDialog.FileName)
-                        FileName = System.IO.Path.GetFileName(_openFileDialog.FileName)
-                        FileSystem = _openFileDialog.FilterIndex
-
-                        If Strings.Right(FileDirectory, 1) = "\" Then
-                            FileDirectory = FileDirectory.Substring(0, FileDirectory.Length - 1)
-                        End If
-
-                        Dim nome_arquivo_ini As String = FileDirectory & "\" & FileName
-
-                        Dim FirmwareData As String = ReadFileChecksum(nome_arquivo_ini, "Firmware", "FR000", SGS_Firmware.Firmware)
-
-                        SGS_Firmware.Firmware = FirmwareData.Substring(0, FirmwareData.IndexOf(" "))
-                        SGS_Firmware.ReadFirmwareLibrary()
-
-                        Select Case FileSystem
-
-                            Case 1
-
-                                OpenFormRecipe()
-
-                            Case 2
-
-                                OpenFormSettings()
-
-                        End Select
-
+                    If Strings.Right(FileDirectory, 1) = "\" Then
+                        FileDirectory = FileDirectory.Substring(0, FileDirectory.Length - 1)
                     End If
+
+                    Dim nome_arquivo_ini As String = FileDirectory & "\" & FileName
+
+                    Dim FirmwareData As String = ReadFileChecksum(nome_arquivo_ini, "Firmware", "FR000", SGS_Firmware.Firmware)
+
+                    SGS_Firmware.Firmware = FirmwareData.Substring(0, FirmwareData.IndexOf(" "))
+                    SGS_Firmware.ReadFirmwareLibrary()
+
+                    Select Case FileSystem
+
+                        Case 1
+
+                            OpenFormRecipe()
+
+                        Case 2
+
+                            OpenFormSettings()
+
+                    End Select
+
                 Catch Ex As Exception
                     MessageBox.Show("Cannot read file from disk. Original error: " & Ex.Message) 'msgbox
-                Finally
-                    If (myStream IsNot Nothing) Then
-                        myStream.Close()
-                    End If
                 End Try
             End If
 
@@ -1972,21 +1967,17 @@ Module Module_Functions
 
         Try
 
-            Dim Settingsstring As String = CurrentSettings
+            Form_Settings.TextBox0000.Text = CurrentSettings
 
-            Form_Settings.TextBox0000.Text = Settingsstring
+            Dim ListTextBoxes() As TextBox = {Form_Settings.TextBox0001, Form_Settings.TextBox0002, Form_Settings.TextBox0003, Form_Settings.TextBox0004, Form_Settings.TextBox0005, Form_Settings.TextBox0006}
 
-            Dim ListTextBoxes() As TextBox = {Form_Settings.TextBox0001, Form_Settings.TextBox0002, Form_Settings.TextBox0003, Form_Settings.TextBox0004, Form_Settings.TextBox0005}
+            Dim ListSubstrings() As Integer = {5, 2, 12, 2, 26, 6, 32, 3, 35, 2, 37, 2}
 
-            Dim ListSubstrings() As Integer = {12, 2, 26, 6, 32, 3, 35, 2, 37, 2}
+            Dim ListEdit() As Integer = {0, 5, 1, 2, 3, 4}
 
-            Dim ListEdit() As Integer = {4, 0, 1, 2, 3}
+            For i As Integer = 0 To 5
 
-            Dim Parameters As String = Settingsstring
-
-            For i As Integer = 0 To 4
-
-                ListCurrentSettings(i) = Parameters.Substring(ListSubstrings(2 * ListEdit(i)), ListSubstrings(2 * ListEdit(i) + 1))
+                ListCurrentSettings(i) = CurrentSettings.Substring(ListSubstrings(2 * ListEdit(i)), ListSubstrings(2 * ListEdit(i) + 1))
                 ListTextBoxes(i).Text = Convert.ToInt32(ListCurrentSettings(i))
 
                 If i = 2 Or i = 3 Then
@@ -2008,14 +1999,20 @@ Module Module_Functions
 
                 With .ComboBox0001
                     .Items.Clear()
-                    .Items.AddRange(SGS_Library.List0001)
+                    .Items.AddRange(SGS_Library.List0002)
                     .SelectedIndex = Form_Settings.TextBox0002.Text
                 End With
 
                 With .ComboBox0002
                     .Items.Clear()
                     .Items.AddRange(SGS_Library.List0002)
-                    .SelectedIndex = Form_Settings.TextBox0005.Text
+                    .SelectedIndex = Form_Settings.TextBox0003.Text
+                End With
+
+                With .ComboBox0003
+                    .Items.Clear()
+                    .Items.AddRange(SGS_Library.List0003)
+                    .SelectedIndex = Form_Settings.TextBox0006.Text
                 End With
 
             End With
@@ -2030,11 +2027,11 @@ Module Module_Functions
 
         Try
 
-            Dim ListTextBoxes() As TextBox = {Form_Settings.TextBox0001, Form_Settings.TextBox0002, Form_Settings.TextBox0003, Form_Settings.TextBox0004, Form_Settings.TextBox0005}
+            Dim ListTextBoxes() As TextBox = {Form_Settings.TextBox0001, Form_Settings.TextBox0002, Form_Settings.TextBox0003, Form_Settings.TextBox0004, Form_Settings.TextBox0005, Form_Settings.TextBox0006}
 
             Dim Parameter As String
 
-            For i As Integer = 0 To 4
+            For i As Integer = 0 To 5
 
                 Parameter = ListTextBoxes(i).Text
 
@@ -2070,15 +2067,17 @@ Module Module_Functions
 
         Try
 
+            Dim nome_arquivo_ini As String = FileDirectory & "\" & FileName
+
             Dim NewSetting As String = CurrentSettings
 
-            Dim ListSubstrings() As Integer = {12, 2, 26, 6, 32, 3, 35, 2, 37, 2}
+            Dim ListSubstrings() As Integer = {5, 2, 12, 2, 26, 6, 32, 3, 35, 2, 37, 2}
 
-            Dim ListEdit() As Integer = {4, 0, 1, 2, 3}
+            Dim ListEdit() As Integer = {0, 5, 1, 2, 3, 4}
 
-            Dim SettingEqualizer() As Integer = {2, 6, 3, 2, 2}
+            Dim SettingEqualizer() As Integer = {2, 2, 6, 3, 2, 2}
 
-            For i As Integer = 0 To 4
+            For i As Integer = 0 To 5
 
                 Dim Parameter As String = ""
 
@@ -2088,16 +2087,13 @@ Module Module_Functions
 
                 Parameter += Convert.ToInt32(ListCurrentSettings(i)).ToString
 
-                NewSetting = Strings.Left(CurrentSettings, ListSubstrings(ListEdit(i) * 2)) & Parameter & Strings.Right(CurrentSettings, 69 - ListSubstrings((ListEdit(i) * 2)) - ListSubstrings(ListEdit(i) * 2 + 1))
-
-                CurrentSettings = NewSetting
-                Form_Settings.TextBox0000.Text = CurrentSettings
+                NewSetting = Strings.Left(NewSetting, ListSubstrings(ListEdit(i) * 2)) & Parameter & Strings.Right(NewSetting, 69 - ListSubstrings((ListEdit(i) * 2)) - ListSubstrings(ListEdit(i) * 2 + 1))
 
             Next
 
+            CurrentSettings = NewSetting
+            Form_Settings.TextBox0000.Text = CurrentSettings
 
-            Dim nome_arquivo_ini As String = FileDirectory & "\" & FileName
-            MsgBox(CurrentSettings)
             WriteFileChecksum("Firmware", "FR000", SGS_Firmware.Firmware, nome_arquivo_ini)
 
             WriteFileChecksum("Settings", Strings.Left(CurrentSettings, 5), Strings.Mid(CurrentSettings, 6), nome_arquivo_ini)
