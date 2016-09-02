@@ -109,6 +109,7 @@ Partial Class Form_Settings
         Me.CheckBoxEnableTips.Name = "CheckBoxEnableTips"
         Me.CheckBoxEnableTips.Size = New System.Drawing.Size(78, 17)
         Me.CheckBoxEnableTips.TabIndex = 58
+        Me.CheckBoxEnableTips.TabStop = False
         Me.CheckBoxEnableTips.Text = "Enable tips"
         Me.CheckBoxEnableTips.UseVisualStyleBackColor = True
         '
@@ -330,7 +331,7 @@ Partial Class Form_Settings
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.ClientSize = New System.Drawing.Size(328, 442)
+        Me.ClientSize = New System.Drawing.Size(328, 443)
         Me.Controls.Add(Me.TextBox0002)
         Me.Controls.Add(Me.Label0004)
         Me.Controls.Add(Me.ComboBox0001)

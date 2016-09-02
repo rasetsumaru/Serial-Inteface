@@ -16,9 +16,9 @@ Public Module Module_Language
 
             Select Case Language
 
-                Case Is = LanguageSelect(0)
+                Case Is = 0
                     LanguageEnglish()
-                Case Is = LanguageSelect(1)
+                Case Is = 1
                     LanguagePTBR()
             End Select
 
@@ -38,6 +38,8 @@ Public Module Module_Language
     Private Sub LanguageEnglish()
 
         Try
+
+            LanguageSelect = {"English", "PortugueseBr"}
 
             Label0000 = "Close"
             Label0001 = "Application close"
@@ -77,7 +79,7 @@ Public Module Module_Language
             Label0035 = "Lower frequency:"
             Label0036 = "Upper frequency:"
             Label0037 = "Sweep speed:"
-            Label0038 = "WAV"
+            Label0038 = "WAV:"
             Label0039 = "Playback timeout:"
             Label0040 = "Memory"
             Label0041 = "Previous"
@@ -111,6 +113,10 @@ Public Module Module_Language
             Label0069 = "Enables automatic reset of counters"
             Label0070 = "Enables the failure inspection tool"
             Label0071 = "Enables and select the printer protocol"
+            Label0072 = "Sync clock"
+            Label0073 = "Synchronize device date and time"
+            Label0074 = "Language:"
+            Label0075 = "Select application language"
 
             Message0000 = "USB Usart connected"
             Message0001 = "USB Usart disconnected"
@@ -124,6 +130,8 @@ Public Module Module_Language
             Message0009 = "Firmware mismatch or incompatible file"
             Message0010 = "File saved successfully"
             Message0011 = "Memory index doesn't exist"
+            Message0012 = "File transfer completed successfully"
+            Message0013 = "Updated clock"
 
             List0000 = {"Single", "Double", "Continue"}
             List0001 = {"Sine", "Sine/WAV", "WAV"}
@@ -142,6 +150,8 @@ Public Module Module_Language
     Private Sub LanguagePTBR()
 
         Try
+
+            LanguageSelect = {"Inglês", "PortuguêsBR"}
 
             Label0000 = "Fechar"
             Label0001 = "Fechar aplicativo"
@@ -181,7 +191,7 @@ Public Module Module_Language
             Label0035 = "Frequencia inferior:"
             Label0036 = "Frequencia superior:"
             Label0037 = "Velocidade de sweep:"
-            Label0038 = "WAV"
+            Label0038 = "WAV:"
             Label0039 = "Intervalo sem reprodução:"
             Label0040 = "Memória"
             Label0041 = "Anterior"
@@ -215,6 +225,10 @@ Public Module Module_Language
             Label0069 = "Habilita o reset automático dos contadores"
             Label0070 = "Habilita a ferramenta de inspeção de falhas"
             Label0071 = "Habilita e seleciona o protocolo de impressão"
+            Label0072 = "Sincronizar o relógio"
+            Label0073 = "Sincronizar data e hora do dispositivo"
+            Label0074 = "Linguagem:"
+            Label0075 = "Selecione a linguagem do aplicativo"
 
             Message0000 = "USB Usart conectado"
             Message0001 = "USB Usart desconectado"
@@ -228,6 +242,8 @@ Public Module Module_Language
             Message0009 = "Firmware divergente ou arquivo incompatível"
             Message0010 = "Arquivo salvo com sucesso"
             Message0011 = "Índice de memória não existe"
+            Message0012 = "Transferência do arquivo realizada com sucesso"
+            Message0013 = "Relógio atualizado"
 
             List0000 = {"Simples", "Duplo", "Continuo"}
             List0001 = {"Sine", "Sine/WAV", "WAV"}

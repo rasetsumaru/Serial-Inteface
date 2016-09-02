@@ -25,6 +25,7 @@ Partial Class Form_Controller
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form_Controller))
         Me.TextBoxReceiver = New System.Windows.Forms.TextBox()
         Me.Panel0000 = New System.Windows.Forms.Panel()
+        Me.ButtonDisconnect = New System.Windows.Forms.Button()
         Me.ButtonConnect = New System.Windows.Forms.Button()
         Me.LabelHour = New System.Windows.Forms.Label()
         Me.ButtonClose = New System.Windows.Forms.Button()
@@ -50,7 +51,9 @@ Partial Class Form_Controller
         Me.ButtonOpenFile = New System.Windows.Forms.Button()
         Me.ButtonDownload = New System.Windows.Forms.Button()
         Me.ButtonUpload = New System.Windows.Forms.Button()
-        Me.ButtonDisconnect = New System.Windows.Forms.Button()
+        Me.ButtonRTC = New System.Windows.Forms.Button()
+        Me.ComboBox0000 = New System.Windows.Forms.ComboBox()
+        Me.Label0014 = New System.Windows.Forms.Label()
         Me.Panel0000.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -62,6 +65,7 @@ Partial Class Form_Controller
         Me.TextBoxReceiver.Size = New System.Drawing.Size(302, 20)
         Me.TextBoxReceiver.TabIndex = 8
         Me.TextBoxReceiver.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.TextBoxReceiver.Visible = False
         '
         'Panel0000
         '
@@ -74,6 +78,21 @@ Partial Class Form_Controller
         Me.Panel0000.Name = "Panel0000"
         Me.Panel0000.Size = New System.Drawing.Size(337, 83)
         Me.Panel0000.TabIndex = 34
+        '
+        'ButtonDisconnect
+        '
+        Me.ButtonDisconnect.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonDisconnect.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonDisconnect.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonDisconnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonDisconnect.ForeColor = System.Drawing.SystemColors.Control
+        Me.ButtonDisconnect.Location = New System.Drawing.Point(132, 45)
+        Me.ButtonDisconnect.Name = "ButtonDisconnect"
+        Me.ButtonDisconnect.Size = New System.Drawing.Size(90, 26)
+        Me.ButtonDisconnect.TabIndex = 36
+        Me.ButtonDisconnect.TabStop = False
+        Me.ButtonDisconnect.Text = "Disconnect"
+        Me.ButtonDisconnect.UseVisualStyleBackColor = True
         '
         'ButtonConnect
         '
@@ -207,8 +226,8 @@ Partial Class Form_Controller
         Me.ProgressBar.Location = New System.Drawing.Point(13, 578)
         Me.ProgressBar.Name = "ProgressBar"
         Me.ProgressBar.Size = New System.Drawing.Size(302, 10)
-        Me.ProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee
         Me.ProgressBar.TabIndex = 43
+        Me.ProgressBar.Visible = False
         '
         'Label0005
         '
@@ -308,7 +327,7 @@ Partial Class Form_Controller
         Me.ButtonCreateFile.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
         Me.ButtonCreateFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonCreateFile.ForeColor = System.Drawing.SystemColors.Control
-        Me.ButtonCreateFile.Location = New System.Drawing.Point(225, 140)
+        Me.ButtonCreateFile.Location = New System.Drawing.Point(225, 129)
         Me.ButtonCreateFile.Name = "ButtonCreateFile"
         Me.ButtonCreateFile.Size = New System.Drawing.Size(90, 26)
         Me.ButtonCreateFile.TabIndex = 36
@@ -323,7 +342,7 @@ Partial Class Form_Controller
         Me.ButtonOpenFile.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
         Me.ButtonOpenFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonOpenFile.ForeColor = System.Drawing.SystemColors.Control
-        Me.ButtonOpenFile.Location = New System.Drawing.Point(225, 172)
+        Me.ButtonOpenFile.Location = New System.Drawing.Point(225, 161)
         Me.ButtonOpenFile.Name = "ButtonOpenFile"
         Me.ButtonOpenFile.Size = New System.Drawing.Size(90, 26)
         Me.ButtonOpenFile.TabIndex = 56
@@ -338,7 +357,7 @@ Partial Class Form_Controller
         Me.ButtonDownload.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
         Me.ButtonDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonDownload.ForeColor = System.Drawing.SystemColors.Control
-        Me.ButtonDownload.Location = New System.Drawing.Point(225, 236)
+        Me.ButtonDownload.Location = New System.Drawing.Point(225, 225)
         Me.ButtonDownload.Name = "ButtonDownload"
         Me.ButtonDownload.Size = New System.Drawing.Size(90, 26)
         Me.ButtonDownload.TabIndex = 58
@@ -353,7 +372,7 @@ Partial Class Form_Controller
         Me.ButtonUpload.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
         Me.ButtonUpload.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonUpload.ForeColor = System.Drawing.SystemColors.Control
-        Me.ButtonUpload.Location = New System.Drawing.Point(225, 204)
+        Me.ButtonUpload.Location = New System.Drawing.Point(225, 193)
         Me.ButtonUpload.Name = "ButtonUpload"
         Me.ButtonUpload.Size = New System.Drawing.Size(90, 26)
         Me.ButtonUpload.TabIndex = 57
@@ -361,20 +380,40 @@ Partial Class Form_Controller
         Me.ButtonUpload.Text = "Upload"
         Me.ButtonUpload.UseVisualStyleBackColor = True
         '
-        'ButtonDisconnect
+        'ButtonRTC
         '
-        Me.ButtonDisconnect.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark
-        Me.ButtonDisconnect.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDark
-        Me.ButtonDisconnect.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
-        Me.ButtonDisconnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonDisconnect.ForeColor = System.Drawing.SystemColors.Control
-        Me.ButtonDisconnect.Location = New System.Drawing.Point(132, 45)
-        Me.ButtonDisconnect.Name = "ButtonDisconnect"
-        Me.ButtonDisconnect.Size = New System.Drawing.Size(90, 26)
-        Me.ButtonDisconnect.TabIndex = 36
-        Me.ButtonDisconnect.TabStop = False
-        Me.ButtonDisconnect.Text = "Disconnect"
-        Me.ButtonDisconnect.UseVisualStyleBackColor = True
+        Me.ButtonRTC.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonRTC.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonRTC.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
+        Me.ButtonRTC.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonRTC.ForeColor = System.Drawing.SystemColors.Control
+        Me.ButtonRTC.Location = New System.Drawing.Point(226, 257)
+        Me.ButtonRTC.Name = "ButtonRTC"
+        Me.ButtonRTC.Size = New System.Drawing.Size(90, 26)
+        Me.ButtonRTC.TabIndex = 59
+        Me.ButtonRTC.TabStop = False
+        Me.ButtonRTC.Text = "Real Time"
+        Me.ButtonRTC.UseVisualStyleBackColor = True
+        '
+        'ComboBox0000
+        '
+        Me.ComboBox0000.BackColor = System.Drawing.SystemColors.Window
+        Me.ComboBox0000.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox0000.FormattingEnabled = True
+        Me.ComboBox0000.Location = New System.Drawing.Point(26, 286)
+        Me.ComboBox0000.Name = "ComboBox0000"
+        Me.ComboBox0000.Size = New System.Drawing.Size(111, 21)
+        Me.ComboBox0000.TabIndex = 179
+        '
+        'Label0014
+        '
+        Me.Label0014.AutoSize = True
+        Me.Label0014.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label0014.Location = New System.Drawing.Point(23, 270)
+        Me.Label0014.Name = "Label0014"
+        Me.Label0014.Size = New System.Drawing.Size(58, 13)
+        Me.Label0014.TabIndex = 180
+        Me.Label0014.Text = "Language:"
         '
         'Form_Controller
         '
@@ -383,6 +422,9 @@ Partial Class Form_Controller
         Me.BackColor = System.Drawing.SystemColors.ControlDarkDark
         Me.ClientSize = New System.Drawing.Size(328, 689)
         Me.ControlBox = False
+        Me.Controls.Add(Me.Label0014)
+        Me.Controls.Add(Me.ComboBox0000)
+        Me.Controls.Add(Me.ButtonRTC)
         Me.Controls.Add(Me.ButtonDownload)
         Me.Controls.Add(Me.ButtonUpload)
         Me.Controls.Add(Me.ButtonOpenFile)
@@ -413,7 +455,7 @@ Partial Class Form_Controller
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "Form_Controller"
-        Me.Opacity = 0.9R
+        Me.Opacity = 0.90000000000000002R
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "SGS Interface"
         Me.Panel0000.ResumeLayout(False)
@@ -450,4 +492,7 @@ Partial Class Form_Controller
     Friend WithEvents ButtonDownload As System.Windows.Forms.Button
     Friend WithEvents ButtonUpload As System.Windows.Forms.Button
     Friend WithEvents ButtonDisconnect As Button
+    Friend WithEvents ButtonRTC As System.Windows.Forms.Button
+    Friend WithEvents ComboBox0000 As System.Windows.Forms.ComboBox
+    Friend WithEvents Label0014 As System.Windows.Forms.Label
 End Class

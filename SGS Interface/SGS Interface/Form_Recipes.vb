@@ -45,10 +45,10 @@ Public Class Form_Recipes
             Select Case ButtonSize.Text
                 Case Is = "-"
                     ButtonSize.Text = "+"
-                    Size = New Size(328, 607)
+                    Size = New Size(328, 549)
                 Case Is = "+"
                     ButtonSize.Text = "-"
-                    Size = New Size(328, 689)
+                    Size = New Size(328, 631)
             End Select
 
         Catch ex As Exception
@@ -91,11 +91,15 @@ Public Class Form_Recipes
 
     Private Sub ButtonClose_Click(sender As Object, e As EventArgs) Handles ButtonClose.Click
 
+        WriteFormEnableTips(Me.CheckBoxEnableTips.Checked)
+        WriteLocation(Me)
         Close()
 
     End Sub
 
 #End Region
+
+#Region "Combobox"
 
     Private Sub ComboBox0000_LostFocus(sender As Object, e As EventArgs) Handles ComboBox0000.LostFocus
 
@@ -122,7 +126,7 @@ Public Class Form_Recipes
 
     Public Sub ComboBox0000_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox0000.SelectedIndexChanged
 
-        Me.TextBox0000.Focus()
+        Me.TextBox0001.Focus()
 
     End Sub
 
@@ -141,6 +145,8 @@ Public Class Form_Recipes
         ValidateEdition()
 
     End Sub
+
+#End Region
 
 #Region "Validating Parameters"
 
@@ -287,6 +293,7 @@ Public Class Form_Recipes
     Private Sub ComboBox0000_Enter(sender As Object, e As EventArgs) Handles ComboBox0000.Enter
 
         ComboBoxRecipeToolTip(sender)
+
     End Sub
 
     Private Sub ComboBox0001_Enter(sender As Object, e As EventArgs) Handles ComboBox0001.Enter

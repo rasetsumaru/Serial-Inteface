@@ -45,10 +45,10 @@ Public Class Form_Settings
             Select Case ButtonSize.Text
                 Case Is = "-"
                     ButtonSize.Text = "+"
-                    Size = New Size(328, 607)
+                    Size = New Size(328, 361)
                 Case Is = "+"
                     ButtonSize.Text = "-"
-                    Size = New Size(328, 689)
+                    Size = New Size(328, 443)
             End Select
 
         Catch ex As Exception
@@ -59,7 +59,15 @@ Public Class Form_Settings
 
     Private Sub ButtonClose_Click(sender As Object, e As EventArgs) Handles ButtonClose.Click
 
+        WriteFormEnableTips(Me.CheckBoxEnableTips.Checked)
+        WriteLocation(Me)
         Close()
+
+    End Sub
+
+    Private Sub ButtonSaveFile_Click(sender As Object, e As EventArgs) Handles ButtonSaveFile.Click
+
+        SaveSettings()
 
     End Sub
 
@@ -173,6 +181,7 @@ Public Class Form_Settings
     End Sub
 #End Region
 
+#Region "Combobox"
     Private Sub ComboBox0000_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox0000.SelectedIndexChanged
 
         Me.TextBox0001.Text = ComboBox0000.SelectedIndex
@@ -194,14 +203,6 @@ Public Class Form_Settings
 
     End Sub
 
-    Private Sub ButtonSaveFile_Click(sender As Object, e As EventArgs) Handles ButtonSaveFile.Click
-
-        SaveSettings()
-
-    End Sub
-
-    Private Sub TextBox0001_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TextBox0001.Validating
-
-    End Sub
+#End Region
 
 End Class

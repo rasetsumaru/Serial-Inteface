@@ -9,8 +9,8 @@ Public Module Module_Declarations
 
 #Region "Language"
 
-    Public Language As String
-    Public LanguageSelect() As String = {"English", "PortuguesBr"}
+    Public Language As Integer
+    Public LanguageSelect() As String = {"English", "PortugueseBr"}
 
 #End Region
 
@@ -54,7 +54,7 @@ Public Module Module_Declarations
     Public Label0035 As String = "Lower frequency:"
     Public Label0036 As String = "Upper frequency:"
     Public Label0037 As String = "Sweep speed:"
-    Public Label0038 As String = "WAV"
+    Public Label0038 As String = "WAV:"
     Public Label0039 As String = "Playback timeout:"
     Public Label0040 As String = "Memory"
     Public Label0041 As String = "Previous"
@@ -88,6 +88,10 @@ Public Module Module_Declarations
     Public Label0069 As String = "Enables automatic reset of counters"
     Public Label0070 As String = "Enables the failure inspection tool"
     Public Label0071 As String = "Enables and select the printer protocol"
+    Public Label0072 As String = "Sync clock"
+    Public Label0073 As String = "Synchronize device date and time"
+    Public Label0074 As String = "Language:"
+    Public Label0075 As String = "Select application language"
 
 #End Region
 
@@ -105,6 +109,8 @@ Public Module Module_Declarations
     Public Message0009 As String = "Firmware mismatch or incompatible file"
     Public Message0010 As String = "File saved successfully"
     Public Message0011 As String = "Memory index doesn't exist"
+    Public Message0012 As String = "File transfer completed successfully"
+    Public Message0013 As String = "Updated clock"
 
 #End Region
 

@@ -131,13 +131,32 @@ Public Class Form_Controller
 
     End Sub
 
-
     Private Sub ButtonDownload_Click(sender As Object, e As EventArgs) Handles ButtonDownload.Click
 
         DownloadFileDirectory()
 
     End Sub
 
+    Private Sub ButtonRTC_Click(sender As Object, e As EventArgs) Handles ButtonRTC.Click
+
+        UpdateRTC()
+
+    End Sub
+
 #End Region
+
+    Private Sub ComboBox0000_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox0000.SelectedIndexChanged
+
+        SGS_Library.Language = Me.ComboBox0000.SelectedIndex
+        ChangeLanguage()
+        LanguageForm(Me)
+
+        With Me.ComboBox0000
+            .Items.Clear()
+            .Items.AddRange(SGS_Library.LanguageSelect)
+            .SelectedIndex = SGS_Library.Language
+        End With
+
+    End Sub
 
 End Class

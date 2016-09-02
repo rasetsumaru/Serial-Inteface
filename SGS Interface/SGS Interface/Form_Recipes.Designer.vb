@@ -63,7 +63,7 @@ Partial Class Form_Recipes
         '
         'TextBox0000
         '
-        Me.TextBox0000.Location = New System.Drawing.Point(12, 431)
+        Me.TextBox0000.Location = New System.Drawing.Point(12, 500)
         Me.TextBox0000.Name = "TextBox0000"
         Me.TextBox0000.Size = New System.Drawing.Size(304, 20)
         Me.TextBox0000.TabIndex = 2
@@ -233,7 +233,7 @@ Partial Class Form_Recipes
         Me.Panel0000.Controls.Add(Me.CheckBoxEnableTips)
         Me.Panel0000.Controls.Add(Me.ButtonSaveFile)
         Me.Panel0000.Controls.Add(Me.ButtonClose)
-        Me.Panel0000.Location = New System.Drawing.Point(-2, 607)
+        Me.Panel0000.Location = New System.Drawing.Point(-2, 549)
         Me.Panel0000.Name = "Panel0000"
         Me.Panel0000.Size = New System.Drawing.Size(337, 83)
         Me.Panel0000.TabIndex = 159
@@ -248,6 +248,7 @@ Partial Class Form_Recipes
         Me.CheckBoxEnableTips.Name = "CheckBoxEnableTips"
         Me.CheckBoxEnableTips.Size = New System.Drawing.Size(78, 17)
         Me.CheckBoxEnableTips.TabIndex = 58
+        Me.CheckBoxEnableTips.TabStop = False
         Me.CheckBoxEnableTips.Text = "Enable tips"
         Me.CheckBoxEnableTips.UseVisualStyleBackColor = True
         '
@@ -288,7 +289,7 @@ Partial Class Form_Recipes
         Me.ButtonNext.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
         Me.ButtonNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonNext.ForeColor = System.Drawing.SystemColors.Control
-        Me.ButtonNext.Location = New System.Drawing.Point(226, 491)
+        Me.ButtonNext.Location = New System.Drawing.Point(226, 459)
         Me.ButtonNext.Name = "ButtonNext"
         Me.ButtonNext.Size = New System.Drawing.Size(90, 26)
         Me.ButtonNext.TabIndex = 156
@@ -303,7 +304,7 @@ Partial Class Form_Recipes
         Me.ButtonPrevious.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
         Me.ButtonPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonPrevious.ForeColor = System.Drawing.SystemColors.Control
-        Me.ButtonPrevious.Location = New System.Drawing.Point(130, 491)
+        Me.ButtonPrevious.Location = New System.Drawing.Point(130, 459)
         Me.ButtonPrevious.Name = "ButtonPrevious"
         Me.ButtonPrevious.Size = New System.Drawing.Size(90, 26)
         Me.ButtonPrevious.TabIndex = 157
@@ -315,17 +316,17 @@ Partial Class Form_Recipes
         '
         Me.ComboBox0000.BackColor = System.Drawing.SystemColors.Window
         Me.ComboBox0000.FormattingEnabled = True
-        Me.ComboBox0000.Location = New System.Drawing.Point(38, 495)
+        Me.ComboBox0000.Location = New System.Drawing.Point(38, 463)
         Me.ComboBox0000.Name = "ComboBox0000"
         Me.ComboBox0000.Size = New System.Drawing.Size(67, 21)
-        Me.ComboBox0000.TabIndex = 3
+        Me.ComboBox0000.TabIndex = 153
         '
         'Label0014
         '
         Me.Label0014.AutoSize = True
         Me.Label0014.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label0014.ForeColor = System.Drawing.Color.White
-        Me.Label0014.Location = New System.Drawing.Point(14, 469)
+        Me.Label0014.Location = New System.Drawing.Point(14, 437)
         Me.Label0014.Name = "Label0014"
         Me.Label0014.Size = New System.Drawing.Size(57, 16)
         Me.Label0014.TabIndex = 158
@@ -456,7 +457,7 @@ Partial Class Form_Recipes
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.ClientSize = New System.Drawing.Size(328, 689)
+        Me.ClientSize = New System.Drawing.Size(328, 631)
         Me.Controls.Add(Me.Panel0000)
         Me.Controls.Add(Me.Label0014)
         Me.Controls.Add(Me.ButtonPrevious)

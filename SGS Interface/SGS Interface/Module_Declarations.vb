@@ -23,13 +23,19 @@ Module Module_Declarations
 
 #Region "Config"
 
-    Public FormTop As Integer
-    Public FormLeft As Integer
+    Public FormControllerTop As Integer
+    Public FormControllerLeft As Integer
     Public TimerNowInterval As Integer
     Public TimerConnectedInterval As Integer
     Public TimerDisconnectedInterval As Integer
     Public TimerUsartTxInterval As Integer
     Public TimerUsartRxInterval As Integer
+    Public TimerVersionInterval As Integer
+    Public FormRecipesTop As Integer
+    Public FormRecipesLeft As Integer
+    Public FormSettingsTop As Integer
+    Public FormSettingsLeft As Integer
+    Public FormEnableTips As Integer
 
 #End Region
 
@@ -44,19 +50,16 @@ Module Module_Declarations
     Public FileDirectory As String
     Public FileName As String
     Public FileSystem As Integer
-
-    Public RecipeList(500) As String
-
-    Public CurrentSettings As String
+    Public ControlFileOperation As Integer
 
     Public RecipeIndex As Integer
-    Public RecipeControl As Integer
+    Public RecipeList(500) As String
+    Public CurrentSettings As String
 
     Public LoadMessage As Integer
 
     Public ListCurrentParameters() As String = {"", "", "", "", "", "", "", "", "", "", ""}
     Public ListCurrentSettings() As String = {"", "", "", "", "", ""}
-
 
 End Module
 

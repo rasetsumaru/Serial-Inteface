@@ -18,6 +18,7 @@ Module Module_Functions
     Public WithEvents _TimerDisconnected As New System.Windows.Forms.Timer
     Public WithEvents _TimerUsartTx As New System.Windows.Forms.Timer
     Public WithEvents _TimerUsartRx As New System.Windows.Forms.Timer
+    Public WithEvents _TimerVersion As New System.Windows.Forms.Timer
 
     Public WithEvents _TimerPanelTx As New System.Windows.Forms.Timer
     Public WithEvents _TimerPanelRx As New System.Windows.Forms.Timer
@@ -46,7 +47,7 @@ Module Module_Functions
         Try
             GetPrivateProfileString(section_name, key_name, default_value, string_builder, MAX_LENGTH, file_name)
         Catch ex As Exception
-            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH: mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
+            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
         End Try
 
         Return string_builder.ToString()
@@ -62,7 +63,7 @@ Module Module_Functions
         Try
             nome_arquivo_ini = nome_arquivo_ini.Substring(0, nome_arquivo_ini.LastIndexOf("\"))
         Catch ex As Exception
-            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH: mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
+            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
         End Try
 
         Return nome_arquivo_ini & Diretorio
@@ -176,21 +177,29 @@ Module Module_Functions
                 FormMessageBox(5)
             End If
 
-            SGS_Library.Language = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP000", "English")
-            SGS_Library.Language = SGS_Library.Language.Substring(0, SGS_Library.Language.IndexOf(" "))
+            SGS_Library.Language = Convert.ToInt32(ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP000", "0"))
             SGS_Library.ReadLanguageLibrary()
 
-            FormTop = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP010", "100")
-            FormLeft = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP011", "250")
+            FormControllerTop = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP010", "100")
+            FormControllerLeft = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP011", "250")
 
             TimerNowInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP020", "100")
             TimerConnectedInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP021", "1500")
             TimerDisconnectedInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP022", "1500")
-            TimerUsartTxInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP023", "100")
-            TimerUsartRxInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP024", "100")
+            TimerUsartTxInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP023", "300")
+            TimerUsartRxInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP024", "300")
+            TimerVersionInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP025", "1000")
+
+            FormRecipesTop = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP030", "100")
+            FormRecipesLeft = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP031", "598")
+
+            FormSettingsTop = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP040", "100")
+            FormSettingsLeft = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP041", "598")
+
+            FormEnableTips = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP050", "0")
 
         Catch ex As Exception
-            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH: mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
+            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
         End Try
 
     End Sub
@@ -201,17 +210,26 @@ Module Module_Functions
             UsartConnected = False
             FileSystem = 0
 
-            If FormLeft < 0 Or FormLeft > My.Computer.Screen.Bounds.Width - 328 Then FormLeft = 250
-            If FormTop < 0 Or FormTop > My.Computer.Screen.Bounds.Height - 689 Then FormTop = 100
+            If FormControllerLeft < 0 Or FormControllerLeft > My.Computer.Screen.Bounds.Width - 328 Then FormControllerLeft = 250
+            If FormControllerTop < 0 Or FormControllerTop > My.Computer.Screen.Bounds.Height - 689 Then FormControllerTop = 100
 
             With Form_Controller
-                .Location = New Point(FormLeft, FormTop)
+                .Location = New Point(FormControllerLeft, FormControllerTop)
                 .ButtonSize.Text = "-"
                 .Size = New Size(328, 689)
 
                 .ButtonDisconnect.Visible = False
                 .ButtonDownload.Enabled = False
                 .ButtonUpload.Enabled = False
+                .ButtonRTC.Enabled = False
+                .ProgressBar.Visible = False
+
+                With .ComboBox0000
+                    .Items.Clear()
+                    .Items.AddRange(SGS_Library.LanguageSelect)
+                    .SelectedIndex = SGS_Library.Language
+                End With
+
             End With
 
             With _TimerNow
@@ -255,9 +273,32 @@ Module Module_Functions
                 .Stop()
             End With
 
-            RecipeControl = 0
+            With _TimerVersion
+                .Enabled = True
+                .Interval = TimerVersionInterval
+                .Stop()
+            End With
+
+            ControlFileOperation = 0
 
         Catch ex As Exception
+            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
+        End Try
+
+    End Sub
+
+    Public Sub ChangeLanguage()
+
+        Try
+
+            Dim nome_arquivo_ini As String = SGS_Library.NomeArquivoINI(DirConfig)
+
+            WriteFileChecksum("Parameters", "PP000", SGS_Library.Language, nome_arquivo_ini)
+
+            SGS_Library.ReadLanguageLibrary()
+
+        Catch ex As Exception
+
             WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
         End Try
 
@@ -266,16 +307,51 @@ Module Module_Functions
     Public Sub WriteLocation(_form As System.Windows.Forms.Form)
 
         Try
+
             Dim nome_arquivo_ini As String = SGS_Library.NomeArquivoINI(DirConfig)
 
-            WriteFileChecksum("Parameters", "PP010", _form.Top, nome_arquivo_ini)
-            WriteFileChecksum("Parameters", "PP011", _form.Left, nome_arquivo_ini)
+            Select Case _form.Name
+
+                Case Is = "Form_Controller"
+
+                    WriteFileChecksum("Parameters", "PP010", _form.Top, nome_arquivo_ini)
+                    WriteFileChecksum("Parameters", "PP011", _form.Left, nome_arquivo_ini)
+
+                Case Is = "Form_Recipes"
+
+                    WriteFileChecksum("Parameters", "PP030", _form.Top, nome_arquivo_ini)
+                    WriteFileChecksum("Parameters", "PP031", _form.Left, nome_arquivo_ini)
+
+                Case Is = "Form_Settings"
+
+                    WriteFileChecksum("Parameters", "PP040", _form.Top, nome_arquivo_ini)
+                    WriteFileChecksum("Parameters", "PP041", _form.Left, nome_arquivo_ini)
+
+            End Select
 
         Catch ex As Exception
             WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
         End Try
 
     End Sub
+
+    Public Sub WriteFormEnableTips(ByVal _checkbox As Boolean)
+
+        Try
+
+            Dim nome_arquivo_ini As String = SGS_Library.NomeArquivoINI(DirConfig)
+            Dim CheckBoxValue As Integer = 0
+
+            If _checkbox = True Then CheckBoxValue = 1
+
+            WriteFileChecksum("Parameters", "PP050", CheckBoxValue, nome_arquivo_ini)
+
+        Catch ex As Exception
+            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
+        End Try
+
+    End Sub
+
 #End Region
 
 #Region "Forms"
@@ -295,9 +371,10 @@ Module Module_Functions
                         .ButtonConnect.Text = SGS_Library.Label0002
                         .ButtonDisconnect.Text = SGS_Library.Label0004
                         .ButtonCreateFile.Text = SGS_Library.Label0022
-                        .ButtonOpenFile.Text = SGS_Library.label0054
+                        .ButtonOpenFile.Text = SGS_Library.Label0054
                         .ButtonUpload.Text = SGS_Library.Label0056
                         .ButtonDownload.Text = SGS_Library.Label0058
+                        .ButtonRTC.Text = SGS_Library.Label0072
 
                         .Label0002.Text = SGS_Library.Label0006
                         .Label0003.Text = SGS_Library.Label0007
@@ -311,6 +388,7 @@ Module Module_Functions
                         .Label0011.Text = SGS_Library.Label0018
                         .Label0012.Text = SGS_Library.Label0018
                         .Label0013.Text = SGS_Library.Label0018
+                        .Label0014.Text = SGS_Library.Label0074
 
                         With _ToolTip
                             .IsBalloon = True
@@ -321,6 +399,8 @@ Module Module_Functions
                             .SetToolTip(Form_Controller.ButtonOpenFile, SGS_Library.Label0055)
                             .SetToolTip(Form_Controller.ButtonUpload, SGS_Library.Label0057)
                             .SetToolTip(Form_Controller.ButtonDownload, SGS_Library.Label0059)
+                            .SetToolTip(Form_Controller.ButtonRTC, SGS_Library.Label0073)
+                            .SetToolTip(Form_Controller.ComboBox0000, SGS_Library.Label0075)
                         End With
 
                     End With
@@ -613,6 +693,8 @@ Module Module_Functions
                     With Form_Controller
                         .ButtonConnect.Enabled = True
                         .ButtonClose.Enabled = True
+                        .ButtonOpenFile.Enabled = True
+                        .ButtonCreateFile.Enabled = True
                     End With
 
                 End If
@@ -701,6 +783,20 @@ Module Module_Functions
         End Try
 
     End Sub
+
+    Public Sub _TimerVersion_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles _TimerVersion.Tick
+
+        Try
+            _TimerVersion.Stop()
+
+            DeviceVersion()
+
+        Catch ex As Exception
+            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
+        End Try
+
+    End Sub
+
 #End Region
 
 #Region "SerialPort controller"
@@ -720,6 +816,8 @@ Module Module_Functions
                 With Form_Controller
                     .ButtonConnect.Enabled = False
                     .ButtonClose.Enabled = False
+                    .ButtonOpenFile.Enabled = False
+                    .ButtonCreateFile.Enabled = False
                 End With
 
             Else
@@ -745,7 +843,7 @@ Module Module_Functions
             _TimerUsartRx.Stop()
 
             UsartConnected = False
-            RecipeControl = 0
+            ControlFileOperation = 0
 
             UsartRx = ""
 
@@ -760,7 +858,7 @@ Module Module_Functions
                 .ButtonUpload.Enabled = False
                 .ButtonDownload.Enabled = False
                 .ButtonClose.Enabled = True
-
+                .ButtonRTC.Enabled = False
             End With
 
             RemoveHandler _SerialPort.DataReceived, AddressOf Form_Controller.DataReceivedHandler
@@ -838,6 +936,7 @@ Module Module_Functions
             Form_Controller.PanelTx.BackColor = System.Drawing.SystemColors.ControlDark
             _SerialPort.Write(SerialData + vbLf)
             _TimerPanelTx.Start()
+
         Catch ex As Exception
             WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
         End Try
@@ -918,7 +1017,7 @@ Module Module_Functions
 
                 checksum = checksum Mod 99
 
-                If checksum = Convert.toint32(SerialChecksum) Then
+                If checksum = Convert.ToInt32(SerialChecksum) Then
                     UsartRxControl = 0
                     SerialDecoder(SerialData)
                 Else
@@ -960,24 +1059,14 @@ Module Module_Functions
                         End With
 
                         _TimerConnected.Stop()
-
-                        FormMessageBox(0)
-
-                        DeviceVersion()
-
-                        With Form_Controller
-                            .ButtonOpenFile.Enabled = False
-                            .ButtonCreateFile.Enabled = False
-                            .ButtonUpload.Enabled = True
-                            .ButtonDownload.Enabled = True
-                        End With
+                        _TimerVersion.Start()
 
                         Exit Sub
                     End If
 
                     If Data.Substring(0, 2) = "00" Then
                         UsartConnected = False
-                        RecipeControl = 0
+                        ControlFileOperation = 0
 
                         UsartRx = ""
 
@@ -1008,6 +1097,7 @@ Module Module_Functions
                             .ButtonUpload.Enabled = False
                             .ButtonDownload.Enabled = False
                             .ButtonClose.Enabled = True
+                            .ButtonRTC.Enabled = False
                         End With
 
                         _TimerDisconnected.Stop()
@@ -1033,6 +1123,20 @@ Module Module_Functions
                         .Label0012.Text = Data.Substring(Data.IndexOf("H") + 2, 4)
                         .Label0013.Text = Data.Substring(Data.IndexOf("F") + 2, 4)
                     End With
+
+                    SGS_Firmware.Firmware = Form_Controller.Label0013.Text
+                    SGS_Firmware.ReadFirmwareLibrary()
+
+                    With Form_Controller
+                        .ButtonOpenFile.Enabled = False
+                        .ButtonCreateFile.Enabled = False
+                        .ButtonUpload.Enabled = True
+                        .ButtonDownload.Enabled = True
+                        .ButtonRTC.Enabled = True
+                    End With
+
+                    FormMessageBox(0)
+
                 End If
 
                 Exit Sub
@@ -1040,15 +1144,21 @@ Module Module_Functions
 
             If Header.Equals("RR") Then
 
-                Select Case RecipeControl
+                Select Case ControlFileOperation
 
                     Case Is = 1
 
                         If RecipeIndex < 500 Then
                             RecipeIndex = RecipeIndex + 1
                             DownloadFileControl()
+                            Form_Controller.ProgressBar.PerformStep()
                         Else
-                            RecipeControl = 0
+                            ControlFileOperation = 0
+                            Form_Controller.ProgressBar.Value = 0
+                            Form_Controller.ProgressBar.Visible = False
+
+                            FormMessageBox(12)
+
                         End If
 
                     Case Is = 2
@@ -1060,14 +1170,47 @@ Module Module_Functions
                         If RecipeIndex < 500 Then
                             RecipeIndex = RecipeIndex + 1
                             UploadFileControl()
+                            Form_Controller.ProgressBar.PerformStep()
                         Else
-                            RecipeControl = 0
+                            ControlFileOperation = 0
+                            Form_Controller.ProgressBar.Value = 0
+                            Form_Controller.ProgressBar.Visible = False
 
-                            OpenFormRecipe()
+                            FormMessageBox(12)
 
                         End If
 
                 End Select
+
+            End If
+
+            If Header.Equals("RS") Then
+
+                Select Case ControlFileOperation
+
+                    Case Is = 1
+
+                        ControlFileOperation = 0
+
+                        FormMessageBox(12)
+
+                    Case Is = 2
+
+                        Dim nome_arquivo_ini As String = FileDirectory & "\" & FileName
+
+                        WriteFileChecksum("Settings", Strings.Left(Decoder, 5), Strings.Right(Decoder, 64), nome_arquivo_ini)
+
+                        ControlFileOperation = 0
+
+                        FormMessageBox(12)
+
+                End Select
+
+            End If
+
+            If Header.Equals("RT") Then
+
+                FormMessageBox(13)
 
             End If
 
@@ -1095,16 +1238,30 @@ Module Module_Functions
 
         Try
 
-            Dim pointer As String
+            Select Case FileSystem
 
-            pointer = RecipeIndex.ToString
+                Case Is = 1
 
-            For i As Integer = 0 To 2 - pointer.Length
-                pointer = "0" + pointer
-            Next
+                    Dim pointer As String
 
-            UsartTx = "WR" & pointer & RecipeList(RecipeIndex)
-            Console.WriteLine(UsartTx)
+
+
+                    pointer = RecipeIndex.ToString
+
+                    For i As Integer = 0 To 2 - pointer.Length
+                        pointer = "0" + pointer
+                    Next
+
+                    UsartTx = "WR" & pointer & RecipeList(RecipeIndex)
+
+
+                Case Is = 2
+
+                    UsartTx = "WS000" & CurrentSettings
+
+            End Select
+
+
             SerialPortDataSend(UsartTx)
 
         Catch ex As Exception
@@ -1117,15 +1274,41 @@ Module Module_Functions
 
         Try
 
-            Dim pointer As String
+            Select Case FileSystem
 
-            pointer = RecipeIndex.ToString
+                Case Is = 1
 
-            For i As Integer = 0 To 2 - pointer.Length
-                pointer = "0" + pointer
-            Next
+                    Dim pointer As String
 
-            UsartTx = "RR" & pointer
+                    pointer = RecipeIndex.ToString
+
+                    For i As Integer = 0 To 2 - pointer.Length
+                        pointer = "0" + pointer
+                    Next
+
+                    UsartTx = "RR" & pointer
+
+                Case Is = 2
+
+                    UsartTx = "RS000"
+
+            End Select
+
+            SerialPortDataSend(UsartTx)
+
+        Catch ex As Exception
+            WritePrivateProfileString("Error >> " & Format(Now, "MM/dd/yyyy"), " >> " & Format(Now, "HH:mm:ss") & " >> Erro = ", ex.Message & " - " & ex.StackTrace & " - " & ex.Source, NomeArquivoINI(DirLogsError))
+        End Try
+
+    End Sub
+
+    Public Sub UpdateRTC()
+
+        Try
+
+            Dim RTCData As String = Format(Now, " HH:mm:ss") & " " & Format(Now.Date, "MM/dd/yyyy") & " " & Now.DayOfWeek
+
+            UsartTx = "WT000" & RTCData
 
             SerialPortDataSend(UsartTx)
 
@@ -1330,6 +1513,32 @@ Module Module_Functions
                         End With
                     End With
 
+                Case Is = 12
+                    With Form_MessageBox
+                        .LabelMessage.Text = SGS_Library.Message0012
+                        With .Button01
+                            .Visible = True
+                            .Text = SGS_Library.Label0010
+                        End With
+                        With _ToolTip
+                            .IsBalloon = True
+                            .SetToolTip(Form_MessageBox.Button01, SGS_Library.Label0019)
+                        End With
+                    End With
+
+                Case Is = 13
+                    With Form_MessageBox
+                        .LabelMessage.Text = SGS_Library.Message0013
+                        With .Button01
+                            .Visible = True
+                            .Text = SGS_Library.Label0010
+                        End With
+                        With _ToolTip
+                            .IsBalloon = True
+                            .SetToolTip(Form_MessageBox.Button01, SGS_Library.Label0019)
+                        End With
+                    End With
+
             End Select
 
 
@@ -1384,6 +1593,19 @@ Module Module_Functions
 
                         Case Is = 11
                             Form_MessageBox.Dispose()
+
+                        Case Is = 12
+                            Form_MessageBox.Dispose()
+
+                        Case Is = 13
+                            Form_MessageBox.Dispose()
+
+                            With Form_Controller
+                                .ButtonDisconnect.Enabled = True
+                                .ButtonDownload.Enabled = True
+                                .ButtonUpload.Enabled = True
+                                .ButtonRTC.Enabled = True
+                            End With
 
                     End Select
 
@@ -1574,11 +1796,27 @@ Module Module_Functions
 
                         Dim FirmwareData As String = ReadFileChecksum(nome_arquivo_ini, "Firmware", "FR000", SGS_Firmware.Firmware)
 
+                        ControlFileOperation = 1
+
+                        With Form_Controller
+                            .ButtonDisconnect.Enabled = False
+                            .ButtonDownload.Enabled = False
+                            .ButtonUpload.Enabled = False
+                            .ButtonRTC.Enabled = False
+                        End With
+
                         If Form_Controller.Label0013.Text = FirmwareData.Substring(0, FirmwareData.IndexOf(" ")) = True Then
 
                             Select Case FileSystem
 
                                 Case 1
+
+                                    With Form_Controller.ProgressBar
+                                        .Visible = True
+                                        .Maximum = 500
+                                        .Step = 1
+                                        .Style = ProgressBarStyle.Continuous
+                                    End With
 
                                     Dim RecipeData As String
 
@@ -1595,8 +1833,12 @@ Module Module_Functions
 
                                     Next
 
-                                    RecipeControl = 1
                                     RecipeIndex = 1
+                                    DownloadFileControl()
+
+                                Case 2
+
+                                    CurrentSettings = ReadFileChecksum(nome_arquivo_ini, "Settings", "RS000", SGS_Firmware.SettingsString)
                                     DownloadFileControl()
 
                             End Select
@@ -1648,17 +1890,32 @@ Module Module_Functions
 
                 WriteFileChecksum("Firmware", "FR000", Form_Controller.Label0013.Text, nome_arquivo_ini)
 
+                ControlFileOperation = 2
+
+                With Form_Controller
+                    .ButtonDisconnect.Enabled = False
+                    .ButtonDownload.Enabled = False
+                    .ButtonUpload.Enabled = False
+                    .ButtonRTC.Enabled = False
+                End With
+
                 Select Case FileSystem
 
                     Case 1
 
-                        RecipeControl = 2
+                        With Form_Controller.ProgressBar
+                            .Visible = True
+                            .Maximum = 500
+                            .Step = 1
+                            .Style = ProgressBarStyle.Continuous
+                        End With
+
                         RecipeIndex = 1
                         UploadFileControl()
 
                     Case 2
 
-                        'WriteFileChecksum("Settings", "SR000", SGS_Firmware.SettingsString, nome_arquivo_ini)
+                        UploadFileControl()
 
                 End Select
 
@@ -1677,11 +1934,21 @@ Module Module_Functions
     Public Sub RecipeLoad()
 
         Try
+            BootSettings()
+
+            If FormRecipesLeft < 0 Or FormRecipesLeft > My.Computer.Screen.Bounds.Width - 328 Then FormRecipesLeft = 598
+            If FormRecipesTop < 0 Or FormRecipesTop > My.Computer.Screen.Bounds.Height - 631 Then FormRecipesTop = 100
+
+            Dim CheckBoxValue As Boolean = False
+
+            If FormEnableTips = 1 Then CheckBoxValue = True
 
             With Form_Recipes
+                .Location = New Point(FormRecipesLeft, FormRecipesTop)
                 .Activate()
                 .ButtonSize.Text = "-"
-                .Size = New Size(328, 689)
+                .Size = New Size(328, 631)
+                .CheckBoxEnableTips.Checked = CheckBoxValue
 
             End With
 
@@ -1966,6 +2233,7 @@ Module Module_Functions
     Public Sub SettingsLoad()
 
         Try
+            BootSettings()
 
             Form_Settings.TextBox0000.Text = CurrentSettings
 
@@ -1986,10 +2254,18 @@ Module Module_Functions
 
             Next
 
+            If FormSettingsLeft < 0 Or FormSettingsLeft > My.Computer.Screen.Bounds.Width - 328 Then FormSettingsLeft = 598
+            If FormSettingsTop < 0 Or FormSettingsTop > My.Computer.Screen.Bounds.Height - 433 Then FormSettingsTop = 100
+
+            Dim CheckBoxValue As Boolean = False
+            If FormEnableTips = 1 Then CheckBoxValue = True
+
             With Form_Settings
+                .Location = New Point(FormSettingsLeft, FormSettingsTop)
                 .Activate()
                 .ButtonSize.Text = "-"
-                .Size = New Size(328, 689)
+                .Size = New Size(328, 443)
+                .CheckBoxEnableTips.Checked = CheckBoxValue
 
                 With .ComboBox0000
                     .Items.Clear()
