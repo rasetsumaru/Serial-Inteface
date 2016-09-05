@@ -327,7 +327,7 @@ Partial Class Form_Controller
         Me.ButtonCreateFile.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
         Me.ButtonCreateFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonCreateFile.ForeColor = System.Drawing.SystemColors.Control
-        Me.ButtonCreateFile.Location = New System.Drawing.Point(225, 129)
+        Me.ButtonCreateFile.Location = New System.Drawing.Point(129, 141)
         Me.ButtonCreateFile.Name = "ButtonCreateFile"
         Me.ButtonCreateFile.Size = New System.Drawing.Size(90, 26)
         Me.ButtonCreateFile.TabIndex = 36
@@ -342,7 +342,7 @@ Partial Class Form_Controller
         Me.ButtonOpenFile.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
         Me.ButtonOpenFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonOpenFile.ForeColor = System.Drawing.SystemColors.Control
-        Me.ButtonOpenFile.Location = New System.Drawing.Point(225, 161)
+        Me.ButtonOpenFile.Location = New System.Drawing.Point(129, 173)
         Me.ButtonOpenFile.Name = "ButtonOpenFile"
         Me.ButtonOpenFile.Size = New System.Drawing.Size(90, 26)
         Me.ButtonOpenFile.TabIndex = 56
@@ -357,7 +357,7 @@ Partial Class Form_Controller
         Me.ButtonDownload.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
         Me.ButtonDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonDownload.ForeColor = System.Drawing.SystemColors.Control
-        Me.ButtonDownload.Location = New System.Drawing.Point(225, 225)
+        Me.ButtonDownload.Location = New System.Drawing.Point(225, 173)
         Me.ButtonDownload.Name = "ButtonDownload"
         Me.ButtonDownload.Size = New System.Drawing.Size(90, 26)
         Me.ButtonDownload.TabIndex = 58
@@ -372,7 +372,7 @@ Partial Class Form_Controller
         Me.ButtonUpload.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
         Me.ButtonUpload.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonUpload.ForeColor = System.Drawing.SystemColors.Control
-        Me.ButtonUpload.Location = New System.Drawing.Point(225, 193)
+        Me.ButtonUpload.Location = New System.Drawing.Point(225, 141)
         Me.ButtonUpload.Name = "ButtonUpload"
         Me.ButtonUpload.Size = New System.Drawing.Size(90, 26)
         Me.ButtonUpload.TabIndex = 57
@@ -387,7 +387,7 @@ Partial Class Form_Controller
         Me.ButtonRTC.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark
         Me.ButtonRTC.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonRTC.ForeColor = System.Drawing.SystemColors.Control
-        Me.ButtonRTC.Location = New System.Drawing.Point(226, 257)
+        Me.ButtonRTC.Location = New System.Drawing.Point(226, 205)
         Me.ButtonRTC.Name = "ButtonRTC"
         Me.ButtonRTC.Size = New System.Drawing.Size(90, 26)
         Me.ButtonRTC.TabIndex = 59
@@ -400,16 +400,17 @@ Partial Class Form_Controller
         Me.ComboBox0000.BackColor = System.Drawing.SystemColors.Window
         Me.ComboBox0000.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox0000.FormattingEnabled = True
-        Me.ComboBox0000.Location = New System.Drawing.Point(26, 286)
+        Me.ComboBox0000.Location = New System.Drawing.Point(29, 258)
         Me.ComboBox0000.Name = "ComboBox0000"
         Me.ComboBox0000.Size = New System.Drawing.Size(111, 21)
         Me.ComboBox0000.TabIndex = 179
+        Me.ComboBox0000.TabStop = False
         '
         'Label0014
         '
         Me.Label0014.AutoSize = True
         Me.Label0014.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label0014.Location = New System.Drawing.Point(23, 270)
+        Me.Label0014.Location = New System.Drawing.Point(26, 242)
         Me.Label0014.Name = "Label0014"
         Me.Label0014.Size = New System.Drawing.Size(58, 13)
         Me.Label0014.TabIndex = 180
@@ -423,9 +424,9 @@ Partial Class Form_Controller
         Me.ClientSize = New System.Drawing.Size(328, 689)
         Me.ControlBox = False
         Me.Controls.Add(Me.Label0014)
-        Me.Controls.Add(Me.ComboBox0000)
         Me.Controls.Add(Me.ButtonRTC)
         Me.Controls.Add(Me.ButtonDownload)
+        Me.Controls.Add(Me.ComboBox0000)
         Me.Controls.Add(Me.ButtonUpload)
         Me.Controls.Add(Me.ButtonOpenFile)
         Me.Controls.Add(Me.ButtonCreateFile)

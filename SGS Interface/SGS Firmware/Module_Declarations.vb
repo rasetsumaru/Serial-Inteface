@@ -33,6 +33,25 @@ Public Module Module_Declarations
     Public ValidationSettingMinimum() As String = {"0", "0", "0", "1", "2", "0"}
     Public ValidationSettingMaximum() As String = {"2", "1", "1", "30000", "10", "2"}
 
+    Public ListValidateEdit() As String = {"1,30", "18,00", "7,00", "30,00", "130", "700"}
+
+    Public ListRecipeEditSubstrings() As Integer = {5, 16, 21, 5, 26, 5, 31, 6, 37, 6, 43, 4, 47, 5, 52, 2, 54, 4, 58, 6, 64, 3}
+    Public ListRecipeEditEdit() As Integer = {0, 6, 9, 7, 1, 2, 3, 4, 5, 8, 10}
+
+    Public ListSaveEditRamRecipeEqualizer() As Integer = {16, 5, 5, 6, 6, 4, 5, 2, 4, 6, 3}
+    Public ListSaveEditRamEdit() As Integer = {0, 4, 5, 6, 7, 8, 1, 3, 9, 2, 10}
+    Public ListSettingsLoadSubstrings() As Integer = {5, 2, 12, 2, 26, 6, 32, 3, 35, 2, 37, 2}
+    Public ListSettingsLoadEdit() As Integer = {0, 5, 1, 2, 3, 4}
+    Public ListSaveSettingsSubstrings() As Integer = {5, 2, 12, 2, 26, 6, 32, 3, 35, 2, 37, 2}
+    Public ListSaveSettingsEdit() As Integer = {0, 5, 1, 2, 3, 4}
+    Public ListSaveSettingsSettingEqualizer() As Integer = {2, 2, 6, 3, 2, 2}
+
+#End Region
+
+#Region "Integers"
+
+    Public RecipesSize As Integer = 500
+
 #End Region
 
 End Module

@@ -145,18 +145,16 @@ Public Class Form_Controller
 
 #End Region
 
+#Region "Select Language"
+
     Private Sub ComboBox0000_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox0000.SelectedIndexChanged
 
         SGS_Library.Language = Me.ComboBox0000.SelectedIndex
         ChangeLanguage()
         LanguageForm(Me)
 
-        With Me.ComboBox0000
-            .Items.Clear()
-            .Items.AddRange(SGS_Library.LanguageSelect)
-            .SelectedIndex = SGS_Library.Language
-        End With
-
     End Sub
+
+#End Region
 
 End Class

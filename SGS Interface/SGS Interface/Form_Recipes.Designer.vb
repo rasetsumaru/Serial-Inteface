@@ -316,6 +316,7 @@ Partial Class Form_Recipes
         '
         Me.ComboBox0000.BackColor = System.Drawing.SystemColors.Window
         Me.ComboBox0000.FormattingEnabled = True
+        Me.ComboBox0000.IntegralHeight = False
         Me.ComboBox0000.Location = New System.Drawing.Point(38, 463)
         Me.ComboBox0000.Name = "ComboBox0000"
         Me.ComboBox0000.Size = New System.Drawing.Size(67, 21)

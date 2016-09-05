@@ -23,6 +23,8 @@ Module Module_Functions
     Public WithEvents _TimerPanelTx As New System.Windows.Forms.Timer
     Public WithEvents _TimerPanelRx As New System.Windows.Forms.Timer
 
+    Public WithEvents _ToolTipController As New System.Windows.Forms.ToolTip
+
 #End Region
 
 #Region "Declarations"
@@ -224,12 +226,6 @@ Module Module_Functions
                 .ButtonRTC.Enabled = False
                 .ProgressBar.Visible = False
 
-                With .ComboBox0000
-                    .Items.Clear()
-                    .Items.AddRange(SGS_Library.LanguageSelect)
-                    .SelectedIndex = SGS_Library.Language
-                End With
-
             End With
 
             With _TimerNow
@@ -390,7 +386,7 @@ Module Module_Functions
                         .Label0013.Text = SGS_Library.Label0018
                         .Label0014.Text = SGS_Library.Label0074
 
-                        With _ToolTip
+                        With _ToolTipController
                             .IsBalloon = True
                             .SetToolTip(Form_Controller.ButtonClose, SGS_Library.Label0001)
                             .SetToolTip(Form_Controller.ButtonConnect, SGS_Library.Label0003)
@@ -404,6 +400,17 @@ Module Module_Functions
                         End With
 
                     End With
+
+                    If Not LastLanguage = SGS_Library.Language Then
+                        LastLanguage = SGS_Library.Language
+
+                        With Form_Controller.ComboBox0000
+                            .Items.Clear()
+                            .Items.AddRange(SGS_Library.LanguageSelect)
+                            .SelectedIndex = SGS_Library.Language
+                        End With
+
+                    End If
 
                 Case Is = "Form_Recipes"
 
@@ -682,7 +689,7 @@ Module Module_Functions
 
                     Catch ex As Exception
 
-                        MessageBox.Show(ex.Message)
+                        FormMessageBox(15)
 
                     End Try
 
@@ -1053,10 +1060,6 @@ Module Module_Functions
                     If Data.Substring(0, 2) = "01" Then
                         UsartConnected = True
                         UsartRx = ""
-                        With Form_Controller
-                            .ButtonConnect.Visible = False
-                            .ButtonDisconnect.Visible = True
-                        End With
 
                         _TimerConnected.Stop()
                         _TimerVersion.Start()
@@ -1133,9 +1136,12 @@ Module Module_Functions
                         .ButtonUpload.Enabled = True
                         .ButtonDownload.Enabled = True
                         .ButtonRTC.Enabled = True
-                    End With
+                        .ButtonConnect.Visible = False
+                        .ButtonDisconnect.Visible = True
 
-                    FormMessageBox(0)
+                        End With
+
+                        FormMessageBox(0)
 
                 End If
 
@@ -1148,7 +1154,7 @@ Module Module_Functions
 
                     Case Is = 1
 
-                        If RecipeIndex < 500 Then
+                        If RecipeIndex < SGS_Firmware.RecipesSize Then
                             RecipeIndex = RecipeIndex + 1
                             DownloadFileControl()
                             Form_Controller.ProgressBar.PerformStep()
@@ -1167,7 +1173,7 @@ Module Module_Functions
 
                         WriteFileChecksum("Recipes", Strings.Left(Decoder, 5), Strings.Right(Decoder, 64), nome_arquivo_ini)
 
-                        If RecipeIndex < 500 Then
+                        If RecipeIndex < SGS_Firmware.RecipesSize Then
                             RecipeIndex = RecipeIndex + 1
                             UploadFileControl()
                             Form_Controller.ProgressBar.PerformStep()
@@ -1539,6 +1545,37 @@ Module Module_Functions
                         End With
                     End With
 
+                Case Is = 14
+                    With Form_MessageBox
+                        .LabelMessage.Text = SGS_Library.Message0014
+                        With .Button01
+                            .Visible = True
+                            .Text = SGS_Library.Label0010
+                        End With
+                        With _ToolTip
+                            .IsBalloon = True
+                            .SetToolTip(Form_MessageBox.Button01, SGS_Library.Label0019)
+                        End With
+                    End With
+
+                Case Is = 15
+                    With Form_MessageBox
+                        .LabelMessage.Text = SGS_Library.Message0015 & " " & _SerialPort.PortName & "." & SGS_Library.Message0016
+                        With .Button01
+                            .Visible = True
+                            .Text = SGS_Library.Label0011
+                        End With
+                        With .Button02
+                            .Visible = True
+                            .Text = SGS_Library.Label0012
+                        End With
+                        With _ToolTip
+                            .IsBalloon = True
+                            .SetToolTip(Form_MessageBox.Button01, SGS_Library.Label0021)
+                            .SetToolTip(Form_MessageBox.Button02, SGS_Library.Label0020)
+                        End With
+                    End With
+
             End Select
 
 
@@ -1607,6 +1644,13 @@ Module Module_Functions
                                 .ButtonRTC.Enabled = True
                             End With
 
+                        Case Is = 14
+                            Form_MessageBox.Dispose()
+
+                        Case Is = 15
+                            Form_MessageBox.Dispose()
+                            SerialPortForceDisconnected()
+
                     End Select
 
                 Case Is = 2
@@ -1616,6 +1660,9 @@ Module Module_Functions
                             Form_MessageBox.Dispose()
                             ConnectDevice()
 
+                        Case Is = 15
+                            Form_MessageBox.Dispose()
+                            _TimerConnected.Start()
                     End Select
 
                 Case Is = 3
@@ -1669,7 +1716,7 @@ Module Module_Functions
 
                         Dim RecipeData As String
 
-                        For i As Integer = 1 To 500
+                        For i As Integer = 1 To SGS_Firmware.RecipesSize
 
                             RecipeData = "RR"
 
@@ -1754,7 +1801,9 @@ Module Module_Functions
                     End Select
 
                 Catch Ex As Exception
-                    MessageBox.Show("Cannot read file from disk. Original error: " & Ex.Message) 'msgbox
+
+                    FormMessageBox(14)
+
                 End Try
             End If
 
@@ -1813,14 +1862,14 @@ Module Module_Functions
 
                                     With Form_Controller.ProgressBar
                                         .Visible = True
-                                        .Maximum = 500
+                                        .Maximum = SGS_Firmware.RecipesSize
                                         .Step = 1
                                         .Style = ProgressBarStyle.Continuous
                                     End With
 
                                     Dim RecipeData As String
 
-                                    For i As Integer = 1 To 500
+                                    For i As Integer = 1 To SGS_Firmware.RecipesSize
 
                                         RecipeData = "RR"
 
@@ -1905,7 +1954,7 @@ Module Module_Functions
 
                         With Form_Controller.ProgressBar
                             .Visible = True
-                            .Maximum = 500
+                            .Maximum = SGS_Firmware.RecipesSize
                             .Step = 1
                             .Style = ProgressBarStyle.Continuous
                         End With
@@ -1953,7 +2002,7 @@ Module Module_Functions
             End With
 
             Form_Recipes.ComboBox0000.Items.Clear()
-            For i As Integer = 1 To 500
+            For i As Integer = 1 To SGS_Firmware.RecipesSize
                 Form_Recipes.ComboBox0000.Items.Add(i)
             Next
 
@@ -1974,7 +2023,7 @@ Module Module_Functions
             Dim RecipeData As String
             Dim nome_arquivo_ini As String = FileDirectory & "\" & FileName
 
-            For i As Integer = 1 To 500
+            For i As Integer = 1 To SGS_Firmware.RecipesSize
 
                 RecipeData = "RR"
 
@@ -2008,14 +2057,10 @@ Module Module_Functions
 
             Dim ListTextBoxes() As TextBox = {Form_Recipes.TextBox0001, Form_Recipes.TextBox0002, Form_Recipes.TextBox0003, Form_Recipes.TextBox0004, Form_Recipes.TextBox0005, Form_Recipes.TextBox0006, Form_Recipes.TextBox0007, Form_Recipes.TextBox0008, Form_Recipes.TextBox0009, Form_Recipes.TextBox0010, Form_Recipes.TextBox0011}
 
-            Dim ListSubstrings() As Integer = {5, 16, 21, 5, 26, 5, 31, 6, 37, 6, 43, 4, 47, 5, 52, 2, 54, 4, 58, 6, 64, 3}
-
-            Dim ListEdit() As Integer = {0, 6, 9, 7, 1, 2, 3, 4, 5, 8, 10}
-
             Dim Parameters As String = RecipeList(RecipeIndex)
 
             For i As Integer = 0 To 10
-                ListCurrentParameters(i) = Parameters.Substring(ListSubstrings(2 * ListEdit(i)), ListSubstrings(2 * ListEdit(i) + 1))
+                ListCurrentParameters(i) = Parameters.Substring(SGS_Firmware.ListRecipeEditSubstrings(2 * SGS_Firmware.ListRecipeEditEdit(i)), SGS_Firmware.ListRecipeEditSubstrings(2 * SGS_Firmware.ListRecipeEditEdit(i) + 1))
                 ListTextBoxes(i).Text = ListCurrentParameters(i)
 
                 If Not i = 0 Then
@@ -2052,11 +2097,11 @@ Module Module_Functions
 
 
             If Convert.ToDecimal(ListCurrentParameters(1)) / 100 < 10 Then
-                SGS_Firmware.ValidationRecipeMinimum(4) = "1,30"
-                SGS_Firmware.ValidationRecipeMaximum(5) = "18,00"
+                SGS_Firmware.ValidationRecipeMinimum(4) = SGS_Firmware.ListValidateEdit(0)
+                SGS_Firmware.ValidationRecipeMaximum(5) = SGS_Firmware.ListValidateEdit(1)
             Else
-                SGS_Firmware.ValidationRecipeMinimum(4) = "7,00"
-                SGS_Firmware.ValidationRecipeMaximum(5) = "30,00"
+                SGS_Firmware.ValidationRecipeMinimum(4) = SGS_Firmware.ListValidateEdit(2)
+                SGS_Firmware.ValidationRecipeMaximum(5) = SGS_Firmware.ListValidateEdit(3)
             End If
 
             Dim Parameter As String
@@ -2089,24 +2134,24 @@ Module Module_Functions
 
                                 If i = 1 And Not Parameter = ListCurrentParameters(i) Then
                                     If Convert.ToDecimal(Parameter) / 100 < 10 Then
-                                        SGS_Firmware.ValidationRecipeMinimum(4) = "1,30"
-                                        SGS_Firmware.ValidationRecipeMinimum(5) = "1,30"
-                                        SGS_Firmware.ValidationRecipeMaximum(4) = "18,00"
-                                        SGS_Firmware.ValidationRecipeMaximum(5) = "18,00"
-                                        If Convert.ToDecimal(ListCurrentParameters(5)) / 100 > Convert.ToDecimal("18,00") Then
+                                        SGS_Firmware.ValidationRecipeMinimum(4) = SGS_Firmware.ListValidateEdit(0)
+                                        SGS_Firmware.ValidationRecipeMinimum(5) = SGS_Firmware.ListValidateEdit(0)
+                                        SGS_Firmware.ValidationRecipeMaximum(4) = SGS_Firmware.ListValidateEdit(1)
+                                        SGS_Firmware.ValidationRecipeMaximum(5) = SGS_Firmware.ListValidateEdit(1)
+                                        If Convert.ToDecimal(ListCurrentParameters(5)) / 100 > Convert.ToDecimal(SGS_Firmware.ListValidateEdit(1)) Then
                                             FormMessageBox(7)
-                                            ListTextBoxes(4).Text = "130"
-                                            ListTextBoxes(5).Text = "130"
+                                            ListTextBoxes(4).Text = SGS_Firmware.ListValidateEdit(4)
+                                            ListTextBoxes(5).Text = SGS_Firmware.ListValidateEdit(4)
                                         End If
                                     Else
-                                        SGS_Firmware.ValidationRecipeMinimum(4) = "7,00"
-                                        SGS_Firmware.ValidationRecipeMinimum(5) = "7,00"
-                                        SGS_Firmware.ValidationRecipeMaximum(4) = "30,00"
-                                        SGS_Firmware.ValidationRecipeMaximum(5) = "30,00"
-                                        If Convert.ToDecimal(ListCurrentParameters(4)) / 100 < Convert.ToDecimal("7,00") Then
+                                        SGS_Firmware.ValidationRecipeMinimum(4) = SGS_Firmware.ListValidateEdit(2)
+                                        SGS_Firmware.ValidationRecipeMinimum(5) = SGS_Firmware.ListValidateEdit(2)
+                                        SGS_Firmware.ValidationRecipeMaximum(4) = SGS_Firmware.ListValidateEdit(3)
+                                        SGS_Firmware.ValidationRecipeMaximum(5) = SGS_Firmware.ListValidateEdit(3)
+                                        If Convert.ToDecimal(ListCurrentParameters(4)) / 100 < Convert.ToDecimal(SGS_Firmware.ListValidateEdit(2)) Then
                                             FormMessageBox(7)
-                                            ListTextBoxes(4).Text = "700"
-                                            ListTextBoxes(5).Text = "700"
+                                            ListTextBoxes(4).Text = SGS_Firmware.ListValidateEdit(5)
+                                            ListTextBoxes(5).Text = SGS_Firmware.ListValidateEdit(5)
                                         End If
                                     End If
 
@@ -2172,22 +2217,18 @@ Module Module_Functions
 
             Newrecipe = Newrecipe & RecipeIndex
 
-
-            Dim RecipeEqualizer() As Integer = {16, 5, 5, 6, 6, 4, 5, 2, 4, 6, 3}
-            Dim ListEdit() As Integer = {0, 4, 5, 6, 7, 8, 1, 3, 9, 2, 10}
-
             For i As Integer = 0 To 10
 
                 If i = 0 Then
 
-                    Newrecipe += ListCurrentParameters(ListEdit(i))
-                    For j As Integer = 0 To RecipeEqualizer(i) - ListCurrentParameters(ListEdit(i)).Length - 1
+                    Newrecipe += ListCurrentParameters(SGS_Firmware.ListSaveEditRamEdit(i))
+                    For j As Integer = 0 To SGS_Firmware.ListSaveEditRamRecipeEqualizer(i) - ListCurrentParameters(SGS_Firmware.ListSaveEditRamEdit(i)).Length - 1
                         Newrecipe += " "
                     Next
 
                 Else
-                    Dim equalizer As String = Convert.ToInt32(ListCurrentParameters(ListEdit(i)))
-                    For j As Integer = 0 To RecipeEqualizer(i) - equalizer.Length - 1
+                    Dim equalizer As String = Convert.ToInt32(ListCurrentParameters(SGS_Firmware.ListSaveEditRamEdit(i)))
+                    For j As Integer = 0 To SGS_Firmware.ListSaveEditRamRecipeEqualizer(i) - equalizer.Length - 1
                         Newrecipe += " "
                     Next
                     Newrecipe += equalizer
@@ -2214,7 +2255,7 @@ Module Module_Functions
 
             WriteFileChecksum("Firmware", "FR000", SGS_Firmware.Firmware, nome_arquivo_ini)
 
-            For i As Integer = 1 To 500
+            For i As Integer = 1 To SGS_Firmware.RecipesSize
                 WriteFileChecksum("Recipes", Strings.Left(RecipeList(i), 5), Strings.Mid(RecipeList(i), 6), nome_arquivo_ini)
             Next
 
@@ -2239,13 +2280,9 @@ Module Module_Functions
 
             Dim ListTextBoxes() As TextBox = {Form_Settings.TextBox0001, Form_Settings.TextBox0002, Form_Settings.TextBox0003, Form_Settings.TextBox0004, Form_Settings.TextBox0005, Form_Settings.TextBox0006}
 
-            Dim ListSubstrings() As Integer = {5, 2, 12, 2, 26, 6, 32, 3, 35, 2, 37, 2}
-
-            Dim ListEdit() As Integer = {0, 5, 1, 2, 3, 4}
-
             For i As Integer = 0 To 5
 
-                ListCurrentSettings(i) = CurrentSettings.Substring(ListSubstrings(2 * ListEdit(i)), ListSubstrings(2 * ListEdit(i) + 1))
+                ListCurrentSettings(i) = CurrentSettings.Substring(SGS_Firmware.ListSettingsLoadSubstrings(2 * SGS_Firmware.ListSettingsLoadEdit(i)), SGS_Firmware.ListSettingsLoadSubstrings(2 * SGS_Firmware.ListSettingsLoadEdit(i) + 1))
                 ListTextBoxes(i).Text = Convert.ToInt32(ListCurrentSettings(i))
 
                 If i = 2 Or i = 3 Then
@@ -2347,23 +2384,23 @@ Module Module_Functions
 
             Dim NewSetting As String = CurrentSettings
 
-            Dim ListSubstrings() As Integer = {5, 2, 12, 2, 26, 6, 32, 3, 35, 2, 37, 2}
+            'Dim ListSubstrings() As Integer = {5, 2, 12, 2, 26, 6, 32, 3, 35, 2, 37, 2}
 
-            Dim ListEdit() As Integer = {0, 5, 1, 2, 3, 4}
+            'Dim ListEdit() As Integer = {0, 5, 1, 2, 3, 4}
 
-            Dim SettingEqualizer() As Integer = {2, 2, 6, 3, 2, 2}
+            'Dim SettingEqualizer() As Integer = {2, 2, 6, 3, 2, 2}
 
             For i As Integer = 0 To 5
 
                 Dim Parameter As String = ""
 
-                For j As Integer = 0 To SettingEqualizer(ListEdit(i)) - Convert.ToInt32(ListCurrentSettings(i)).ToString.Length() - 1
+                For j As Integer = 0 To SGS_Firmware.ListSaveSettingsSettingEqualizer(SGS_Firmware.ListSaveSettingsEdit(i)) - Convert.ToInt32(ListCurrentSettings(i)).ToString.Length() - 1
                     Parameter += " "
                 Next
 
                 Parameter += Convert.ToInt32(ListCurrentSettings(i)).ToString
 
-                NewSetting = Strings.Left(NewSetting, ListSubstrings(ListEdit(i) * 2)) & Parameter & Strings.Right(NewSetting, 69 - ListSubstrings((ListEdit(i) * 2)) - ListSubstrings(ListEdit(i) * 2 + 1))
+                NewSetting = Strings.Left(NewSetting, SGS_Firmware.ListSaveSettingsSubstrings(SGS_Firmware.ListSaveSettingsEdit(i) * 2)) & Parameter & Strings.Right(NewSetting, 69 - SGS_Firmware.ListSaveSettingsSubstrings((SGS_Firmware.ListSaveSettingsEdit(i) * 2)) - SGS_Firmware.ListSaveSettingsSubstrings(SGS_Firmware.ListSaveSettingsEdit(i) * 2 + 1))
 
             Next
 

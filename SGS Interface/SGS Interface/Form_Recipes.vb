@@ -74,7 +74,7 @@ Public Class Form_Recipes
 
         SaveEditRam()
 
-        If RecipeIndex < 500 Then
+        If RecipeIndex < SGS_Firmware.RecipesSize Then
             RecipeIndex += 1
             Me.ComboBox0000.SelectedIndex += 1
             RecipeEdit()

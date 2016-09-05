@@ -10,7 +10,7 @@ Public Module Module_Declarations
 #Region "Language"
 
     Public Language As Integer
-    Public LanguageSelect() As String = {"English", "PortugueseBr"}
+    Public LanguageSelect() As String = {"English", "PortugueseBr", "Italian"}
 
 #End Region
 
@@ -97,20 +97,23 @@ Public Module Module_Declarations
 
 #Region "Messages"
 
-    Public Message0000 As String = "USB Usart connected"
-    Public Message0001 As String = "USB Usart disconnected"
-    Public Message0002 As String = "Communication failure"
-    Public Message0003 As String = "Device not found"
+    Public Message0000 As String = "USB Usart connected."
+    Public Message0001 As String = "USB Usart disconnected."
+    Public Message0002 As String = "Communication failure."
+    Public Message0003 As String = "Device not found."
     Public Message0004 As String = "There is a device connected to the software. Do you want to disconnect it?"
     Public Message0005 As String = "The system configuration file not found. The program will load the default settings."
-    Public Message0006 As String = "Error: Invalid character or characters limit exceeded"
-    Public Message0007 As String = "Warning: Range of resistance changed"
-    Public Message0008 As String = "Error: Value out of range or invalid character"
-    Public Message0009 As String = "Firmware mismatch or incompatible file"
-    Public Message0010 As String = "File saved successfully"
-    Public Message0011 As String = "Memory index doesn't exist"
-    Public Message0012 As String = "File transfer completed successfully"
-    Public Message0013 As String = "Updated clock"
+    Public Message0006 As String = "Error: Invalid character or characters limit exceeded."
+    Public Message0007 As String = "Warning: Range of resistance changed."
+    Public Message0008 As String = "Error: Value out of range or invalid character."
+    Public Message0009 As String = "Firmware mismatch or incompatible file."
+    Public Message0010 As String = "File saved successfully."
+    Public Message0011 As String = "Memory index doesn't exist."
+    Public Message0012 As String = "File transfer completed successfully."
+    Public Message0013 As String = "Updated clock."
+    Public Message0014 As String = "Cannot read file from disk."
+    Public Message0015 As String = "Failure to open the serial port"
+    Public Message0016 As String = "Try again?"
 
 #End Region
 

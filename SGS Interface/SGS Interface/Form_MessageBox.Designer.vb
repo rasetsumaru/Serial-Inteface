@@ -166,7 +166,7 @@ Partial Class Form_MessageBox
         Me.Controls.Add(Me.Label0000)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Form_MessageBox"
-        Me.Opacity = 0.9R
+        Me.Opacity = 0.90000000000000002R
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Form_MessageBox"

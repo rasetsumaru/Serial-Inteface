@@ -1,5 +1,57 @@
 ﻿Public NotInheritable Class Form_SplashScreen
 
+    Private Sub Form_SplashScreen_HandleDestroyed(sender As Object, e As EventArgs) Handles Me.HandleDestroyed
+
+        Dim FileOpen As String
+
+        FileOpen = Command()
+
+        If Not FileOpen = "" Then
+
+            FileOpen = FileOpen.Substring(1, FileOpen.Length() - 2)
+
+            If Strings.Right(FileOpen, 5).Equals(".sgss") Or Strings.Right(FileOpen, 5).Equals(".sgsr") Then
+
+                FileDirectory = Strings.Left(FileOpen, FileOpen.LastIndexOf("\"))
+                FileName = Strings.Right(FileOpen, FileOpen.Length - FileOpen.LastIndexOf("\") - 1)
+
+                Dim nome_arquivo_ini As String = FileDirectory & "\" & FileName
+
+                Dim FirmwareData As String = ReadFileChecksum(nome_arquivo_ini, "Firmware", "FR000", SGS_Firmware.Firmware)
+
+                SGS_Firmware.Firmware = FirmwareData.Substring(0, FirmwareData.IndexOf(" "))
+                SGS_Firmware.ReadFirmwareLibrary()
+
+                If Strings.Right(FileOpen, 5).Equals(".sgss") Then
+
+                    OpenFormSettings()
+
+                End If
+
+                If Strings.Right(FileOpen, 5).Equals(".sgsr") Then
+
+                    OpenFormRecipe()
+
+                End If
+
+            End If
+
+        End If
+
+        Select Case FileSystem
+
+            Case 1
+
+                OpenFormRecipe()
+
+            Case 2
+
+                OpenFormSettings()
+
+        End Select
+
+    End Sub
+
     'TODO: Este formulário pode ser facilmente configurado como a tela inicial da aplicação através da edição da aba "Aplicação"
     '  no Designer de Projeto ("Propriedades" dentro do menu "Projetos").
 

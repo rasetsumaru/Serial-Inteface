@@ -46,11 +46,17 @@ Module Module_Declarations
 
 #End Region
 
+#Region "Files"
 
     Public FileDirectory As String
     Public FileName As String
     Public FileSystem As Integer
+
     Public ControlFileOperation As Integer
+
+#End Region
+
+#Region "Parameters"
 
     Public RecipeIndex As Integer
     Public RecipeList(500) As String
@@ -60,6 +66,14 @@ Module Module_Declarations
 
     Public ListCurrentParameters() As String = {"", "", "", "", "", "", "", "", "", "", ""}
     Public ListCurrentSettings() As String = {"", "", "", "", "", ""}
+
+#End Region
+
+#Region "Language select"
+
+    Public LastLanguage As Integer = -1
+
+#End Region
 
 End Module
 
