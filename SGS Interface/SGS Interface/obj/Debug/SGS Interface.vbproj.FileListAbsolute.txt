@@ -19,3 +19,24 @@ D:\Projetos\Projeto Solitec, Audio Generator for Speakers\Versão 3\H 1.13 F 1.5
 D:\Projetos\Projeto Solitec, Audio Generator for Speakers\Versão 3\H 1.13 F 1.59\Visual Studio 2012\Serial-Inteface\SGS Interface\SGS interface\obj\Debug\SGS_Interface.Form_SplashScreen.resources
 D:\Projetos\Projeto Solitec, Audio Generator for Speakers\Versão 3\H 1.13 F 1.59\Visual Studio 2012\Serial-Inteface\SGS Interface\SGS interface\obj\Debug\SGS_Interface.Resources.resources
 D:\Projetos\Projeto Solitec, Audio Generator for Speakers\Versão 3\H 1.13 F 1.59\Visual Studio 2012\Serial-Inteface\SGS Interface\SGS interface\obj\Debug\SGS Interface.vbproj.GenerateResource.Cache
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS interface\bin\Debug\SGS Interface.exe.config
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS interface\obj\Debug\SGS Interface.exe
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS interface\obj\Debug\SGS Interface.xml
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS interface\obj\Debug\SGS Interface.pdb
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS interface\bin\Debug\SGS Interface.exe
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS interface\bin\Debug\SGS Interface.pdb
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS interface\bin\Debug\SGS Interface.xml
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS interface\bin\Debug\SGS Firmware.dll
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS interface\bin\Debug\SGS Library.dll
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS interface\bin\Debug\SGS Firmware.pdb
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS interface\bin\Debug\SGS Firmware.xml
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS interface\bin\Debug\SGS Library.pdb
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS interface\bin\Debug\SGS Library.xml
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS interface\obj\Debug\SGS Interface.vbprojResolveAssemblyReference.cache
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS interface\obj\Debug\SGS_Interface.Form_Controller.resources
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS interface\obj\Debug\SGS_Interface.Form_MessageBox.resources
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS interface\obj\Debug\SGS_Interface.Form_Recipes.resources
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS interface\obj\Debug\SGS_Interface.Form_Settings.resources
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS interface\obj\Debug\SGS_Interface.Form_SplashScreen.resources
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS interface\obj\Debug\SGS_Interface.Resources.resources
+C:\Users\raset\Documents\GitHub\Serial-Inteface\SGS Interface\SGS interface\obj\Debug\SGS Interface.vbproj.GenerateResource.Cache
