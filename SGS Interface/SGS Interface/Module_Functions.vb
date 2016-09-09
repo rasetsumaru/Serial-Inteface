@@ -188,8 +188,8 @@ Module Module_Functions
             TimerNowInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP020", "100")
             TimerConnectedInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP021", "1500")
             TimerDisconnectedInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP022", "1500")
-            TimerUsartTxInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP023", "300")
-            TimerUsartRxInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP024", "300")
+            TimerUsartTxInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP023", "400")
+            TimerUsartRxInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP024", "400")
             TimerVersionInterval = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP025", "1000")
 
             FormRecipesTop = ReadFileChecksum(nome_arquivo_ini, "Parameters", "PP030", "100")
@@ -825,6 +825,7 @@ Module Module_Functions
                     .ButtonClose.Enabled = False
                     .ButtonOpenFile.Enabled = False
                     .ButtonCreateFile.Enabled = False
+                    .ComboBox0000.Enabled = False
                 End With
 
             Else
@@ -866,6 +867,8 @@ Module Module_Functions
                 .ButtonDownload.Enabled = False
                 .ButtonClose.Enabled = True
                 .ButtonRTC.Enabled = False
+
+                .ComboBox0000.Enabled = True
             End With
 
             RemoveHandler _SerialPort.DataReceived, AddressOf Form_Controller.DataReceivedHandler
@@ -1101,6 +1104,7 @@ Module Module_Functions
                             .ButtonDownload.Enabled = False
                             .ButtonClose.Enabled = True
                             .ButtonRTC.Enabled = False
+                            .ComboBox0000.Enabled = True
                         End With
 
                         _TimerDisconnected.Stop()
@@ -1139,7 +1143,7 @@ Module Module_Functions
                         .ButtonConnect.Visible = False
                         .ButtonDisconnect.Visible = True
 
-                        End With
+                    End With
 
                         FormMessageBox(0)
 
@@ -1625,6 +1629,13 @@ Module Module_Functions
                         Case Is = 9
                             Form_MessageBox.Dispose()
 
+                            With Form_Controller
+                                .ButtonDisconnect.Enabled = True
+                                .ButtonDownload.Enabled = True
+                                .ButtonUpload.Enabled = True
+                                .ButtonRTC.Enabled = True
+                            End With
+
                         Case Is = 10
                             Form_MessageBox.Dispose()
 
@@ -1633,6 +1644,13 @@ Module Module_Functions
 
                         Case Is = 12
                             Form_MessageBox.Dispose()
+
+                            With Form_Controller
+                                .ButtonDisconnect.Enabled = True
+                                .ButtonDownload.Enabled = True
+                                .ButtonUpload.Enabled = True
+                                .ButtonRTC.Enabled = True
+                            End With
 
                         Case Is = 13
                             Form_MessageBox.Dispose()
